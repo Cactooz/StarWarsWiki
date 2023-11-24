@@ -1,0 +1,74 @@
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+.runtimeconfig.json
+.firebase/
+
+### Node ###
+.DS_*
+**/*.backup.*
+**/*.back.*
+node_modules
+*.sublime*
+psd
+thumb
+sketch
+.webpack/
+.svelte-kit
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+build/Release
+node_modules/
+jspm_packages/
+web_modules/
+dist
+.cache/
+public
+.temp
+
+# npm cache directory
+.npm
+
+# Output of 'npm pack'
+*.tgz
+
+# eslint cache
+.eslintcache
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.Local
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Yarn Integrity file
+.yarn-integrity
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
