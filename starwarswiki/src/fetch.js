@@ -18,10 +18,14 @@ export function fetchSWAPI(path, params) {
 }
 
 export function fetchSWDatabank(path, params) {
-	return fetchApi(
+	let { loading, error, data } = fetchApi(
 		'https://starwars-databank-server.vercel.app/api/v1/',
 		path,
 		params,
 		'SWDatabase',
 	);
+
+	if (data === "These aren't the droids you're looking for...") error = true;
+
+	return { loading: loading, error: error, data: data };
 }
