@@ -12,9 +12,29 @@ export default function LandingPageView(props) {
 	return (
 		<div>
 			<h1>STAR WARS WIKI</h1>
-			<LandingCard text='Characters' class='characters-landing-card' linkTo='/characters' />
-			<LandingCard text='Vehicles' class='vehicles-landing-card' linkTo='/vehicles' />
-			<LandingCard text='Planets' class='planets-landing-card' linkTo='/planets' />
+			<div className='landing-cards'>
+				<div className='child'>
+					<LandingCard
+						text='CHARACTERS'
+						image='https://upload.wikimedia.org/wikipedia/en/4/45/Star_Wars_cast.jpg'
+						linkTo='/characters'
+					/>
+				</div>
+				<div className='child'>
+					<LandingCard
+						text='VEHICLES'
+						image='https://lumiere-a.akamaihd.net/v1/images/millennium-falcon-main-tlj-a_7cf89d3a.jpeg'
+						linkTo='/vehicles'
+					/>
+				</div>
+				<div className='child'>
+					<LandingCard
+						text='PLANETS'
+						image='https://lumiere-a.akamaihd.net/v1/images/databank_mustafar_01_169_5b470758.jpeg'
+						linkTo='/planets'
+					/>
+				</div>
+			</div>
 		</div>
 	);
 }
