@@ -9,9 +9,8 @@ function showAllCB(card){
     function showDetailsACB(){
         props.showDetailsACB(card);
     }
-
     return(
-    <Card card={card}/>
+    <Card id={card.id} name ={card.name} image={card.image} onClick={showDetailsACB}/>
     );
 }
 }
