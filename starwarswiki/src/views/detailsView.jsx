@@ -1,5 +1,10 @@
 import Card from '../components/Card';
 
+/*
+	'suggested' is an array of objects. The attributes of the objects are 'id', 'name'
+	and 'image'.
+*/
+
 function DetailsView(props) {
 	return (
 		<div>
