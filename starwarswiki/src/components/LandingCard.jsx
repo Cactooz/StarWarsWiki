@@ -3,12 +3,11 @@ import '/src/style.css';
 
 export default function LandingCard(props) {
 	return (
-		<div className='router-link'>
-			<Link to={props.linkTo} className='no-text-decoration'>
-				<div className={`landing-card ${props.class} noDecoration`}>
-					<p>{props.text}</p>
-				</div>
-			</Link>
-		</div>
+		<Link to={props.linkTo}>
+			<div className='landing-card'>
+				<p>{props.text}</p>
+				<img src={props.image} />
+			</div>
+		</Link>
 	);
 }
