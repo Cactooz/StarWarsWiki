@@ -28,13 +28,15 @@ export default observer(function Details(props) {
 
 	function parseURL(path) {
 		const newPath = path.split('/');
-		return newPath[newPath.length - 1];
+		return newPath;
 	}
 
-	let page = 'characters/name/' + parseURL(path);
+	let splitURL = parseURL(path);
+	let page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
 	const recievedData = fetchSWDatabank(page, {});
 
 	if (recievedData.loading && !recievedData.error) return 'Loading...';
+	else if (recievedData.error) return 'Error';
 	else if (!recievedData.loading && !recievedData.error) {
 		const name = recievedData.data[0].name;
 		const desc = recievedData.data[0].description;
