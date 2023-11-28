@@ -6,10 +6,6 @@ return(
     </div>
 );
 function showAllCB(card){
-    function showDetailsACB(){
-        props.showDetailsACB(card);
-    }
-
     return(
     <Card card={card}/>
     );
