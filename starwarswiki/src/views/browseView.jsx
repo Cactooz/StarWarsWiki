@@ -6,8 +6,9 @@ return(
     </div>
 );
 function showAllCB(card){
-    function showDetailsACB(){
-        props.showDetailsACB(card);
+    function showDetailsACB(event){
+        console.log(event.target)
+        //FIRE CUSTOM EVENT HERE AND USE ROUTER
     }
     return(
     <Card id={card.id} name ={card.name} image={card.image} onClick={showDetailsACB}/>
