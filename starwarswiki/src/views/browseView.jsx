@@ -1,3 +1,4 @@
+import Card from "../components/Card.jsx";
 export default function browseView(props){
 return(
     <div>
@@ -10,10 +11,7 @@ function showAllCB(card){
     }
 
     return(
-    <div key = {card.id} className="cards" onClick={showDetailsACB}>
-        <img src={card.image} height={'100'}></img>
-        <div>{card.name}</div>
-    </div>
+    <Card card={card}/>
     );
 }
 }
