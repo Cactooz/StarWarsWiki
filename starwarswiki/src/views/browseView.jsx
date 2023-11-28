@@ -1,11 +1,11 @@
 export default function browseView(props){
 return(
     <div>
-        {props.browsResult.map(showAllCB)}
+        {props.browseResult.map(showAllCB)}
     </div>
 );
 function showAllCB(card){
-    function showResultACB(){
+    function showDetailsACB(){
         props.showDetailsACB(card);
     }
 
