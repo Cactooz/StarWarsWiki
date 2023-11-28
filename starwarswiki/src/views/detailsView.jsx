@@ -14,8 +14,30 @@ function DetailsView(props) {
 			<p>{props.details}</p>
 			<h3>You may also like</h3>
 			{props.suggested.map(getCardCB)}
+			{swapiInfo(props.swapiData)}
 		</div>
 	);
+
+	function swapiInfo(data) {
+		return (
+			<div>
+				<span>Birth year: {data.birth_year}</span>
+				<span>Gender: {data.gender}</span>
+				<span>Species: {data.species}</span>
+				<span>Homeworld: {data.homeworld}</span>
+				<h3>Starships</h3>
+				{data.starships.map(starshipACB)}
+			</div>
+		);
+	}
+
+	function starshipACB(ships) {
+		return (
+			<div>
+				<img src={ships} />
+			</div>
+		);
+	}
 
 	function showDetailsACB(id) {
 		props.showDetails(id);
