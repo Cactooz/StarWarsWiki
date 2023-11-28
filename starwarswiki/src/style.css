@@ -1,6 +1,5 @@
 .landing-card {
-	width: 1000px;
-	height: 500px;
+	position: absolute;
 	border: 1px;
 	border-style: solid;
 	border-color: black;
@@ -8,7 +7,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 20px;
+	height: 300px;
+	width: 500px;
 }
 
 .landing-card > p {
@@ -34,4 +34,15 @@
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
+}
+
+.router-link {
+	height: 300px;
+	width: 500px;
+	margin: 20px;
+	border-radius: 20px;
+}
+
+.no-text-decoration {
+	text-decoration: none;
 }
