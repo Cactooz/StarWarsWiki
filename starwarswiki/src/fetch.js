@@ -2,9 +2,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 function fetchApi(url, path, params, key) {
-	const { isLoading, isError, data } = useQuery({
-		concurrentQueriesLimit: 5,
-		staleTime: 86400000,
+	const { isLoading, isError, data, error } = useQuery({
 		queryKey: [key],
 		queryFn: () =>
 			axios.get(`${url}${path}?${new URLSearchParams(params)}`).then((res) => res.data),
@@ -18,14 +16,10 @@ export function fetchSWAPI(path, params) {
 }
 
 export function fetchSWDatabank(path, params) {
-	let { loading, error, data } = fetchApi(
+	return fetchApi(
 		'https://starwars-databank-server.vercel.app/api/v1/',
 		path,
 		params,
 		'SWDatabase',
 	);
-
-	if (data === "These aren't the droids you're looking for...") error = true;
-
-	return { loading: loading, error: error, data: data };
 }
