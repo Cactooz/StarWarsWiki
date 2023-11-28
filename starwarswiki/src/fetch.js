@@ -2,7 +2,9 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 
 function fetchApi(url, path, params, key) {
-	const { isLoading, isError, data, error } = useQuery({
+	const { isLoading, isError, data } = useQuery({
+		concurrentQueriesLimit: 5,
+		staleTime: 86400000,
 		queryKey: [key],
 		queryFn: () =>
 			axios.get(`${url}${path}?${new URLSearchParams(params)}`).then((res) => res.data),
