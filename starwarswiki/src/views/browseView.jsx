@@ -7,7 +7,7 @@ return(
 );
 function showAllCB(card){
     return(
-    <Card card={card}/>
+    <Card id={card.id} name ={card.name} image={card.image}/>
     );
 }
 }
