@@ -17,8 +17,19 @@ function DetailsView(props) {
 		</div>
 	);
 
+	function showDetailsACB(id) {
+		props.showDetails(id);
+	}
+
 	function getCardCB(character) {
-		return <Card id={character.id} image={character.image} name={character.name} />;
+		return (
+			<Card
+				key={character.id}
+				image={character.image}
+				name={character.name}
+				onClick={showDetailsACB}
+			/>
+		);
 	}
 }
 
