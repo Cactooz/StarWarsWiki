@@ -17,6 +17,7 @@ export default {
 	authenticated: undefined,
 	ofTheDay: undefined,
 
+	searchResult: {},
 	setCurrentVehicle(id) {
 		this.currentVehicle = id;
 	},
@@ -28,6 +29,10 @@ export default {
 	setCurrentPlanet(id) {
 		this.currentPlanet = id;
 	},
+	
+	setSearchResult(result){
+		this.searchResult = result;
+	}
 
 	/*addFavorite(path, id) {},
 	Firebase stuff
