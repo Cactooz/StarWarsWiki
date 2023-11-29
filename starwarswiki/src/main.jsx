@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import model from "./model.js"
+import {configure, observable} from "mobx";
+configure({ enforceActions: "never", });
+const reactiveModel = observable(model);
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -16,6 +20,8 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<QueryClientProvider client={queryClient}>
-		<App />
+		<App model={reactiveModel}/>
 	</QueryClientProvider>
 );
+
+window.model = reactiveModel;
