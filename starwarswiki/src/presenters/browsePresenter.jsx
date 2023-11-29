@@ -1,4 +1,3 @@
-import {observer} from "mobx-react-lite";
 import BrowseView from "../views/browseView.jsx";
 import Vortex from "../components/Vortex.jsx";
 export default
