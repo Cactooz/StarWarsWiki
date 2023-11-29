@@ -11,6 +11,9 @@ function makeRouter(props) {
 		model.setSearchResult(result);
 		return result;
 	}
+	async function test({params,request}){
+		console.log(params, request)
+	}
 	return createBrowserRouter([
 		{
 			path: '/',
@@ -24,16 +27,19 @@ function makeRouter(props) {
 			path: '/characters',
 			element: <Browse model={props.model}/>,
 			loader: loader,
+			errorElement: <Browse model={props.model}/>
 		},
 		{
 			path: '/locations',
 			element: <Browse model={props.model}/>,
-			loader: loader
+			loader: loader,
+			errorElement: <Browse model={props.model}/>
 		},
 		{
 			path: '/vehicles',
 			element: <Browse model={props.model}/>,
-			loader: loader
+			loader: loader,
+			errorElement: <Browse model={props.model}/>
 		},
 	]);
 }
