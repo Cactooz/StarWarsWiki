@@ -35,3 +35,20 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 }
+
+.cards{
+	display: inline-block;
+	width: 100%;
+	max-width: 550px;
+	margin:1vw auto;
+	text-align: center;
+}
+.cards img{
+	width: 100%;
+	max-width: 500px;
+	height: auto;
+	max-height: 250px;
+	object-fit: contain;
+	overflow: hidden;
+}
+
