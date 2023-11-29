@@ -9,7 +9,7 @@ function makeRouter(props) {
 		const searchParam = url.pathname.replace("/","");
 		const result = fetchSWDatabank(searchParam)
 		model.setSearchResult(result);
-		return null
+		return result;
 	}
 	return createBrowserRouter([
 		{
