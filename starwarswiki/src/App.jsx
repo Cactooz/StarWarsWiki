@@ -11,9 +11,7 @@ function makeRouter(props) {
 		model.setSearchResult(result);
 		return result;
 	}
-	async function test({params,request}){
-		console.log(params, request)
-	}
+	
 	return createBrowserRouter([
 		{
 			path: '/',
