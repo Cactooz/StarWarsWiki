@@ -11,17 +11,17 @@ function fetchApi(url, path, params, key) {
 	});
 }
 
-export function fetchSWAPI(path, params) {
-	const { isLoading, isError, data } = fetchApi('https://swapi.dev/api/', path, params, 'SWAPI');
+export function fetchSWAPI(path, params, key) {
+	const { isLoading, isError, data } = fetchApi('https://swapi.dev/api/', path, params, key);
 	return { loading: isLoading, error: isError, data: data };
 }
 
-export function fetchSWDatabank(path, params) {
+export function fetchSWDatabank(path, params, key) {
 	let { isLoading, isError, data } = fetchApi(
 		'https://starwars-databank-server.vercel.app/api/v1/',
 		path,
 		params,
-		'SWDatabase',
+		key,
 	);
 
 	if (data === "These aren't the droids you're looking for...") isError = true;
