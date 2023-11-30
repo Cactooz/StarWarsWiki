@@ -40,14 +40,20 @@ export function fetchCharacters(params) {
 
 	const results = useQueries([
 		{
+			concurrentQueriesLimit: 5,
+			staleTime: 86400000,
 			queryKey: ['people'],
 			queryFn: () => callApi('characters', params),
 		},
 		{
+			concurrentQueriesLimit: 5,
+			staleTime: 86400000,
 			queryKey: ['creatures'],
 			queryFn: () => callApi('creatures', params),
 		},
 		{
+			concurrentQueriesLimit: 5,
+			staleTime: 86400000,
 			queryKey: ['droids'],
 			queryFn: () => callApi('droids', params),
 		},
