@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<QueryClientProvider client={queryClient}>
-		<App model={reactiveModel}/>
+		<App />
 	</QueryClientProvider>
 );
 
