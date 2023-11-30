@@ -2,18 +2,18 @@ import BrowseView from "../views/browseView.jsx";
 import Vortex from "../components/Vortex.jsx";
 export default
     function Browse(props){
-        function render(data) {
-            if (!data) {
+        function render(searchResult) {
+            if (!searchResult) {
                 return "no data";
             }
-            else if (data.loading) {
+            else if (searchResult.loading) {
             return <Vortex/>;
             }
-            else if(data.error) {
-                return data.error
+            else if(searchResult.error) {
+                return searchResult.error
             }
             else
-                return <BrowseView browseResult={data.data.data}/>
+                return <BrowseView browseResult={searchResult.data.data}/>
         }
 
     return render(props.model.searchResult)
