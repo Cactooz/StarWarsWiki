@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useQuery } from 'react-query';
+import { useQuery, useQueries } from 'react-query';
 
 function fetchApi(url, path, params, key) {
 	const { isLoading, isError, data } = useQuery({
@@ -28,4 +28,43 @@ export function fetchSWDatabank(path, params) {
 	if (data === "These aren't the droids you're looking for...") error = true;
 
 	return { loading: loading, error: error, data: data };
+}
+
+export function fetchCharacters(params) {
+	function callApi(path, params) {
+		return axios
+			.get(
+				`https://starwars-databank-server.vercel.app/api/v1/${path}?${new URLSearchParams(params)}`,
+			)
+			.then((res) => res.data);
+	}
+
+	const results = useQueries([
+		{
+			queryKey: ['people'],
+			queryFn: () => callApi('characters', params),
+		},
+		{
+			queryKey: ['creatures'],
+			queryFn: () => callApi('creatures', params),
+		},
+		{
+			queryKey: ['droids'],
+			queryFn: () => callApi('droids', params),
+		},
+	]);
+
+	const isLoading = results.some((query) => query.isLoading);
+	const isError = results.some((query) => query.isError);
+
+	//If pages rolled over to 0, remove results
+	results.forEach((query) => {
+		if (query.data) {
+			if (query.data.info.page !== params.page) query.data = null;
+		}
+	});
+
+	const data = [results[0].data?.data, results[1].data?.data, results[2].data?.data];
+
+	return { loading: isLoading, error: isError, data: data.flat().filter(Boolean) };
 }
