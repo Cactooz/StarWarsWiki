@@ -2,8 +2,6 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import {fetchSWDatabank} from "./fetch.js";
 import Browse from "./presenters/browsePresenter.jsx";
-import { fetchSWDatabank } from './fetch.js';
-import Browse from './presenters/browsePresenter.jsx';
 import LandingPagePresenter from './presenters/landingPagePresenter';
 import DetailsPresenter from './presenters/detailsPresenter.jsx';
 
