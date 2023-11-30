@@ -11,7 +11,7 @@ function showAllCB(card){
         //FIRE CUSTOM EVENT HERE AND USE ROUTER
     }
     return(
-    <Card id={card.id} name ={card.name} image={card.image} onClick={showDetailsACB}/>
+    <Card key={card._id} name ={card.name} image={card.image} onClick={showDetailsACB}/>
     );
 }
 }
