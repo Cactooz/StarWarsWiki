@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
+import LandingPagePresenter from './presenters/landingPagePresenter';
 
 function makeRouter(model) {
 	return createBrowserRouter([
 		{
 			path: '/',
-			element: 'home',
+			element: <LandingPagePresenter />,
 		},
 		{
 			path: '/browse',
