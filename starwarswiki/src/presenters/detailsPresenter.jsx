@@ -33,7 +33,7 @@ export default observer(function Details(props) {
 
 	let splitURL = parseURL(path);
 	let page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
-	const recievedData = fetchSWDatabank(page, {});
+	const recievedData = fetchSWDatabank(page, {}, splitURL[splitURL.length - 1]);
 
 	if (recievedData.loading && !recievedData.error) return 'Loading...';
 	else if (recievedData.error) return 'Error';
