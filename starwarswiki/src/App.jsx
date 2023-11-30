@@ -2,6 +2,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import {fetchSWDatabank} from "./fetch.js";
 import Browse from "./presenters/browsePresenter.jsx";
+import LandingPagePresenter from './presenters/landingPagePresenter';
 
 function makeRouter(props) {
 	function loader({request}){
@@ -11,11 +12,10 @@ function makeRouter(props) {
 		model.setSearchResult(result);
 		return result;
 	}
-
 	return createBrowserRouter([
 		{
 			path: '/',
-			element: 'home',
+			element: <LandingPagePresenter />,
 		},
 		{
 			path: '/browse',

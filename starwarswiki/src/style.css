@@ -1,39 +1,45 @@
+h1 {
+	text-align: center;
+}
+
+.landing-cards {
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 1;
+	height: 100%;
+}
+
+.child {
+	align-self: center;
+	flex-grow: 1;
+	height: calc(33.33% - 10px);
+	margin: 5px;
+	width: calc(100% - 10px);
+	max-width: 800px;
+}
+
 .landing-card {
-	width: 1000px;
-	height: 500px;
-	border: 1px;
-	border-style: solid;
-	border-color: black;
-	border-radius: 20px;
+	flex-grow: 1;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 20px;
 }
 
-.landing-card > p {
+.landing-card img {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.landing-card p {
 	color: white;
-}
-
-.vehicles-landing-card {
-	background-image: url('https://lumiere-a.akamaihd.net/v1/images/screen_shot_2015-05-26_at_5_16a39e17.png');
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-.characters-landing-card {
-	background-image: url('https://lumiere-a.akamaihd.net/v1/images/admiral-raddus-main_33194c80.jpeg');
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-.planets-landing-card {
-	background-image: url('https://lumiere-a.akamaihd.net/v1/images/image_7f322dba.jpeg');
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
+	font-size: 3em;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	position: absolute;
+	margin: 0;
 }
 
 .cards{
