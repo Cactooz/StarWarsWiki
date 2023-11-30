@@ -29,9 +29,9 @@ export default function LandingPageView(props) {
 				</div>
 				<div className='child'>
 					<LandingCard
-						text='PLANETS'
+						text='LOCATIONS'
 						image='https://lumiere-a.akamaihd.net/v1/images/databank_mustafar_01_169_5b470758.jpeg'
-						linkTo='/planets'
+						linkTo='/locations'
 					/>
 				</div>
 			</div>
