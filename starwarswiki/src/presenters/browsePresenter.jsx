@@ -1,24 +1,35 @@
 import BrowseView from '../views/browseView.jsx';
 import Vortex from '../components/Vortex.jsx';
-import { fetchSWDatabank } from '../fetch.js';
-import { observer } from 'mobx-react-lite';
+import {observer} from 'mobx-react-lite';
+import axios from "axios";
+import {queryClient} from "../main.jsx";
+import {useInfiniteQuery} from "react-query";
+
+
+export const loader = (queryClient) => async ({request}) => {
+	const url = new URL(request.url)
+	const params = url.pathname.replace("/", "");
+	const tot = new URL(`https://starwars-databank-server.vercel.app/api/v1/${params}`);
+	return (queryClient.getQueryData(params) ??
+		await queryClient.fetchQuery({
+			queryKey: params, queryFn: () =>
+				axios.get(`${tot}`).then((res) => res.data), getNextPageParam: lastPage => lastPage.info.next
+		})
+	);
+}
 export default observer(function Browse(props) {
-	function loader() {
-		const url = new URL(window.location);
-		const searchParam = url.pathname.replace('/', '');
-		const result = fetchSWDatabank(searchParam, {}, searchParam);
-		return result;
-	}
 	function render(searchResult) {
-		if (!searchResult) {
-			return 'no data';
-		} else if (searchResult.loading) {
-			return <Vortex />;
-		} else if (searchResult.error) {
+		if (!searchResult.data)
+			return <Vortex/>;
+		else if (searchResult.error) {
 			return searchResult.error;
-		} else return <BrowseView browseResult={searchResult.data.data} />;
+		} else return <BrowseView browseResult={searchResult.data}/>;
 	}
 
-	const test = loader();
-	return render(test);
+	const site = window.location.pathname.replace("/", "")
+
+	if (queryClient.getQueryState(site).data === undefined)
+		return <Vortex/>;
+	else
+		return render(queryClient.getQueryData(site));
 });
