@@ -16,7 +16,5 @@ export default observer(function Browse(props) {
 
 	const site = window.location.pathname.replace("/", "")
 	const data = fetchSWDatabank(site, {}, site)
-	//console.log(props.model)
-	//props.model.setSearchResult(site)
 	return render(data);
 });
