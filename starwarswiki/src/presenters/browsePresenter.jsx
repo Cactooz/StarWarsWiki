@@ -13,7 +13,7 @@ export const loader = (queryClient) => async ({request}) => {
 	return (queryClient.getQueryData(params) ??
 		await queryClient.fetchQuery({
 			queryKey: params, queryFn: () =>
-				axios.get(`${tot}`).then((res) => res.data), getNextPageParam: lastPage => lastPage.info.next
+				axios.get(`${tot}`).then((res) => res.data)
 		})
 	);
 }
