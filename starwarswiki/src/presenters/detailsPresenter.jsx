@@ -1,55 +1,18 @@
 import { observer } from 'mobx-react-lite';
 import DetailsView from '../views/detailsView';
-import { fetchSWDatabank } from '../fetch';
-
-const related = [
-	{
-		id: '64292927021f17e13fbc1efd',
-		name: 'Cliegg Lars',
-		image: 'https://lumiere-a.akamaihd.net/v1/images/databank_cliegglars_01_169_c2f0b9cb.jpeg',
-	},
-	{
-		id: '64292927021f17e13fbc1f01',
-		name: 'Clone Captain Howzer',
-		image: 'https://lumiere-a.akamaihd.net/v1/images/clone-captain-howzer-main_149c5805.jpeg',
-	},
-	{
-		id: '64292927021f17e13fbc1f09',
-		name: 'Clone Commander Jet',
-		image:
-			'https://lumiere-a.akamaihd.net/v1/images/databank_clonecommanderjet_01_169_e88dd6fb.jpeg',
-	},
-];
+import { getDetails } from '../utilities';
+import Vortex from '../components/Vortex.jsx';
 
 export default observer(function Details(props) {
-	function showDetailsACB(id) {}
+	const recievedData = getDetails();
 
-	let path = window.location.pathname;
-
-	function parseURL(path) {
-		const newPath = path.split('/');
-		return newPath;
-	}
-
-	let splitURL = parseURL(path);
-	let page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
-	const recievedData = fetchSWDatabank(page, {}, splitURL[splitURL.length - 1]);
-
-	if (recievedData.loading && !recievedData.error) return 'Loading...';
+	if (recievedData.loading && !recievedData.error) return <Vortex />;
 	else if (recievedData.error) return 'Error';
 	else if (!recievedData.loading && !recievedData.error) {
 		const name = recievedData.data[0].name;
 		const desc = recievedData.data[0].description;
 		const image = recievedData.data[0].image;
 
-		return (
-			<DetailsView
-				details={desc}
-				image={image}
-				name={name}
-				suggested={related}
-				showDetails={showDetailsACB}
-			></DetailsView>
-		);
+		return <DetailsView details={desc} image={image} name={name}></DetailsView>;
 	}
 });
