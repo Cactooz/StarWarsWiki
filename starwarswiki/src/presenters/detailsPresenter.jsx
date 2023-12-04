@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import DetailsView from '../views/detailsView';
-import { fetchSWDatabank } from '../fetch';
+import { getDetails } from '../utilities';
 
 const related = [
 	{
@@ -24,16 +24,7 @@ const related = [
 export default observer(function Details(props) {
 	function showDetailsACB(id) {}
 
-	let path = window.location.pathname;
-
-	function parseURL(path) {
-		const newPath = path.split('/');
-		return newPath;
-	}
-
-	let splitURL = parseURL(path);
-	let page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
-	const recievedData = fetchSWDatabank(page, {}, splitURL[splitURL.length - 1]);
+	const recievedData = getDetails();
 
 	if (recievedData.loading && !recievedData.error) return 'Loading...';
 	else if (recievedData.error) return 'Error';
