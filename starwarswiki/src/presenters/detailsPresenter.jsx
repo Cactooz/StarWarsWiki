@@ -22,8 +22,6 @@ const related = [
 ];
 
 export default observer(function Details(props) {
-	function showDetailsACB(id) {}
-
 	const recievedData = getDetails();
 
 	if (recievedData.loading && !recievedData.error) return 'Loading...';
@@ -33,14 +31,6 @@ export default observer(function Details(props) {
 		const desc = recievedData.data[0].description;
 		const image = recievedData.data[0].image;
 
-		return (
-			<DetailsView
-				details={desc}
-				image={image}
-				name={name}
-				suggested={related}
-				showDetails={showDetailsACB}
-			></DetailsView>
-		);
+		return <DetailsView details={desc} image={image} name={name} suggested={related}></DetailsView>;
 	}
 });
