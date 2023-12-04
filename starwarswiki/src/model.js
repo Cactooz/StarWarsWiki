@@ -1,3 +1,5 @@
+import {fetchSWDatabank} from "./fetch.js";
+
 export default {
 	currentVehicle: undefined,
 	vehicles: [],
@@ -29,9 +31,9 @@ export default {
 	setCurrentPlanet(id) {
 		this.currentPlanet = id;
 	},
-	
-	setSearchResult(result){
-		this.searchResult = result;
+
+	setSearchResult(param) {
+		this.searchResult = fetchSWDatabank(param, {}, param);
 	}
 
 	/*addFavorite(path, id) {},

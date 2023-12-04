@@ -1,9 +1,8 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import {observer} from 'mobx-react-lite';
-import Browse, {loader as browseLoader} from "./presenters/browsePresenter.jsx";
+import Browse from "./presenters/browsePresenter.jsx";
 import LandingPagePresenter from './presenters/landingPagePresenter';
 import DetailsPresenter from './presenters/detailsPresenter.jsx';
-import {queryClient} from "./main.jsx"
 
 function makeRouter(props) {
 	return createBrowserRouter([
@@ -19,19 +18,16 @@ function makeRouter(props) {
 		{
 			path: '/characters',
 			element: <Browse model={props.model}/>,
-			loader: browseLoader(queryClient),
 			errorElement: <Browse model={props.model}/>,
 		},
 		{
 			path: '/locations',
 			element: <Browse model={props.model}/>,
-			loader: browseLoader(queryClient),
 			errorElement: <Browse model={props.model}/>,
 		},
 		{
 			path: '/vehicles',
 			element: <Browse model={props.model}/>,
-			loader: browseLoader(queryClient),
 			errorElement: <Browse model={props.model}/>,
 		},
 		{
