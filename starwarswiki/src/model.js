@@ -29,8 +29,8 @@ export default {
 	setCurrentPlanet(id) {
 		this.currentPlanet = id;
 	},
-	
-	setSearchResult(result){
+
+	setSearchResult(result) {
 		this.searchResult = result;
 	}
 
