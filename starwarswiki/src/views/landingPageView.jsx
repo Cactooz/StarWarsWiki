@@ -16,7 +16,7 @@ export default function LandingPageView(props) {
 				<div className='child'>
 					<LandingCard
 						text='CHARACTERS'
-						image='https://upload.wikimedia.org/wikipedia/en/4/45/Star_Wars_cast.jpg'
+						image='https://lumiere-a.akamaihd.net/v1/images/Yoda-Retina_2a7ecc26.jpeg'
 						linkTo='/characters'
 					/>
 				</div>
