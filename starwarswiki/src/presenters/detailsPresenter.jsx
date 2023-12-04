@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import DetailsView from '../views/detailsView';
 import { getDetails } from '../utilities';
+import Vortex from '../components/Vortex.jsx';
 
 const related = [
 	{
@@ -24,7 +25,7 @@ const related = [
 export default observer(function Details(props) {
 	const recievedData = getDetails();
 
-	if (recievedData.loading && !recievedData.error) return 'Loading...';
+	if (recievedData.loading && !recievedData.error) return <Vortex />;
 	else if (recievedData.error) return 'Error';
 	else if (!recievedData.loading && !recievedData.error) {
 		const name = recievedData.data[0].name;
