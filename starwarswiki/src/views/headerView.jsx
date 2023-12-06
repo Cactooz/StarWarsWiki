@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 export default function HeaderView(props) {
 	function browseDataACB(event) {
-		console.log(event.target.innerText.toLowerCase());
 		props.onClickHandler(event.target.innerText.toLowerCase());
 	}
 
