@@ -4,6 +4,7 @@ import Browse from './presenters/browsePresenter.jsx';
 import LandingPagePresenter from './presenters/landingPagePresenter';
 import DetailsPresenter from './presenters/detailsPresenter.jsx';
 import FooterPresenter from './presenters/footerPresenter.jsx';
+import ErrorPresenter from './presenters/errorPresenter.jsx';
 
 function makeRouter(props) {
 	return createBrowserRouter([
@@ -34,17 +35,21 @@ function makeRouter(props) {
 		{
 			path: '/characters/:name',
 			element: <DetailsPresenter />,
-			errorElement: <DetailsPresenter />,
+			errorElement: <ErrorPresenter />,
 		},
 		{
 			path: '/locations/:name',
 			element: <DetailsPresenter />,
-			errorElement: <DetailsPresenter />,
+			errorElement: <ErrorPresenter />,
 		},
 		{
 			path: '/vehicles/:name',
 			element: <DetailsPresenter />,
-			errorElement: <DetailsPresenter />,
+			errorElement: <ErrorPresenter />,
+		},
+		{
+			path: '*',
+			element: <ErrorPresenter />,
 		},
 	]);
 }
