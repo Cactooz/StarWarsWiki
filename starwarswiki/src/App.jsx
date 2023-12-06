@@ -5,6 +5,7 @@ import LandingPagePresenter from './presenters/landingPagePresenter';
 import DetailsPresenter from './presenters/detailsPresenter.jsx';
 import FooterPresenter from './presenters/footerPresenter.jsx';
 import ErrorPresenter from './presenters/errorPresenter.jsx';
+import HeaderPresenter from './presenters/headerPresenter.jsx';
 
 function makeRouter(props) {
 	return createBrowserRouter([
@@ -19,37 +20,102 @@ function makeRouter(props) {
 		},
 		{
 			path: '/characters',
-			element: <Browse model={props.model} />,
-			errorElement: <Browse model={props.model} />,
+			element: (
+				<>
+					<HeaderPresenter />
+					<Browse model={props.model} />
+				</>
+			),
+			errorElement: (
+				<>
+					<HeaderPresenter />
+					<Browse model={props.model} />
+				</>
+			),
 		},
 		{
 			path: '/locations',
-			element: <Browse model={props.model} />,
-			errorElement: <Browse model={props.model} />,
+			element: (
+				<>
+					<HeaderPresenter />
+					<Browse model={props.model} />
+				</>
+			),
+			errorElement: (
+				<>
+					<HeaderPresenter />
+					<Browse model={props.model} />
+				</>
+			),
 		},
 		{
 			path: '/vehicles',
-			element: <Browse model={props.model} />,
-			errorElement: <Browse model={props.model} />,
+			element: (
+				<>
+					<HeaderPresenter />
+					<Browse model={props.model} />
+				</>
+			),
+			errorElement: (
+				<>
+					<HeaderPresenter />
+					<Browse model={props.model} />
+				</>
+			),
 		},
 		{
 			path: '/characters/:name',
-			element: <DetailsPresenter model={props.model} />,
-			errorElement: <ErrorPresenter />,
+			element: (
+				<>
+					<HeaderPresenter />
+					<DetailsPresenter />
+				</>
+			),
+			errorElement: (
+				<>
+					<HeaderPresenter />
+					<ErrorPresenter />
+				</>
+			),
 		},
 		{
 			path: '/locations/:name',
-			element: <DetailsPresenter model={props.model} />,
-			errorElement: <ErrorPresenter />,
+			element: (
+				<>
+					<HeaderPresenter />
+					<DetailsPresenter />
+				</>
+			),
+			errorElement: (
+				<>
+					<HeaderPresenter />
+					<ErrorPresenter />
+				</>
+			),
 		},
 		{
 			path: '/vehicles/:name',
-			element: <DetailsPresenter model={props.model} />,
-			errorElement: <ErrorPresenter />,
+			element: (
+				<>
+					<HeaderPresenter />
+					<DetailsPresenter />
+				</>
+			),
+			errorElement: (
+				<>
+					<HeaderPresenter />
+					<ErrorPresenter />
+				</>
+			),
 		},
 		{
 			path: '*',
-			element: <ErrorPresenter />,
+			element: (
+				<>
+					<HeaderPresenter />
+					<ErrorPresenter />
+				</>
+			),
 		},
 	]);
 }
