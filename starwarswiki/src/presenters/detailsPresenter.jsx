@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite';
 import DetailsView from '../views/detailsView';
-import { getDetails } from '../utilities';
 import Vortex from '../components/Vortex.jsx';
 
 export default observer(function Details(props) {
