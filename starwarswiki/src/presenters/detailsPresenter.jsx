@@ -7,7 +7,6 @@ export default observer(function Details(props) {
 	const splitURL = path.split('/');
 	let page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
 
-	console.log(page);
 	if (!props.model.details || props.model.currentDetails !== page) {
 		props.model.setDetails(page);
 		return <Vortex />;
