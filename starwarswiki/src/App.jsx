@@ -22,13 +22,13 @@ function makeRouter(props) {
 			path: '/characters',
 			element: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<Browse model={props.model} />
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<Browse model={props.model} />
 				</>
 			),
@@ -37,13 +37,13 @@ function makeRouter(props) {
 			path: '/locations',
 			element: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<Browse model={props.model} />
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<Browse model={props.model} />
 				</>
 			),
@@ -52,13 +52,13 @@ function makeRouter(props) {
 			path: '/vehicles',
 			element: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<Browse model={props.model} />
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<Browse model={props.model} />
 				</>
 			),
@@ -67,13 +67,13 @@ function makeRouter(props) {
 			path: '/characters/:name',
 			element: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<ErrorPresenter />
 				</>
 			),
@@ -82,13 +82,13 @@ function makeRouter(props) {
 			path: '/locations/:name',
 			element: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<ErrorPresenter />
 				</>
 			),
@@ -97,13 +97,13 @@ function makeRouter(props) {
 			path: '/vehicles/:name',
 			element: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<ErrorPresenter />
 				</>
 			),
@@ -112,7 +112,7 @@ function makeRouter(props) {
 			path: '*',
 			element: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<ErrorPresenter />
 				</>
 			),
