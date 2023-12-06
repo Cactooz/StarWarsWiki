@@ -1,5 +1,5 @@
-import { fetchSWDatabank } from './fetch.js';
-import { queryClient } from './main.jsx';
+import {fetchSWDatabank} from './fetch.js';
+import {queryClient} from './main.jsx';
 
 export default {
 	currentBrowse: undefined,
@@ -12,6 +12,10 @@ export default {
 		await fetchSWDatabank(params, {}, params);
 		this.details = queryClient.getQueryData(params);
 		this.currentDetails = params;
+	},
+
+	unSetCurrentBrowse() {
+		this.currentBrowse = undefined;
 	},
 
 	async setBrowseResult(params) {
