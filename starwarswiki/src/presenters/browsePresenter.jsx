@@ -1,20 +1,20 @@
 import BrowseView from '../views/browseView.jsx';
 import Vortex from '../components/Vortex.jsx';
 import {observer} from 'mobx-react-lite';
-import {fetchSWDatabank} from "../fetch.js";
 
 
 export default observer(function Browse(props) {
-	function render(searchResult) {
-		if (searchResult.loading)
-			return <Vortex/>;
-		else if (searchResult.error) {
-			return searchResult.error;
-		} else
-			return <BrowseView browseResult={searchResult.data.data}/>;
-	}
+    function render(browseResult) {
+        const site = window.location.pathname.replace("/", "");
+        if (props.model.currentBrowse === undefined || props.model.currentBrowse !== site) {
+            props.model.setBrowseResult(site);
+            return <Vortex/>;
+        } else if (browseResult === null)
+            return <div>Error While Loading. Please Try Again!</div>
+        else {
+            return <BrowseView browseResult={browseResult.data}/>;
+        }
+    }
 
-	const site = window.location.pathname.replace("/", "")
-	const data = fetchSWDatabank(site, {}, site)
-	return render(data);
+    return render(props.model.browseResult);
 });
