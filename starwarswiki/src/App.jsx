@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import Browse from './presenters/browsePresenter.jsx';
 import LandingPagePresenter from './presenters/landingPagePresenter';
 import DetailsPresenter from './presenters/detailsPresenter.jsx';
+import FooterPresenter from './presenters/footerPresenter.jsx';
 import ErrorPresenter from './presenters/errorPresenter.jsx';
 
 function makeRouter(props) {
@@ -54,5 +55,10 @@ function makeRouter(props) {
 }
 
 export default observer(function ReactRoot(props) {
-	return <RouterProvider router={makeRouter(props)} />;
+	return (
+		<>
+			<RouterProvider router={makeRouter(props)} />
+			<FooterPresenter />
+		</>
+	);
 });
