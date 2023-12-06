@@ -1,9 +1,18 @@
+import {fetchSWDatabank} from "./fetch.js";
+import {queryClient} from "./main.jsx";
+import axios from "axios";
+
 export default {
 	currentBrowse: undefined,
 	browseResult: {},
 
-	setBrowseResult(params) {
-		this.browseResult = params;
+
+
+	async setBrowseResult(params) {
+		await fetchSWDatabank(params,{}, params)
+		this.browseResult = queryClient.getQueryData(params);
+		this.currentBrowse = params;
+
 	}
 
 	/*addFavorite(path, id) {},
