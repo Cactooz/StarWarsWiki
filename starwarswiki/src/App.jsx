@@ -21,100 +21,100 @@ function makeRouter(props) {
 		{
 			path: '/characters',
 			element: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<Browse model={props.model} />
-				</div>
+				</>
 			),
 			errorElement: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<Browse model={props.model} />
-				</div>
+				</>
 			),
 		},
 		{
 			path: '/locations',
 			element: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<Browse model={props.model} />
-				</div>
+				</>
 			),
 			errorElement: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<Browse model={props.model} />
-				</div>
+				</>
 			),
 		},
 		{
 			path: '/vehicles',
 			element: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<Browse model={props.model} />
-				</div>
+				</>
 			),
 			errorElement: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<Browse model={props.model} />
-				</div>
+				</>
 			),
 		},
 		{
 			path: '/characters/:name',
 			element: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<DetailsPresenter />
-				</div>
+				</>
 			),
 			errorElement: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<ErrorPresenter />
-				</div>
+				</>
 			),
 		},
 		{
 			path: '/locations/:name',
 			element: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<DetailsPresenter />
-				</div>
+				</>
 			),
 			errorElement: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<ErrorPresenter />
-				</div>
+				</>
 			),
 		},
 		{
 			path: '/vehicles/:name',
 			element: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<DetailsPresenter />
-				</div>
+				</>
 			),
 			errorElement: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<ErrorPresenter />
-				</div>
+				</>
 			),
 		},
 		{
 			path: '*',
 			element: (
-				<div>
+				<>
 					<HeaderPresenter />
 					<ErrorPresenter />
-				</div>
+				</>
 			),
 		},
 	]);
