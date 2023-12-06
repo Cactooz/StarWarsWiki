@@ -73,7 +73,7 @@ function makeRouter(props) {
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter />
+					<HeaderPresenter model={props.model} />
 					<ErrorPresenter />
 				</>
 			),
