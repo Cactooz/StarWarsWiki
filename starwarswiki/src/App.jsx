@@ -34,17 +34,17 @@ function makeRouter(props) {
 		},
 		{
 			path: '/characters/:name',
-			element: <DetailsPresenter />,
+			element: <DetailsPresenter model={props.model} />,
 			errorElement: <ErrorPresenter />,
 		},
 		{
 			path: '/locations/:name',
-			element: <DetailsPresenter />,
+			element: <DetailsPresenter model={props.model} />,
 			errorElement: <ErrorPresenter />,
 		},
 		{
 			path: '/vehicles/:name',
-			element: <DetailsPresenter />,
+			element: <DetailsPresenter model={props.model} />,
 			errorElement: <ErrorPresenter />,
 		},
 		{
