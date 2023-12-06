@@ -1,40 +1,26 @@
+import {fetchSWDatabank} from './fetch.js';
+import {queryClient} from './main.jsx';
+
 export default {
-	currentVehicle: undefined,
-	vehicles: [],
-	myVehicles: [],
-	currentVehiclePromiseState: {},
+	currentBrowse: undefined,
+	browseResult: {},
 
-	currentCharacter: undefined,
-	characters: [],
-	myCharacters: [],
-	currentCharacterPromiseState: {},
+	currentDetails: undefined,
+	details: {},
 
-	currentPlanet: undefined,
-	planets: [],
-	myPlanets: [],
-	currentPlanetPromiseState: {},
-
-	authenticated: undefined,
-	ofTheDay: undefined,
-
-	searchResult: {},
-	setCurrentVehicle(id) {
-		this.currentVehicle = id;
+	async setDetails(params) {
+		await fetchSWDatabank(params, {}, params);
+		this.details = queryClient.getQueryData(params);
+		this.currentDetails = params;
 	},
 
-	setCurrentCharacter(id) {
-		this.currentCharacter = id;
+	unSetCurrentBrowse() {
+		this.currentBrowse = undefined;
 	},
 
-	setCurrentPlanet(id) {
-		this.currentPlanet = id;
+	async setBrowseResult(params) {
+		await fetchSWDatabank(params, {}, params);
+		this.browseResult = queryClient.getQueryData(params);
+		this.currentBrowse = params;
 	},
-
-	setSearchResult(result) {
-		this.searchResult = result;
-	}
-
-	/*addFavorite(path, id) {},
-	Firebase stuff
-	removeFavorite(path, id) {},*/
 };
