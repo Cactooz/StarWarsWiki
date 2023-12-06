@@ -3,7 +3,7 @@ export default {
 	browseResult: {},
 
 	setBrowseResult(params) {
-		this.searchResult = params;
+		this.browseResult = params;
 	}
 
 	/*addFavorite(path, id) {},
