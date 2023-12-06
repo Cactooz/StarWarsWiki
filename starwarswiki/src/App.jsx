@@ -68,7 +68,7 @@ function makeRouter(props) {
 			element: (
 				<>
 					<HeaderPresenter />
-					<DetailsPresenter />
+					<DetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
@@ -83,7 +83,7 @@ function makeRouter(props) {
 			element: (
 				<>
 					<HeaderPresenter />
-					<DetailsPresenter />
+					<DetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
@@ -98,7 +98,7 @@ function makeRouter(props) {
 			element: (
 				<>
 					<HeaderPresenter />
-					<DetailsPresenter />
+					<DetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
