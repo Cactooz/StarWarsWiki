@@ -1,4 +1,4 @@
-import {signInWithGooglePopup} from "../fireBaseConfig.js"
+import {signInWithGooglePopup} from "../main.jsx"
 
 export default function SignInButton() {
 	async function logInGoogle() {
