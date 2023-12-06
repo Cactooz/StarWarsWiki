@@ -18,6 +18,7 @@ Find more information about your favorite characters or places from the Star War
 - [ ] Header
 - [X] Footer
 - [X] Error page
+- [X] Favicon
 
 ## Folder Structure
 Short descriptions of the file structure can be found in the table below:
