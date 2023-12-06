@@ -1,17 +1,22 @@
-import {fetchSWDatabank} from "./fetch.js";
-import {queryClient} from "./main.jsx";
+import { fetchSWDatabank } from './fetch.js';
+import { queryClient } from './main.jsx';
 
 export default {
-    currentBrowse: undefined,
-    browseResult: {},
+	currentBrowse: undefined,
+	browseResult: {},
 
-    async setBrowseResult(params) {
-        await fetchSWDatabank(params, {}, params)
-        this.browseResult = queryClient.getQueryData(params);
-        this.currentBrowse = params;
-    }
+	currentDetails: undefined,
+	details: {},
 
-    /*addFavorite(path, id) {},
-    Firebase stuff
-    removeFavorite(path, id) {},*/
+	async setDetails(params) {
+		await fetchSWDatabank(params, {}, params);
+		this.details = queryClient.getQueryData(params);
+		this.currentDetails = params;
+	},
+
+	async setBrowseResult(params) {
+		await fetchSWDatabank(params, {}, params);
+		this.browseResult = queryClient.getQueryData(params);
+		this.currentBrowse = params;
+	},
 };
