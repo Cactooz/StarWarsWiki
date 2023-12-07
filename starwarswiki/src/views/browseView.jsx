@@ -5,7 +5,7 @@ export default function browseView(props) {
 		props.resetPage()
 	}
 
-	addEventListener("orientationchange", reset)
+	addEventListener("popstate", reset)
 
 	return (
 		<div>
