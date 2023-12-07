@@ -1,11 +1,6 @@
 import Card from "../components/Card.jsx";
 
 export default function browseView(props) {
-	function reset() {
-		props.resetPage()
-	}
-
-	addEventListener("popstate", reset)
 
 	return (
 		<div>
