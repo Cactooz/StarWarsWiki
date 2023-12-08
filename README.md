@@ -45,7 +45,7 @@ Short descriptions of the file structure can be found in the table below:
 ## Division of Labour
 - Git setup - Hugo
 - Fetch data - Hugo, Rikard
-- Hashing between APIs - Hugo, Pontus
+- Hashing between APIs - Hugo, Pontus, William
 - Routing - Pontus
 - Model - Team
 - Home page view/presenter - Pontus
