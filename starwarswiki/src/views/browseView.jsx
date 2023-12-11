@@ -18,11 +18,13 @@ export default function browseView(props) {
 
 	function showAllCB(card) {
 		return (
-			<Card key={card._id ? card._id : card.id} id={card._id} name={card.name} image={card.image}
+			<Card key={card._id ? card._id : card.id}
+			      path={window.location.pathname === "/profile" ? card.path : window.location.pathname} id={card._id}
+			      name={card.name}
+			      image={card.image}
 			      removeFavorite={removeACB}
 			      addFavorite={addACB}
 			      fav={props.fav}/>
 		);
 	}
 }
-
