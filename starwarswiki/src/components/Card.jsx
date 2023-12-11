@@ -13,10 +13,10 @@ export default function (card) {
 	function findFavCB(item) {
 		return item.name === card.name;
 	}
-
+	
 	return (
 		<div className="cards">
-			<Link to={card.name}>
+			<Link to={card.path + "/" + card.name}>
 				<img src={card.image} height={'100'}></img>
 				<div>{card.name}</div>
 			</Link>
