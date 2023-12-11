@@ -6,6 +6,7 @@ import DetailsPresenter from './presenters/detailsPresenter.jsx';
 import FooterPresenter from './presenters/footerPresenter.jsx';
 import ErrorPresenter from './presenters/errorPresenter.jsx';
 import HeaderPresenter from './presenters/headerPresenter.jsx';
+import ProfilePresenter from "./presenters/profilePresenter.jsx";
 
 function makeRouter(props) {
 	return createBrowserRouter([
@@ -116,6 +117,18 @@ function makeRouter(props) {
 					<ErrorPresenter/>
 				</>
 			),
+		},
+		{
+			path: '/profile',
+			element: (
+				<>
+					<HeaderPresenter model={props.model}/>
+					<ProfilePresenter model={props.model}/>
+				</>),
+			errorElement: (<>
+				<HeaderPresenter model={props.model}/>
+				<ErrorPresenter/>
+			</>)
 		},
 	]);
 }
