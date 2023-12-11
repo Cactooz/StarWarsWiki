@@ -33,11 +33,9 @@ onAuthStateChanged(auth, (user) => {
 	if (user) {
 		// User is signed in
 		reactiveModel.setUser(auth.currentUser);
-		console.log('User is authorized:', user.uid);
 	} else {
 		// No user is signed in
 		reactiveModel.setUser(undefined);
-		console.log('User is not authorized');
 	}
 });
 export const queryClient = new QueryClient({

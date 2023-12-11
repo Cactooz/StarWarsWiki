@@ -5,6 +5,7 @@ export default {
 	user: {},
 	favorites: [],
 
+
 	currentBrowse: undefined,
 	browseResult: {},
 
@@ -13,6 +14,19 @@ export default {
 
 	setUser(user) {
 		this.user = user;
+	},
+
+	addToFavorites(fav) {
+		this.favorites = [...this.favorites, fav];
+	},
+
+
+	removeFromFavorites(fav) {
+		function findFavCB(item) {
+			return fav.name !== item.name
+		}
+
+		this.favorites = this.favorites.filter(findFavCB);
 	},
 
 	async setDetails(params) {
