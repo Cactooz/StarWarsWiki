@@ -5,6 +5,7 @@ export default {
 	user: {},
 	favorites: [],
 
+
 	currentBrowse: undefined,
 	browseResult: {},
 
@@ -19,9 +20,10 @@ export default {
 		this.favorites = [...this.favorites, fav];
 	},
 
+
 	removeFromFavorites(fav) {
 		function findFavCB(item) {
-			return fav._id !== item._id
+			return fav.name !== item.name
 		}
 
 		this.favorites = this.favorites.filter(findFavCB);
