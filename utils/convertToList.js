@@ -1,7 +1,7 @@
 import * as allData from './allData.json' assert { type: 'json' };
 import { writeFile } from 'fs';
 
-const numberOfCharacters = 964 + 75 + 60;
+const numberOfCharacters = 964;
 const numberOfLocations = 326;
 const numberOfVehicles = 267;
 
