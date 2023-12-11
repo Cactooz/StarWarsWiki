@@ -30,15 +30,21 @@ function csvToJson(csv, swapiType) {
 csvData.reduce((acc, array) => {
 	const type = array.length > 0 ? array[0].swapiType.toLowerCase() : '';
 
-	if (array.some((item) => item.swapiType === 'Planets')) {
-		acc.locations = [...(acc.locations || []), ...array];
-	} else if (
-		array.some((item) => item.swapiType === 'Starships' || item.swapiType === 'Vehicles')
-	) {
-		acc.vehicles = [...(acc.vehicles || []), ...array];
-	} else if (array.some((item) => item.swapiType === 'People')) {
-		acc.characters = [...(acc.characters || []), ...array];
-	} else acc[type] = array;
+	array.forEach((item) => {
+		const key = item.swdId || '';
+		const updatedItem = { ...item, swdId: undefined };
+
+		if (item.swapiType === 'Planets') {
+			acc.locations = { ...(acc.locations || {}), [key]: updatedItem };
+		} else if (item.swapiType === 'Starships' || item.swapiType === 'Vehicles') {
+			acc.vehicles = { ...(acc.vehicles || {}), [key]: updatedItem };
+		} else if (item.swapiType === 'People') {
+			acc.characters = { ...(acc.characters || {}), [key]: updatedItem };
+		} else {
+			acc[type] = acc[type] || {};
+			acc[type] = { ...(acc[type] || {}), [key]: updatedItem };
+		}
+	});
 
 	return acc;
 }, result);
