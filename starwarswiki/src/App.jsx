@@ -1,5 +1,5 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { observer } from 'mobx-react-lite';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import {observer} from 'mobx-react-lite';
 import Browse from './presenters/browsePresenter.jsx';
 import LandingPagePresenter from './presenters/landingPagePresenter';
 import DetailsPresenter from './presenters/detailsPresenter.jsx';
@@ -11,8 +11,8 @@ function makeRouter(props) {
 	return createBrowserRouter([
 		{
 			path: '/',
-			element: <LandingPagePresenter />,
-			errorElement: <LandingPagePresenter />,
+			element: <LandingPagePresenter model={props.model}/>,
+			errorElement: <LandingPagePresenter/>,
 		},
 		{
 			path: '/browse',
@@ -22,14 +22,14 @@ function makeRouter(props) {
 			path: '/characters',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
+					<HeaderPresenter model={props.model}/>
+					<Browse model={props.model}/>
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
+					<HeaderPresenter model={props.model}/>
+					<Browse model={props.model}/>
 				</>
 			),
 		},
@@ -37,14 +37,14 @@ function makeRouter(props) {
 			path: '/locations',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
+					<HeaderPresenter model={props.model}/>
+					<Browse model={props.model}/>
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
+					<HeaderPresenter model={props.model}/>
+					<Browse model={props.model}/>
 				</>
 			),
 		},
@@ -52,14 +52,14 @@ function makeRouter(props) {
 			path: '/vehicles',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
+					<HeaderPresenter model={props.model}/>
+					<Browse model={props.model}/>
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
+					<HeaderPresenter model={props.model}/>
+					<Browse model={props.model}/>
 				</>
 			),
 		},
@@ -67,14 +67,14 @@ function makeRouter(props) {
 			path: '/characters/:name',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<DetailsPresenter model={props.model} />
+					<HeaderPresenter model={props.model}/>
+					<DetailsPresenter model={props.model}/>
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<ErrorPresenter />
+					<HeaderPresenter model={props.model}/>
+					<ErrorPresenter/>
 				</>
 			),
 		},
@@ -82,14 +82,14 @@ function makeRouter(props) {
 			path: '/locations/:name',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<DetailsPresenter model={props.model} />
+					<HeaderPresenter model={props.model}/>
+					<DetailsPresenter model={props.model}/>
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<ErrorPresenter />
+					<HeaderPresenter model={props.model}/>
+					<ErrorPresenter/>
 				</>
 			),
 		},
@@ -97,14 +97,14 @@ function makeRouter(props) {
 			path: '/vehicles/:name',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<DetailsPresenter model={props.model} />
+					<HeaderPresenter model={props.model}/>
+					<DetailsPresenter model={props.model}/>
 				</>
 			),
 			errorElement: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<ErrorPresenter />
+					<HeaderPresenter model={props.model}/>
+					<ErrorPresenter/>
 				</>
 			),
 		},
@@ -112,8 +112,8 @@ function makeRouter(props) {
 			path: '*',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<ErrorPresenter />
+					<HeaderPresenter model={props.model}/>
+					<ErrorPresenter/>
 				</>
 			),
 		},
@@ -123,8 +123,8 @@ function makeRouter(props) {
 export default observer(function ReactRoot(props) {
 	return (
 		<>
-			<RouterProvider router={makeRouter(props)} />
-			<FooterPresenter />
+			<RouterProvider router={makeRouter(props)}/>
+			<FooterPresenter/>
 		</>
 	);
 });

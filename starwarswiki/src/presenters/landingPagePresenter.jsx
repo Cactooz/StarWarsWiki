@@ -1,8 +1,8 @@
 //Use window.location = "/characters"
 
-import { useLinkClickHandler } from 'react-router-dom';
 import LandingPageView from '../views/landingPageView';
+import {observer} from "mobx-react-lite";
 
-export default function LandingPagePresenter(props) {
-	return <LandingPageView />;
-}
+export default observer(function LandingPagePresenter(props) {
+	return <LandingPageView user={props.model.user}/>;
+});
