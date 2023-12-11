@@ -2,15 +2,17 @@ import {fetchSWDatabank} from './fetch.js';
 import {queryClient} from './main.jsx';
 
 export default {
-	user: undefined,
+	user: {},
+	favorites: [],
+
 	currentBrowse: undefined,
 	browseResult: {},
 
 	currentDetails: undefined,
 	details: {},
 
-	setUser(id) {
-		this.user = id;
+	setUser(user) {
+		this.user = user;
 	},
 
 	async setDetails(params) {
