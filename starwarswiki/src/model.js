@@ -15,6 +15,18 @@ export default {
 		this.user = user;
 	},
 
+	addToFavorites(fav) {
+		this.favorites = [...this.favorites, fav];
+	},
+
+	removeFromFavorites(fav) {
+		function findFavCB(item) {
+			return fav._id !== item._id
+		}
+
+		this.favorites = this.favorites.filter(findFavCB);
+	},
+
 	async setDetails(params) {
 		await fetchSWDatabank(params, {}, params);
 		this.details = queryClient.getQueryData(params);
