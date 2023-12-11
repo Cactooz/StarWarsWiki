@@ -11,14 +11,16 @@ export default function browseView(props) {
 	}
 
 	return (
-		<div>
+		<>
 			{props.browseResult.map(showAllCB)}
-		</div>
+		</>
 	);
 
 	function showAllCB(card) {
 		return (
-			<Card key={card._id} name={card.name} image={card.image} removeFavorite={removeACB} addFavorite={addACB}
+			<Card key={card._id ? card._id : card.id} id={card._id} name={card.name} image={card.image}
+			      removeFavorite={removeACB}
+			      addFavorite={addACB}
 			      fav={props.fav}/>
 		);
 	}
