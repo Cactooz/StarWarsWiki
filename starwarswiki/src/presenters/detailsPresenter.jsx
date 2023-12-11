@@ -22,6 +22,7 @@ export default observer(function Details(props) {
 	else {
 		return (
 			<DetailsView
+				loggedIn={props.model.user}
 				details={props.model.details[0].description}
 				image={props.model.details[0].image}
 				name={props.model.details[0].name}
