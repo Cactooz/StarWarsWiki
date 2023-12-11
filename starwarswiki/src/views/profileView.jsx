@@ -1,5 +1,6 @@
 import '/src/style.css';
 import Card from "../components/Card.jsx";
+import SignOutButton from "../components/SignOutButton.jsx";
 
 export default function ProfileView(props) {
 
@@ -11,8 +12,9 @@ export default function ProfileView(props) {
 
 	return (
 		<>
-			<h2>Hello There {props.currentUser === null ? "" : props.currentUser.displayName}!</h2>
-			<img src={props.currentUser === null ? "" : props.currentUser.photoURL}/>
+			<SignOutButton/>
+			<h2>Hello There {props.currentUser.displayName}!</h2>
+			<img src={props.currentUser.photoURL}/>
 			<div>
 				<h3>These Are Your Favorites!</h3>
 				<div>
