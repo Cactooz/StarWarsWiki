@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import DetailsView from '../views/detailsView';
 import MoreDetailsView from '../views/moreDetailsView';
 import Vortex from '../components/Vortex.jsx';
+import { readHash } from '../models/firebaseModel.js';
 
 const data = {
 	swapiId: 'cGVvcGxlOjE=',
@@ -24,16 +25,31 @@ export default observer(function Details(props) {
 	const splitURL = path.split('/');
 	let page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
 
-	let moreDetailsPage = undefined;
+	if (!props.model.detailsLoaded || props.model.currentDetails !== page) {
+		if (!props.model.details || props.model.currentDetails !== page) {
+			props.model.setDetails(page);
 
-	if (data) {
-		let moreDetailsPath = atob(data?.swapiId).split(':');
-		moreDetailsPage = `${moreDetailsPath[0]}/${moreDetailsPath[1]}`;
-	}
+			if (props.model.currentHash !== splitURL[splitURL.length - 2]) {
+				console.log('hash');
+				readHash(splitURL[splitURL.length - 2]);
+			}
+		}
 
-	if (!props.model.details || props.model.currentDetails !== page || !props.model.moreDetails) {
-		props.model.setDetails(page);
-		props.model.setMoreDetails(moreDetailsPage);
+		if (
+			props.model.details[0] &&
+			props.model.currentDetails === page &&
+			props.model.currentHash === splitURL[splitURL.length - 2]
+		) {
+			const hashedItem = props.model.hash[props.model.details?.[0]?._id];
+			if (hashedItem) {
+				const moreDetailsPath = atob(hashedItem.swapiId).split(':');
+				const moreDetailsPage = `${moreDetailsPath[0]}/${moreDetailsPath[1]}`;
+				props.model.setMoreDetails(moreDetailsPage);
+			} else {
+				props.model.setMoreDetails(undefined);
+			}
+		}
+
 		return <Vortex />;
 	} else if (props.model.details === null || props.model.moreDetails === null) return 'Error';
 	else {
@@ -55,7 +71,7 @@ export default observer(function Details(props) {
 			});
 
 			moreDetails = moreDetails.map((item) => ({
-				key: item.key.replace('_', ' '),
+				key: item.key.replaceAll('_', ' '),
 				value: item.value,
 			}));
 		}
