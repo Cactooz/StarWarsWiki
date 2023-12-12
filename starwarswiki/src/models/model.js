@@ -63,7 +63,9 @@ export default {
 		this.searchResults = await Promise.all(
 			results.map(async (item) => {
 				await fetchSWDatabank(`${item.type}/name/${item.name}`, {}, item.type + '/' + item.name);
-				return queryClient.getQueryData(item.type + '/' + item.name)[0];
+				const object = queryClient.getQueryData(item.type + '/' + item.name)[0];
+				object.path = '/' + item.type;
+				return object;
 			}),
 		);
 		this.searchReady = true;
