@@ -23,7 +23,7 @@ export default observer(function Browse(props) {
 
     async function addData() {
         let site = window.location.pathname.split("/");
-        if (props.model.isLoading || site[2] || site[1] === '' || site[1] === 'profile')
+        if (props.model.isLoading || (site[1] !== 'vehicles' && site[1] !== 'characters' && site[1] !== 'locations') || site[2] || !site[1])
             return;
         props.model.setLoading(true);
         let string = props.model.browseResult?.info.next.replace("/api/v1/", "");
