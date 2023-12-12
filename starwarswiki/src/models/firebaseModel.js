@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+import { getDatabase, ref, get, set, onValue } from 'firebase/database';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { reactiveModel } from '../main';
 
@@ -15,13 +15,13 @@ const app = initializeApp({
 
 const db = getDatabase(app);
 
-/* export default function readFirebase(path) {
+export default function readFirebase(path) {
 	return get(ref(db, path));
-} */
+}
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
-	prompt: 'select_account ',
+	prompt: 'select_account',
 });
 
 export const auth = getAuth();
@@ -34,10 +34,8 @@ onAuthStateChanged(auth, (user) => {
 	if (user) {
 		// User is signed in
 		reactiveModel.setUser(auth.currentUser);
-		console.log('User is authorized:', user.uid);
 	} else {
 		// No user is signed in
 		reactiveModel.setUser(undefined);
-		console.log('User is not authorized');
 	}
 });
