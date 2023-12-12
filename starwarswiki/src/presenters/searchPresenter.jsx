@@ -13,7 +13,7 @@ export default observer(function SearchPresenter(props) {
 	}
 
 	function render(searchReady) {
-		if (searchReady)
+		if (searchReady && props.model.searchResults.length !== 0)
 			return (
 				<BrowseView
 					browseResult={props.model.searchResults}
@@ -22,6 +22,7 @@ export default observer(function SearchPresenter(props) {
 					fav={props.model.favorites}
 				/>
 			);
+		else if (searchReady) return <h2>No results</h2>;
 		else return <Vortex />;
 	}
 	return (
