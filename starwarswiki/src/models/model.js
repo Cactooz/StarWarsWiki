@@ -16,6 +16,9 @@ export default {
 		this.isLoading = state;
 	},
 
+	searchResults: [],
+	searchReady: true,
+
 	setUser(user) {
 		this.user = user;
 	},
@@ -53,5 +56,16 @@ export default {
 		let info = queryClient.getQueryData(params).info;
 
 		this.browseResult = { data, info };
+	},
+
+	async setSearchResults(results) {
+		this.searchReady = false;
+		this.searchResults = await Promise.all(
+			results.map(async (item) => {
+				await fetchSWDatabank(`${item.type}/name/${item.name}`, {}, item.type + '/' + item.name);
+				return queryClient.getQueryData(item.type + '/' + item.name)[0];
+			}),
+		);
+		this.searchReady = true;
 	},
 };
