@@ -14,7 +14,7 @@ export default function LandingPageView(props) {
 	return (
 		<div>
 			<h1>STAR WARS WIKI</h1>
-			<SearchBarPresenter />
+			<SearchBarPresenter model={props.model} />
 			{props.user ? <SignOutButton /> : <SignInButton />}
 			<div className='landing-cards'>
 				<div className='child'>
