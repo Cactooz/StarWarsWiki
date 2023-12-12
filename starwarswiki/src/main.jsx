@@ -2,24 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import model from './model.js';
+import model from './models/model.js';
 import { configure, observable } from 'mobx';
-import { connectFirebase } from './firebaseModel';
+//import { connectFirebase } from './models/firebaseModel';
 
 configure({ enforceActions: 'never' });
-const reactiveModel = observable(model);
+export const reactiveModel = observable(model);
 
-onAuthStateChanged(auth, (user) => {
-	if (user) {
-		// User is signed in
-		reactiveModel.setUser(auth.currentUser);
-		console.log('User is authorized:', user.uid);
-	} else {
-		// No user is signed in
-		reactiveModel.setUser(undefined);
-		console.log('User is not authorized');
-	}
-});
 export const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {

@@ -1,5 +1,5 @@
-import {fetchSWDatabank} from './fetch.js';
-import {queryClient} from './main.jsx';
+import {fetchSWDatabank} from '../fetch.js';
+import {queryClient} from '../main.jsx';
 
 export default {
 	user: {},

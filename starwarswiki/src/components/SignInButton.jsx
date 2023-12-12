@@ -1,4 +1,4 @@
-import {signInWithGooglePopup} from "../main.jsx"
+import { signInWithGooglePopup } from '../models/firebaseModel.js';
 
 export default function SignInButton() {
 	async function logInGoogle() {
@@ -10,5 +10,5 @@ export default function SignInButton() {
 		<div>
 			<button onClick={logInGoogle}>Sign in here</button>
 		</div>
-	)
+	);
 }
