@@ -57,9 +57,11 @@ export default {
 	},
 
 	async setMoreDetails(params) {
-		await fetchSWAPI(params, {}, params);
-		this.moreDetails = queryClient.getQueriesData(params);
-		this.currentMoreDetails = params;
+		if (params) {
+			await fetchSWAPI(params, {}, params);
+			this.moreDetails = queryClient.getQueriesData(params);
+			this.currentMoreDetails = params;
+		}
 	},
 
 	unSetCurrentBrowse() {
