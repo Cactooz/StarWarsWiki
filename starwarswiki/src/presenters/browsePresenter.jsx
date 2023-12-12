@@ -13,6 +13,25 @@ export default observer(function Browse(props) {
         props.model.removeFromFavorites(card)
     }
 
+    function handleScroll() {
+        const {scrollTop, clientHeight, scrollHeight} =
+            document.documentElement;
+        if (scrollTop + clientHeight >= scrollHeight - 20) {
+            addData();
+        }
+    };
+
+    async function addData() {
+        if (props.model.isLoading)
+            return;
+        props.model.setLoading(true);
+        let string = props.model.browseResult?.info.next.replace("/api/v1/", "");
+        if (string !== undefined)
+            await props.model.addBrowseResult(string);
+        props.model.setLoading(false);
+        return <Vortex/>
+    }
+
     function render(browseResult) {
         const site = useLocation().pathname.replace("/", "");
         if (props.model.currentBrowse === undefined || props.model.currentBrowse !== site) {
@@ -20,12 +39,16 @@ export default observer(function Browse(props) {
             return <Vortex/>;
         } else if (browseResult === null)
             return <div>Error While Loading. Please Try Again!</div>
-        else {
-            return <BrowseView browseResult={browseResult.data} doAdd={doAddACB} doRemove={doRemoveACB}
-                               fav={props.model.favorites}
-                               auth={props.model.user}/>;
+        else if (browseResult) {
+            if (window.location === site + "2") {
+            } else
+                return <BrowseView browseResult={browseResult.data} doAdd={doAddACB} doRemove={doRemoveACB}
+                                   fav={props.model.favorites}
+                                   auth={props.model.user}
+                />;
         }
     }
 
+    window.addEventListener("scroll", handleScroll);
     return render(props.model.browseResult);
 });
