@@ -18,6 +18,11 @@ export default {
 
 	searchResults: [],
 	searchReady: true,
+	autoCompleteResults: [],
+
+	setAutoCompleteResults(results) {
+		this.autoCompleteResults = results;
+	},
 
 	setUser(user) {
 		this.user = user;
@@ -58,10 +63,10 @@ export default {
 		this.browseResult = { data, info };
 	},
 
-	async setSearchResults(results) {
+	async setSearchResults() {
 		this.searchReady = false;
 		this.searchResults = await Promise.all(
-			results.map(async (item) => {
+			this.autoCompleteResults.map(async (item) => {
 				await fetchSWDatabank(`${item.type}/name/${item.name}`, {}, item.type + '/' + item.name);
 				const object = queryClient.getQueryData(item.type + '/' + item.name)[0];
 				object.path = '/' + item.type;
