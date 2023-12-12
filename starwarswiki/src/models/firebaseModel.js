@@ -59,3 +59,9 @@ function readFromDB(uid) {
 		reactiveModel.setFavsFromDB(favoritesFromDB);
 	});
 }
+
+export function readHash(location) {
+	get(ref(db, '/apiHash/' + location)).then((snapshot) =>
+		reactiveModel.setCurrentHash(snapshot.val(), location),
+	);
+}
