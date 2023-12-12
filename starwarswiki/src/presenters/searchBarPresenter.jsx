@@ -9,7 +9,7 @@ export default function SearchBarPresenter(props) {
 
 	function handleSearchSelect(item) {
 		let name = item.name.replaceAll('/', '%2F').replaceAll('.', '%2E');
-		navigate(item.type + '/' + name);
+		navigate('/' + item.type + '/' + name);
 	}
 
 	async function handleFormSubmit(event) {
