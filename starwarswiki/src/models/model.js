@@ -4,12 +4,17 @@ import { queryClient } from '../main.jsx';
 export default {
 	user: {},
 	favorites: [],
+	isLoading: false,
 
 	currentBrowse: undefined,
 	browseResult: {},
 
 	currentDetails: undefined,
 	details: {},
+
+	setLoading(state) {
+		this.isLoading = state;
+	},
 
 	setUser(user) {
 		this.user = user;
@@ -41,5 +46,12 @@ export default {
 		await fetchSWDatabank(params, {}, params);
 		this.browseResult = queryClient.getQueryData(params);
 		this.currentBrowse = params;
+	},
+	async addBrowseResult(params) {
+		await fetchSWDatabank(params, {}, params);
+		let data = [...this.browseResult.data, ...queryClient.getQueryData(params).data];
+		let info = queryClient.getQueryData(params).info;
+
+		this.browseResult = { data, info };
 	},
 };
