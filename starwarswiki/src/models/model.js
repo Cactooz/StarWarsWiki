@@ -1,10 +1,9 @@
-import {fetchSWDatabank} from '../fetch.js';
-import {queryClient} from '../main.jsx';
+import { fetchSWDatabank } from '../fetch.js';
+import { queryClient } from '../main.jsx';
 
 export default {
 	user: {},
 	favorites: [],
-
 
 	currentBrowse: undefined,
 	browseResult: {},
@@ -20,10 +19,9 @@ export default {
 		this.favorites = [...this.favorites, fav];
 	},
 
-
 	removeFromFavorites(fav) {
 		function findFavCB(item) {
-			return fav.name !== item.name
+			return fav.name !== item.name;
 		}
 
 		this.favorites = this.favorites.filter(findFavCB);
