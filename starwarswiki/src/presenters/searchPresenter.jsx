@@ -4,13 +4,21 @@ import SearchBarPresenter from './searchBarPresenter';
 import { observer } from 'mobx-react-lite';
 
 export default observer(function SearchPresenter(props) {
+	function doAddACB(card) {
+		props.model.addToFavorites(card);
+	}
+
+	function doRemoveACB(card) {
+		props.model.removeFromFavorites(card);
+	}
+
 	function render(searchReady) {
 		if (searchReady)
 			return (
 				<BrowseView
 					browseResult={props.model.searchResults}
-					doAdd={() => {}}
-					doRemove={() => {}}
+					doAdd={doAddACB}
+					doRemove={doRemoveACB}
 					fav={props.model.favorites}
 				/>
 			);
