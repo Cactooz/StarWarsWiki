@@ -1,5 +1,3 @@
-//Use window.location = "/characters"
-
 import LandingPageView from '../views/landingPageView';
 import SearchBarPresenter from './searchBarPresenter';
 import { observer } from 'mobx-react-lite';
