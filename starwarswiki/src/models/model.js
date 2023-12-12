@@ -1,5 +1,6 @@
 import { fetchSWDatabank } from '../fetch.js';
 import { queryClient } from '../main.jsx';
+import { writeToDB } from './firebaseModel.js';
 
 export default {
 	user: {},
@@ -30,6 +31,7 @@ export default {
 
 	addToFavorites(fav) {
 		this.favorites = [...this.favorites, fav];
+		writeToDB(fav);
 	},
 
 	removeFromFavorites(fav) {
