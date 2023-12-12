@@ -5,9 +5,9 @@ export default function browseView(props) {
 		props.doRemove(card);
 	}
 
-    function addACB(card) {
-        props.doAdd(card);
-    }
+	function addACB(card) {
+		props.doAdd(card);
+	}
 
 	return <>{props.browseResult.map(showAllCB)}</>;
 
@@ -26,6 +26,7 @@ export default function browseView(props) {
 				removeFavorite={removeACB}
 				addFavorite={addACB}
 				fav={props.fav}
+				auth={props.auth}
 			/>
 		);
 	}

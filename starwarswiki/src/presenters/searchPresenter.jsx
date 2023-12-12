@@ -20,6 +20,7 @@ export default observer(function SearchPresenter(props) {
 					doAdd={doAddACB}
 					doRemove={doRemoveACB}
 					fav={props.model.favorites}
+					auth={props.model.user}
 				/>
 			);
 		else if (searchReady) return <h2>No results</h2>;
