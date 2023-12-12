@@ -1,4 +1,4 @@
-import { fetchSWDatabank } from '../fetch.js';
+import { fetchSWDatabank, fetchSWAPI } from '../fetch.js';
 import { queryClient } from '../main.jsx';
 import { writeToDB } from './firebaseModel.js';
 
@@ -12,6 +12,8 @@ export default {
 
 	currentDetails: undefined,
 	details: {},
+	currentMoreDetails: undefined,
+	moreDetails: {},
 
 	setLoading(state) {
 		this.isLoading = state;
@@ -52,6 +54,12 @@ export default {
 		await fetchSWDatabank(params, {}, params);
 		this.details = queryClient.getQueryData(params);
 		this.currentDetails = params;
+	},
+
+	async setMoreDetails(params) {
+		await fetchSWAPI(params, {}, params);
+		this.moreDetails = queryClient.getQueriesData(params);
+		this.currentMoreDetails = params;
 	},
 
 	unSetCurrentBrowse() {
