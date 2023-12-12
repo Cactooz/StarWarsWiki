@@ -39,3 +39,16 @@ onAuthStateChanged(auth, (user) => {
 		reactiveModel.setUser(undefined);
 	}
 });
+
+function parseObjectCB(object) {
+	return { name: object.name, path: object.path };
+}
+
+export function writeToDB(object) {
+	if (model.user) {
+		const uid = reactiveModel.user.uid.replace('"', '');
+		let favToDB = [reactiveModel.favorites.map(parseObjectCB)];
+		console.log('To db: ', favToDB);
+		set(ref(db, '/userData/' + uid), favToDB);
+	}
+}
