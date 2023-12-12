@@ -11,7 +11,7 @@ function DetailsView(props) {
 		props.addFavorite(object);
 	}
 
-	const object = { id: props.id, name: props.name, image: props.image, path: props.path };
+	const object = { id: props.id, name: props.name, image: props.image, path: '/' + props.path };
 
 	return (
 		<div>
