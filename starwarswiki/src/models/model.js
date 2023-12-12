@@ -1,45 +1,58 @@
-import { fetchSWDatabank } from '../fetch.js';
-import { queryClient } from '../main.jsx';
+import {fetchSWDatabank} from '../fetch.js';
+import {queryClient} from '../main.jsx';
 
 export default {
-	user: {},
-	favorites: [],
+    user: {},
+    favorites: [],
+    isLoading: false,
 
-	currentBrowse: undefined,
-	browseResult: {},
+    currentBrowse: undefined,
+    browseResult: {},
 
-	currentDetails: undefined,
-	details: {},
+    currentDetails: undefined,
+    details: {},
 
-	setUser(user) {
-		this.user = user;
-	},
+    setLoading(state) {
+        this.isLoading = state;
+    },
+    
+    setUser(user) {
+        this.user = user;
+    },
 
-	addToFavorites(fav) {
-		this.favorites = [...this.favorites, fav];
-	},
+    addToFavorites(fav) {
+        this.favorites = [...this.favorites, fav];
+    },
 
-	removeFromFavorites(fav) {
-		function findFavCB(item) {
-			return fav.name !== item.name;
-		}
+    removeFromFavorites(fav) {
+        function findFavCB(item) {
+            return fav.name !== item.name;
+        }
 
-		this.favorites = this.favorites.filter(findFavCB);
-	},
+        this.favorites = this.favorites.filter(findFavCB);
+    },
 
-	async setDetails(params) {
-		await fetchSWDatabank(params, {}, params);
-		this.details = queryClient.getQueryData(params);
-		this.currentDetails = params;
-	},
+    async setDetails(params) {
+        await fetchSWDatabank(params, {}, params);
+        this.details = queryClient.getQueryData(params);
+        this.currentDetails = params;
+    },
 
-	unSetCurrentBrowse() {
-		this.currentBrowse = undefined;
-	},
+    unSetCurrentBrowse() {
+        this.currentBrowse = undefined;
+    },
 
-	async setBrowseResult(params) {
-		await fetchSWDatabank(params, {}, params);
-		this.browseResult = queryClient.getQueryData(params);
-		this.currentBrowse = params;
-	},
+    async setBrowseResult(params) {
+        await fetchSWDatabank(params, {}, params);
+        this.browseResult = queryClient.getQueryData(params);
+        this.currentBrowse = params;
+    },
+    async addBrowseResult(params) {
+        await fetchSWDatabank(params, {}, params);
+        let data = [...this.browseResult.data, ...queryClient.getQueryData(params).data];
+        let info = queryClient.getQueryData(params).info;
+
+        this.browseResult = {data, info}
+    },
+
 };
