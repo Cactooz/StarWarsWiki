@@ -24,8 +24,12 @@ export default observer(function Details(props) {
 	const splitURL = path.split('/');
 	let page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
 
-	let moreDetailsPath = atob(data.swapiId).split(':');
-	let moreDetailsPage = `${moreDetailsPath[0]}/${moreDetailsPath[1]}`;
+	let moreDetailsPage = undefined;
+
+	if (data) {
+		let moreDetailsPath = atob(data?.swapiId).split(':');
+		moreDetailsPage = `${moreDetailsPath[0]}/${moreDetailsPath[1]}`;
+	}
 
 	if (!props.model.details || props.model.currentDetails !== page || !props.model.moreDetails) {
 		props.model.setDetails(page);
