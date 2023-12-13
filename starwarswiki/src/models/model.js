@@ -71,7 +71,6 @@ export default {
 				await fetchSWDatabank(`${item.type}/name/${name}`, {}, item.type + '/' + name);
 				const object = queryClient.getQueryData(item.type + '/' + name)[0];
 				object.path = '/' + item.type;
-				object.name = name;
 				return object;
 			}),
 		);
