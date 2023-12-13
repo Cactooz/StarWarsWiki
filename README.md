@@ -43,6 +43,9 @@ Short descriptions of the file structure can be found in the table below:
 - Primarily [Star Wars Database](https://starwars-databank.vercel.app/)
 - Secondarily [SWAPI](https://swapi.dev/)
 
+### Limitations
+- The Star Wars Database API does not have a built-in search function. The search function for this website is built in a way that uses the autocomplete suggestions of the text input. That is why you will not get any search results if there are no suggestions. Please keep that in mind when using the website. 
+
 ## Third party components
 - [Suspense spinner](https://mhnpd.github.io/react-loader-spinner/docs/components/vortex)
 - [Search bar](https://www.npmjs.com/package/react-search-autocomplete)
