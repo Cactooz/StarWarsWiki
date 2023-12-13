@@ -34,8 +34,28 @@ onAuthStateChanged(auth, (user) => {
 	if (user) {
 		// User is signed in
 		reactiveModel.setUser(auth.currentUser);
+		readFromDB(user.uid);
 	} else {
 		// No user is signed in
 		reactiveModel.setUser(undefined);
 	}
 });
+
+function parseObjectCB(object) {
+	return { name: object.name, id: object.id, image: object.image, path: object.path };
+}
+
+export function writeToDB() {
+	if (model.user) {
+		const uid = reactiveModel.user.uid.replace('"', '');
+		let favToDB = reactiveModel.favorites.map(parseObjectCB);
+		set(ref(db, '/userData/' + uid), favToDB);
+	}
+}
+
+function readFromDB(uid) {
+	return onValue(ref(db, '/userData/' + uid), (snapshot) => {
+		const favoritesFromDB = snapshot.val();
+		reactiveModel.setFavsFromDB(favoritesFromDB);
+	});
+}
