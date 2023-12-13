@@ -8,6 +8,7 @@ import ErrorPresenter from './presenters/errorPresenter.jsx';
 import HeaderPresenter from './presenters/headerPresenter.jsx';
 import ProfilePresenter from './presenters/profilePresenter.jsx';
 import SearchPresenter from './presenters/searchPresenter.jsx';
+import MoreDetailsPresenter from './presenters/moreDetailsPresenter.jsx';
 
 function makeRouter(props) {
 	return createBrowserRouter([
@@ -76,6 +77,7 @@ function makeRouter(props) {
 				<>
 					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
+					<MoreDetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
@@ -91,6 +93,7 @@ function makeRouter(props) {
 				<>
 					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
+					<MoreDetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
@@ -106,6 +109,7 @@ function makeRouter(props) {
 				<>
 					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
+					<MoreDetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
