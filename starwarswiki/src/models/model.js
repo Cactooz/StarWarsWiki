@@ -67,7 +67,11 @@ export default {
 		this.searchReady = false;
 		this.searchResults = await Promise.all(
 			this.autoCompleteResults.map(async (item) => {
-				await fetchSWDatabank(`${item.type}/name/${item.name}`, {}, item.type + '/' + item.name);
+				await fetchSWDatabank(
+					`${item.type}/name/${item.name.replaceAll('/', '%2F').replaceAll('.', '%2E')}`,
+					{},
+					item.type + '/' + item.name,
+				);
 				const object = queryClient.getQueryData(item.type + '/' + item.name)[0];
 				object.path = '/' + item.type;
 				return object;
