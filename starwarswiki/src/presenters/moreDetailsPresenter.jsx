@@ -52,8 +52,12 @@ export default observer(function MoreDetails(props) {
 			}));
 		}
 
-		return <>{moreDetails && <MoreDetailsView details={moreDetails} />}</>;
+		return <MoreDetailsView details={moreDetails} />;
 	} else {
-		return;
+		return (
+			<MoreDetailsView
+				details={[{ key: "'Your eyes can deceive you; don't trust them.'", value: '' }]}
+			/>
+		);
 	}
 });
