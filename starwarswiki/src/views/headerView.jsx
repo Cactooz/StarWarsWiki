@@ -1,4 +1,6 @@
 import {Link} from 'react-router-dom';
+import SignInButton from "../components/SignInButton.jsx";
+import GoToProfile from "../components/GoToProfile.jsx";
 
 export default function HeaderView(props) {
 	function browseDataACB(event) {
@@ -19,6 +21,7 @@ export default function HeaderView(props) {
 			<Link to='/locations' onClick={browseDataACB}>
 				<p>Locations</p>
 			</Link>
+			{props.user ? <GoToProfile/> : <SignInButton/>}
 		</header>
 	);
 }

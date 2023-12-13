@@ -6,17 +6,25 @@ import DetailsPresenter from './presenters/detailsPresenter.jsx';
 import FooterPresenter from './presenters/footerPresenter.jsx';
 import ErrorPresenter from './presenters/errorPresenter.jsx';
 import HeaderPresenter from './presenters/headerPresenter.jsx';
+import ProfilePresenter from './presenters/profilePresenter.jsx';
+import SearchPresenter from './presenters/searchPresenter.jsx';
+import MoreDetailsPresenter from './presenters/moreDetailsPresenter.jsx';
 
 function makeRouter(props) {
 	return createBrowserRouter([
 		{
 			path: '/',
-			element: <LandingPagePresenter />,
+			element: <LandingPagePresenter model={props.model} />,
 			errorElement: <LandingPagePresenter />,
 		},
 		{
-			path: '/browse',
-			element: 'browse',
+			path: '/search',
+			element: (
+				<>
+					<HeaderPresenter model={props.model} />
+					<SearchPresenter model={props.model} />
+				</>
+			),
 		},
 		{
 			path: '/characters',
@@ -69,6 +77,7 @@ function makeRouter(props) {
 				<>
 					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
+					<MoreDetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
@@ -84,6 +93,7 @@ function makeRouter(props) {
 				<>
 					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
+					<MoreDetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
@@ -99,6 +109,7 @@ function makeRouter(props) {
 				<>
 					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
+					<MoreDetailsPresenter model={props.model} />
 				</>
 			),
 			errorElement: (
@@ -111,6 +122,21 @@ function makeRouter(props) {
 		{
 			path: '*',
 			element: (
+				<>
+					<HeaderPresenter model={props.model} />
+					<ErrorPresenter />
+				</>
+			),
+		},
+		{
+			path: '/profile',
+			element: (
+				<>
+					<HeaderPresenter model={props.model} />
+					<ProfilePresenter model={props.model} />
+				</>
+			),
+			errorElement: (
 				<>
 					<HeaderPresenter model={props.model} />
 					<ErrorPresenter />
