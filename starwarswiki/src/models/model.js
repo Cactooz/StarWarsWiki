@@ -1,4 +1,4 @@
-import { fetchSWDatabank } from '../fetch.js';
+import { fetchSWDatabank, fetchSWAPI } from '../fetch.js';
 import { queryClient } from '../main.jsx';
 import { writeToDB } from './firebaseModel.js';
 
@@ -12,6 +12,10 @@ export default {
 
 	currentDetails: undefined,
 	details: {},
+	currentMoreDetails: undefined,
+	moreDetails: {},
+	currentHash: undefined,
+	hash: {},
 
 	setLoading(state) {
 		this.isLoading = state;
@@ -49,9 +53,20 @@ export default {
 	},
 
 	async setDetails(params) {
+		this.detailsLoaded = false;
 		await fetchSWDatabank(params, {}, params);
 		this.details = queryClient.getQueryData(params);
 		this.currentDetails = params;
+	},
+
+	async setMoreDetails(params) {
+		this.detailsLoaded = false;
+		if (params) {
+			await fetchSWAPI(params, {}, params);
+			this.moreDetails = queryClient.getQueriesData(params);
+			this.currentMoreDetails = params;
+		}
+		this.detailsLoaded = true;
 	},
 
 	unSetCurrentBrowse() {
@@ -63,6 +78,7 @@ export default {
 		this.browseResult = queryClient.getQueryData(params);
 		this.currentBrowse = params;
 	},
+
 	async addBrowseResult(params) {
 		await fetchSWDatabank(params, {}, params);
 		let data = [...this.browseResult.data, ...queryClient.getQueryData(params).data];
@@ -83,5 +99,10 @@ export default {
 			}),
 		);
 		this.searchReady = true;
+	},
+
+	setCurrentHash(hash, location) {
+		this.hash = hash;
+		this.currentHash = location;
 	},
 };

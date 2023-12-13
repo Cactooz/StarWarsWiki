@@ -31,7 +31,7 @@ export default observer(function Details(props) {
 				fav={props.model.favorites}
 				removeFavorite={removeFavoriteACB}
 				addFavorite={addFavoriteACB}
-			></DetailsView>
+			/>
 		);
 	}
 });
