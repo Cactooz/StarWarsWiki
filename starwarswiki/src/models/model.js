@@ -14,7 +14,6 @@ export default {
 	details: {},
 	currentMoreDetails: undefined,
 	moreDetails: {},
-	detailsLoaded: false,
 	currentHash: undefined,
 	hash: {},
 
