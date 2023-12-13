@@ -31,7 +31,7 @@ export default {
 
 	addToFavorites(fav) {
 		this.favorites = [...this.favorites, fav];
-		writeToDB(fav);
+		writeToDB();
 	},
 
 	removeFromFavorites(fav) {
@@ -40,6 +40,12 @@ export default {
 		}
 
 		this.favorites = this.favorites.filter(findFavCB);
+		writeToDB();
+	},
+
+	setFavsFromDB(data) {
+		if (data === null) data = [];
+		this.favorites = data;
 	},
 
 	async setDetails(params) {
