@@ -58,6 +58,7 @@ function parseObjectCB(object) {
 
 export function writeToDB() {
 	if (model.user && model.ready) {
+		model.wrote = true;
 		const uid = model.user.uid.replace('"', '');
 		let favToDB = model.favorites.map(parseObjectCB);
 		set(ref(db, '/userData/' + uid), favToDB);
@@ -65,11 +66,12 @@ export function writeToDB() {
 }
 
 function readFromDB(uid) {
-	model.ready = false;
 	onValue(ref(db, '/userData/' + uid), (snapshot) => {
-		model.setFavsFromDB(snapshot.val());
+		model.ready = false;
+		if (!model.wrote) model.setFavsFromDB(snapshot.val());
+		model.wrote = false;
+		model.ready = true;
 	});
-	model.ready = true;
 }
 
 export function readHash(location) {
