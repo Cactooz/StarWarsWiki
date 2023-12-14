@@ -26,3 +26,50 @@ body {
 	color: $white;
 }
 
+.landing-cards {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	> * {
+		margin: $margin;
+		width: clamp(200px, calc(100% - 2 * $margin), 1000px);
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&:hover,
+		&:focus,
+		&:active {
+			transform: translate(0px, 4px);
+		}
+
+		img {
+			width: 100%;
+			aspect-ratio: 16/9;
+			object-fit: cover;
+			border-radius: $corner-radius;
+			box-shadow: $yellow-glow;
+
+			&:hover,
+			&:focus,
+			&:active {
+				box-shadow: none;
+			}
+		}
+
+		p {
+			position: absolute;
+			font-weight: 900;
+			font-size: 3rem;
+			color: $black;
+			text-shadow: $yellow-stroke-ie;
+			z-index: 1;
+		}
+	}
+}
+
+footer {
+	text-align: center;
+}
