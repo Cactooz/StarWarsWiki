@@ -17,11 +17,15 @@ export default observer(
 
 		async function addFriend(event) {
 			if (event.key === 'Enter') {
-				await findUser(event.target.value)
-				if (props.model.isUser === true) {
-					props.model.addFriend(event.target.value)
+				if (event.target.value !== props.model.user.uid) {
+					await findUser(event.target.value)
+					if (props.model.isUser === true) {
+						props.model.addFriend(event.target.value)
+					} else {
+						props.model.setIsUser(false)
+					}
 				} else {
-					props.model.setIsUser(false)
+					props.model.setIsUser("self");
 				}
 			}
 		}
@@ -35,12 +39,10 @@ export default observer(
 		}
 
 		function acceptFriend(uid) {
-			console.log(uid)
 			model.acceptFriendRequest(uid);
 		}
 
 		function declineFriend(uid) {
-			console.log(uid)
 			model.removeFriendRequest(uid);
 		}
 
