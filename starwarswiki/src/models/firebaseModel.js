@@ -68,12 +68,19 @@ function readFromDB(uid) {
 function readFriendsDB(uid) {
 	return onValue(ref(db, '/friends/' + uid), (snapshot) => {
 		const friendsFromDB = snapshot.val();
-		console.log(friendsFromDB)
 		let pendingFriends = friendsFromDB?.pendingFriends;
+		let friends = friendsFromDB?.friends;
 		if (pendingFriends) {
 			reactiveModel.setFriendRequests(pendingFriends)
 		}
+		if (friends) {
+			reactiveModel.setFriends(friends);
+		}
 	});
+}
+
+export function addFriendDB(uid) {
+	set(ref(db, '/friends/' + uid + '/friends/' + reactiveModel.user.uid), true)
 }
 
 export async function findUser(uid) {
