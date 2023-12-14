@@ -2,11 +2,11 @@ import Card from '../components/Card.jsx';
 
 export default function browseView(props) {
 	function removeACB(card) {
-		props.doRemove(card);
+		props.doRemove({ id: card.id, image: card.image, name: card.name, path: card.path });
 	}
 
 	function addACB(card) {
-		props.doAdd(card);
+		props.doAdd({ id: card.id, image: card.image, name: card.name, path: card.path });
 	}
 
 	return <>{props.browseResult.map(showAllCB)}</>;

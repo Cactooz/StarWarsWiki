@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { get, getDatabase, onValue, ref, set } from 'firebase/database';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { reactiveModel } from '../main';
+import { reaction } from 'mobx';
 
 const app = initializeApp({
 	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -46,22 +47,35 @@ onAuthStateChanged(auth, async (user) => {
 	}
 });
 
+export function persistence(model) {
+	reaction(listenACB, changeACB);
+	function listenACB() {
+		return [model.favorites];
+	}
+	function changeACB() {
+		writeToDB();
+	}
+}
+
 function parseObjectCB(object) {
-	return { name: object.name, id: object.id, image: object.image, path: object.path };
+	return { id: object.id, image: object.image, name: object.name, path: object.path };
 }
 
 export function writeToDB() {
-	if (model.user) {
-		const uid = reactiveModel.user.uid.replace('"', '');
-		let favToDB = reactiveModel.favorites.map(parseObjectCB);
+	if (model.user && model.ready) {
+		model.wrote = true;
+		const uid = model.user.uid.replace('"', '');
+		let favToDB = model.favorites.map(parseObjectCB);
 		set(ref(db, '/userData/' + uid), favToDB);
 	}
 }
 
 function readFromDB(uid) {
-	return onValue(ref(db, '/userData/' + uid), (snapshot) => {
-		const favoritesFromDB = snapshot.val();
-		reactiveModel.setFavsFromDB(favoritesFromDB);
+	onValue(ref(db, '/userData/' + uid), (snapshot) => {
+		model.ready = false;
+		if (!model.wrote) model.setFavsFromDB(snapshot.val());
+		model.wrote = false;
+		model.ready = true;
 	});
 }
 

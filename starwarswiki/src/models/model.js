@@ -1,6 +1,6 @@
 import { fetchSWAPI, fetchSWDatabank } from '../fetch.js';
 import { queryClient } from '../main.jsx';
-import { addFriendDB, friendRequest, writeToDB } from './firebaseModel.js';
+import { addFriendDB, friendRequest } from './firebaseModel.js';
 
 export default {
 	user: {},
@@ -56,7 +56,6 @@ export default {
 
 	addToFavorites(fav) {
 		this.favorites = [...this.favorites, fav];
-		writeToDB();
 	},
 
 	removeFromFavorites(fav) {
@@ -65,7 +64,6 @@ export default {
 		}
 
 		this.favorites = this.favorites.filter(findFavCB);
-		writeToDB();
 	},
 
 	removeFriendRequest(uid) {
