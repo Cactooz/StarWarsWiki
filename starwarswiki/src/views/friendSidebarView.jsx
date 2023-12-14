@@ -11,7 +11,7 @@ export default function FriendSidebarView(props) {
 			<h3>These Are Your Friends!</h3>
 			<p>Add friends with friend id:
 				<input type={"text"} placeholder={"Enter Your Friends ID"} onKeyUp={props.addfriend}/>
-				{props.isUser === false ? "No User found with that ID" : ""}
+				{props.isUser === "self" ? "You Can Not Add YourSelf!" : props.isUser === false ? "No User Found With That ID" : "Friend Request Sent!"}
 			</p>
 			<>
 				{props.friends.length ? props.friends.map(showAllCB) : "Add friends to show them here!"}
