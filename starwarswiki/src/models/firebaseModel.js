@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase, ref, get, set, onValue } from 'firebase/database';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { reactiveModel } from '../main';
+import { reaction } from 'mobx';
 
 const app = initializeApp({
 	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -40,6 +41,16 @@ onAuthStateChanged(auth, (user) => {
 		reactiveModel.setUser(undefined);
 	}
 });
+
+export function persistence(model) {
+	reaction(listenACB, changeACB);
+	function listenACB() {
+		return [model.favorites];
+	}
+	function changeACB() {
+		writeToDB();
+	}
+}
 
 function parseObjectCB(object) {
 	return { name: object.name, id: object.id, image: object.image, path: object.path };
