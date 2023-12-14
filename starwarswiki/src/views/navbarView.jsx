@@ -1,14 +1,14 @@
-import {Link} from 'react-router-dom';
-import SignInButton from "../components/SignInButton.jsx";
-import GoToProfile from "../components/GoToProfile.jsx";
+import { Link } from 'react-router-dom';
+import SignInButton from '../components/SignInButton.jsx';
+import GoToProfile from '../components/GoToProfile.jsx';
 
-export default function HeaderView(props) {
+export default function NavbarView(props) {
 	function browseDataACB(event) {
 		props.onClickHandler(event.target.innerText.toLowerCase());
 	}
 
 	return (
-		<header className='header'>
+		<div className='header'>
 			<Link to='/'>
 				<p>Home</p>
 			</Link>
@@ -21,7 +21,7 @@ export default function HeaderView(props) {
 			<Link to='/locations' onClick={browseDataACB}>
 				<p>Locations</p>
 			</Link>
-			{props.user ? <GoToProfile/> : <SignInButton/>}
-		</header>
+			{props.user ? <GoToProfile /> : <SignInButton />}
+		</div>
 	);
 }
