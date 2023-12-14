@@ -8,9 +8,11 @@ export default {
 	friends: [],
 	friendRequests: [],
 	sentRequests: [],
+	friendFavorites: [],
 	isLoading: false,
 	showId: false,
 	isUser: undefined,
+
 
 	currentBrowse: undefined,
 	browseResult: {},
@@ -84,6 +86,12 @@ export default {
 	setFavsFromDB(data) {
 		if (data === null) data = [];
 		this.favorites = data;
+	},
+
+	setFriendsFavFromDB(data) {
+		if (data === null)
+			data = []
+		this.friendFavorites = data;
 	},
 
 	setFriendRequests(requests) {

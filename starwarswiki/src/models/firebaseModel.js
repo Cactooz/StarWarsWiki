@@ -65,6 +65,7 @@ export function persistence(model) {
 
 	function updateFriends() {
 		writeFriendsToDB()
+		reactiveModel.friends.map(readFriendFromDB)
 	}
 }
 
@@ -87,6 +88,16 @@ function readFromDB(uid) {
 		if (!model.wrote) model.setFavsFromDB(snapshot.val());
 		model.wrote = false;
 		model.ready = true;
+	});
+}
+
+export function readFriendFromDB(uid) {
+	onValue(ref(db, '/userData/' + uid), (snapshot) => {
+		model.ready = false;
+		model.setFriendsFavFromDB(snapshot.val());
+		model.wrote = false;
+		model.ready = true;
+		console.log(reactiveModel.friendFavorites, snapshot.val())
 	});
 }
 
