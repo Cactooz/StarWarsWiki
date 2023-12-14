@@ -7,6 +7,7 @@ export default {
 	favorites: [],
 	friends: [],
 	friendRequests: [],
+	sentRequests: [],
 	isLoading: false,
 	showId: false,
 	isUser: undefined,
@@ -74,9 +75,10 @@ export default {
 		this.friendRequests = this.friendRequests.filter(findFriend)
 	},
 
-	acceptFriendRequest(uid) {
-		addFriendDB(uid)
-		this.removeFriendRequest(uid)
+	acceptFriendRequest(userID) {
+		addFriendDB(userID)
+		this.removeFriendRequest(userID)
+		this.friends = [...this.friends, userID]
 	},
 
 	setFavsFromDB(data) {
@@ -85,7 +87,7 @@ export default {
 	},
 
 	setFriendRequests(requests) {
-		this.friendRequests = [requests];
+		this.friendRequests = Object.keys(requests);
 	},
 
 	async setDetails(params) {
