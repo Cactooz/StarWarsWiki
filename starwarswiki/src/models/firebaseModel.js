@@ -35,6 +35,7 @@ onAuthStateChanged(auth, async (user) => {
 		// User is signed in
 		reactiveModel.setUser(auth.currentUser);
 		readFromDB(user.uid);
+		readFriendsDB(user.uid)
 		await findUser(user.uid);
 		if (!reactiveModel.isUser === true) {
 			set(ref(db, '/users/' + user.uid), true)
@@ -59,15 +60,19 @@ export function writeToDB() {
 
 function readFromDB(uid) {
 	return onValue(ref(db, '/userData/' + uid), (snapshot) => {
-		let favoritesFromDB = snapshot.val();
-		let pendingFriends = favoritesFromDB?.pendingFriends;
+		const favoritesFromDB = snapshot.val();
+		reactiveModel.setFavsFromDB(favoritesFromDB);
+	});
+}
+
+function readFriendsDB(uid) {
+	return onValue(ref(db, '/friends/' + uid), (snapshot) => {
+		const friendsFromDB = snapshot.val();
+		console.log(friendsFromDB)
+		let pendingFriends = friendsFromDB?.pendingFriends;
 		if (pendingFriends) {
-			delete favoritesFromDB["pendingFriends"];
-			favoritesFromDB = Object.values(favoritesFromDB);
 			reactiveModel.setFriendRequests(pendingFriends)
 		}
-		console.log(favoritesFromDB, pendingFriends)
-		reactiveModel.setFavsFromDB(favoritesFromDB);
 	});
 }
 
@@ -78,7 +83,7 @@ export async function findUser(uid) {
 }
 
 export function friendRequest(uid) {
-	set(ref(db, '/userData/' + uid + '/pendingFriends'), reactiveModel.user.uid)
+	set(ref(db, '/friends/' + uid + '/pendingFriends'), reactiveModel.user.uid)
 }
 
 export function readHash(location) {
