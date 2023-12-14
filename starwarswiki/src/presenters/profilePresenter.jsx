@@ -48,7 +48,7 @@ export default observer(
 				<>
 					<FriendSidebarView friends={props.model.friends} addfriend={addFriend} showID={showID} hideID={hideID}
 					                   shouldShowId={props.model.showId} yourID={props.model.user.uid}
-					                   isUser={props.model.isUser}/>
+					                   isUser={props.model.isUser} friendRequest={props.model.friendRequests}/>
 					<ProfileView currentUser={props.model.user} favorites={props.model.favorites}/>
 					{props.model.favorites.length ?
 						<BrowseView browseResult={props.model.favorites} doAdd={doAddACB} doRemove={doRemoveACB}
