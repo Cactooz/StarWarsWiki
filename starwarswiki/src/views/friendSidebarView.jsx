@@ -38,7 +38,7 @@ export default function FriendSidebarView(props) {
 	function showAllCB(friend) {
 		return (
 			<div key={friend}>
-				<Link to={friend} key={friend}>
+				<Link to={"/profile/" + friend} key={friend}>
 					{friend}
 				</Link>
 			</div>
