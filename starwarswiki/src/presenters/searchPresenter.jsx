@@ -1,6 +1,6 @@
 import Vortex from '../components/Vortex';
 import BrowseView from '../views/browseView';
-import SearchBarPresenter from './searchBarPresenter';
+import HeaderPresenter from './headerPresenter';
 import { observer } from 'mobx-react-lite';
 
 export default observer(function SearchPresenter(props) {
