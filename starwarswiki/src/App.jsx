@@ -1,15 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import Browse from './presenters/browsePresenter.jsx';
 import LandingPagePresenter from './presenters/landingPagePresenter';
-import DetailsPresenter from './presenters/detailsPresenter.jsx';
 import FooterPresenter from './presenters/footerPresenter.jsx';
 import ErrorPresenter from './presenters/errorPresenter.jsx';
 import HeaderPresenter from './presenters/headerPresenter.jsx';
 import ProfilePresenter from './presenters/profilePresenter.jsx';
 import SearchPresenter from './presenters/searchPresenter.jsx';
-import MoreDetailsPresenter from './presenters/moreDetailsPresenter.jsx';
 import SearchBarPresenter from './presenters/searchBarPresenter.jsx';
+import BrowseLayout from './layouts/BrowseLayout.jsx';
+import DetailsLayout from './layouts/DetailsLayout.jsx';
 
 function makeRouter(props) {
 	return createBrowserRouter([
@@ -17,6 +16,7 @@ function makeRouter(props) {
 			path: '/',
 			element: (
 				<>
+					<HeaderPresenter model={props.model} />
 					<SearchBarPresenter model={props.model} />
 					<LandingPagePresenter model={props.model} />
 				</>
@@ -34,73 +34,34 @@ function makeRouter(props) {
 		},
 		{
 			path: '/characters',
-			element: (
-				<>
-					<SearchBarPresenter model={props.model} />
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
-				</>
-			),
+			element: <BrowseLayout model={props.model} />,
 		},
 		{
 			path: '/locations',
-			element: (
-				<>
-					<SearchBarPresenter model={props.model} />
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
-				</>
-			),
+			element: <BrowseLayout model={props.model} />,
 		},
 		{
 			path: '/vehicles',
-			element: (
-				<>
-					<SearchBarPresenter model={props.model} />
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
-				</>
-			),
+			element: <BrowseLayout model={props.model} />,
 		},
 		{
 			path: '/characters/:name',
-			element: (
-				<>
-					<SearchBarPresenter model={props.model} />
-					<HeaderPresenter model={props.model} />
-					<DetailsPresenter model={props.model} />
-					<MoreDetailsPresenter model={props.model} />
-				</>
-			),
+			element: <DetailsLayout model={props.model} />,
 		},
 		{
 			path: '/locations/:name',
-			element: (
-				<>
-					<SearchBarPresenter model={props.model} />
-					<HeaderPresenter model={props.model} />
-					<DetailsPresenter model={props.model} />
-					<MoreDetailsPresenter model={props.model} />
-				</>
-			),
+			element: <DetailsLayout model={props.model} />,
 		},
 		{
 			path: '/vehicles/:name',
-			element: (
-				<>
-					<SearchBarPresenter model={props.model} />
-					<HeaderPresenter model={props.model} />
-					<DetailsPresenter model={props.model} />
-					<MoreDetailsPresenter model={props.model} />
-				</>
-			),
+			element: <DetailsLayout model={props.model} />,
 		},
 		{
 			path: '*',
 			element: (
 				<>
-					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
+					<SearchBarPresenter model={props.model} />
 					<ErrorPresenter />
 				</>
 			),
@@ -109,8 +70,8 @@ function makeRouter(props) {
 			path: '/profile',
 			element: (
 				<>
-					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
+					<SearchBarPresenter model={props.model} />
 					<ProfilePresenter model={props.model} />
 				</>
 			),
