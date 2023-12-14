@@ -53,22 +53,23 @@ export function persistence(model) {
 }
 
 function parseObjectCB(object) {
-	return { name: object.name, id: object.id, image: object.image, path: object.path };
+	return { id: object.id, image: object.image, name: object.name, path: object.path };
 }
 
 export function writeToDB() {
-	if (model.user) {
-		const uid = reactiveModel.user.uid.replace('"', '');
-		let favToDB = reactiveModel.favorites.map(parseObjectCB);
+	if (model.user && model.ready) {
+		const uid = model.user.uid.replace('"', '');
+		let favToDB = model.favorites.map(parseObjectCB);
 		set(ref(db, '/userData/' + uid), favToDB);
 	}
 }
 
 function readFromDB(uid) {
-	return onValue(ref(db, '/userData/' + uid), (snapshot) => {
-		const favoritesFromDB = snapshot.val();
-		reactiveModel.setFavsFromDB(favoritesFromDB);
+	model.ready = false;
+	onValue(ref(db, '/userData/' + uid), (snapshot) => {
+		model.setFavsFromDB(snapshot.val());
 	});
+	model.ready = true;
 }
 
 export function readHash(location) {
