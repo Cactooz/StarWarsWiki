@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, get, set, onValue } from 'firebase/database';
+import { get, getDatabase, onValue, ref, set } from 'firebase/database';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { reactiveModel } from '../main';
 
@@ -58,6 +58,12 @@ function readFromDB(uid) {
 		const favoritesFromDB = snapshot.val();
 		reactiveModel.setFavsFromDB(favoritesFromDB);
 	});
+}
+
+export async function findUser(uid) {
+	await get(ref(db, '/users/id/' + uid)).then((snapshot) => {
+		reactiveModel.setIsUser(snapshot.val())
+	})
 }
 
 export function readHash(location) {
