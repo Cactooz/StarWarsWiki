@@ -1,6 +1,6 @@
 import { fetchSWAPI, fetchSWDatabank } from '../fetch.js';
 import { queryClient } from '../main.jsx';
-import { friendRequest, writeToDB } from './firebaseModel.js';
+import { addFriendDB, friendRequest, writeToDB } from './firebaseModel.js';
 
 export default {
 	user: {},
@@ -21,6 +21,10 @@ export default {
 	currentHash: undefined,
 	hash: {},
 
+	searchResults: [],
+	searchReady: true,
+	autoCompleteResults: [],
+
 	setLoading(state) {
 		this.isLoading = state;
 	},
@@ -35,12 +39,12 @@ export default {
 
 	addFriend(friendId) {
 		friendRequest(friendId)
-		this.friends = [...this.friends, friendId]
 	},
 
-	searchResults: [],
-	searchReady: true,
-	autoCompleteResults: [],
+	setFriends(friends) {
+		this.friends = Object.keys(friends)
+	},
+
 
 	setAutoCompleteResults(results) {
 		this.autoCompleteResults = results;
@@ -64,13 +68,26 @@ export default {
 		writeToDB();
 	},
 
+	removeFriendRequest(uid) {
+		function findFriend(id) {
+			return id !== uid;
+		}
+
+		this.friendRequests = this.friendRequests.filter(findFriend)
+	},
+
+	acceptFriendRequest(uid) {
+		addFriendDB(uid)
+		this.removeFriendRequest(uid)
+	},
+
 	setFavsFromDB(data) {
 		if (data === null) data = [];
 		this.favorites = data;
 	},
 
 	setFriendRequests(requests) {
-		this.friendRequests = [...this.friendRequests, requests];
+		this.friendRequests = [requests];
 	},
 
 	async setDetails(params) {
