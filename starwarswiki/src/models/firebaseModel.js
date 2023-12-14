@@ -49,11 +49,22 @@ onAuthStateChanged(auth, async (user) => {
 
 export function persistence(model) {
 	reaction(listenACB, changeACB);
+	reaction(friends, updateFriends)
+
 	function listenACB() {
 		return [model.favorites];
 	}
+
 	function changeACB() {
 		writeToDB();
+	}
+
+	function friends() {
+		return [reactiveModel.friends, reactiveModel.friendRequests]
+	}
+
+	function updateFriends() {
+		writeFriendsToDB()
 	}
 }
 
@@ -80,21 +91,48 @@ function readFromDB(uid) {
 }
 
 function readFriendsDB(uid) {
-	return onValue(ref(db, '/friends/' + uid), (snapshot) => {
+	onValue(ref(db, '/friends/' + uid + '/addedFriends/'), (snapshot) => {
+		if (!model.ready)
+			return;
+		model.ready = false
 		const friendsFromDB = snapshot.val();
-		let pendingFriends = friendsFromDB?.pendingFriends;
-		let friends = friendsFromDB?.friends;
-		if (pendingFriends) {
-			reactiveModel.setFriendRequests(pendingFriends)
+		if (friendsFromDB && !model.wrote) {
+			reactiveModel.setFriends(friendsFromDB);
 		}
-		if (friends) {
-			reactiveModel.setFriends(friends);
-		}
+		model.wrote = false;
+		model.ready = true;
+	});
+	onValue(ref(db, '/friends/' + uid + '/pendingFriends'), (snapshot) => {
+		if (!model.ready)
+			return;
+		model.ready = false
+		const friendRequestsFromDB = snapshot.val();
+		if (friendRequestsFromDB && !model.wrote)
+			reactiveModel.setFriendRequests(friendRequestsFromDB)
+		model.wrote = false;
+		model.ready = true;
 	});
 }
 
+function parseFriends(friends) {
+	if (!friends)
+		return ""
+	else
+		return friends
+}
+
+function writeFriendsToDB() {
+	if (model.user && model.ready) {
+		model.ready = false;
+		model.wrote = true;
+		set(ref(db, '/friends/' + reactiveModel.user.uid + '/addedFriends/' + reactiveModel.friends.map(parseFriends)), true)
+		set(ref(db, '/friends/' + reactiveModel.user.uid + '/pendingFriends/' + reactiveModel.friendRequests.map(parseFriends)), true)
+		model.ready = true;
+	}
+}
+
 export function addFriendDB(uid) {
-	set(ref(db, '/friends/' + uid + '/friends/' + reactiveModel.user.uid), true)
+	set(ref(db, '/friends/' + uid + '/addedFriends/' + reactiveModel.user.uid), true)
 }
 
 export async function findUser(uid) {
@@ -104,7 +142,7 @@ export async function findUser(uid) {
 }
 
 export function friendRequest(uid) {
-	set(ref(db, '/friends/' + uid + '/pendingFriends'), reactiveModel.user.uid)
+	set(ref(db, '/friends/' + uid + '/pendingFriends/' + reactiveModel.user.uid), true)
 }
 
 export function readHash(location) {
