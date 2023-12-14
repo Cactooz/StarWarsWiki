@@ -30,11 +30,15 @@ export function signInWithGooglePopup() {
 	return signInWithPopup(auth, provider);
 }
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
 	if (user) {
 		// User is signed in
 		reactiveModel.setUser(auth.currentUser);
 		readFromDB(user.uid);
+		await findUser(user.uid);
+		if (!reactiveModel.isUser === true) {
+			set(ref(db, '/users/' + user.uid), true)
+		}
 	} else {
 		// No user is signed in
 		reactiveModel.setUser(undefined);
@@ -61,9 +65,13 @@ function readFromDB(uid) {
 }
 
 export async function findUser(uid) {
-	await get(ref(db, '/users/id/' + uid)).then((snapshot) => {
+	await get(ref(db, '/users/' + uid)).then((snapshot) => {
 		reactiveModel.setIsUser(snapshot.val())
 	})
+}
+
+export function friendRequest(uid) {
+	set(ref(db, '/userData/' + uid + '/pendingFriends'), reactiveModel.user.uid)
 }
 
 export function readHash(location) {
