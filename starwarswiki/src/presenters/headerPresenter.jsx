@@ -2,8 +2,9 @@ import items from '../data/autoCompleteList.json';
 import { useNavigate } from 'react-router-dom';
 import SearchBarView from '../views/searchBarView';
 import NavbarView from '../views/navbarView';
+import { observer } from 'mobx-react-lite';
 
-export default function HeaderPresenter(props) {
+export default observer(function HeaderPresenter(props) {
 	const navigate = useNavigate();
 
 	function handleSearchSelect(item) {
@@ -37,4 +38,4 @@ export default function HeaderPresenter(props) {
 			/>
 		</header>
 	);
-}
+});
