@@ -59,7 +59,14 @@ export function writeToDB() {
 
 function readFromDB(uid) {
 	return onValue(ref(db, '/userData/' + uid), (snapshot) => {
-		const favoritesFromDB = snapshot.val();
+		let favoritesFromDB = snapshot.val();
+		let pendingFriends = favoritesFromDB?.pendingFriends;
+		if (pendingFriends) {
+			delete favoritesFromDB["pendingFriends"];
+			favoritesFromDB = Object.values(favoritesFromDB);
+			reactiveModel.setFriendRequests(pendingFriends)
+		}
+		console.log(favoritesFromDB, pendingFriends)
 		reactiveModel.setFavsFromDB(favoritesFromDB);
 	});
 }
