@@ -18,9 +18,9 @@ export default observer(
 		async function addFriend(event) {
 			if (event.key === 'Enter') {
 				await findUser(event.target.value)
-				if (props.model.isUser === 'true')
+				if (props.model.isUser === true) {
 					props.model.addFriend(event.target.value)
-				else {
+				} else {
 					props.model.setIsUser(false)
 				}
 			}
