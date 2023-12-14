@@ -1,6 +1,5 @@
 import { fetchSWDatabank, fetchSWAPI } from '../fetch.js';
 import { queryClient } from '../main.jsx';
-import { writeToDB } from './firebaseModel.js';
 
 export default {
 	user: {},
