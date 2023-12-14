@@ -4,7 +4,8 @@ $white: #ffffff;
 
 $margin: 20px;
 
-$yellow-glow: 0px 4px 8px 0px rgba($yellow, 0.25);
+$yellow-glow: 0px 4px 8px 0px rgba($yellow, 0.5);
+$no-glow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 $black-overlay: brightness(50%);
 
 $yellow-stroke-ie: -0.75px -0.75px 0 $yellow, 0.75px -0.75px 0 $yellow, -0.75px 0.75px 0 $yellow,
@@ -30,14 +31,18 @@ body {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	gap: $margin;
 
 	> * {
-		margin: $margin;
 		width: clamp(200px, calc(100% - 2 * $margin), 1000px);
 
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		transform: scale(1.005);
+
+		transition: all 100ms ease-in;
 
 		&:hover,
 		&:focus,
@@ -50,12 +55,14 @@ body {
 			aspect-ratio: 16/9;
 			object-fit: cover;
 			border-radius: $corner-radius;
+
 			box-shadow: $yellow-glow;
+			transition: box-shadow 200ms ease-in-out;
 
 			&:hover,
 			&:focus,
 			&:active {
-				box-shadow: none;
+				box-shadow: $no-glow;
 			}
 		}
 
