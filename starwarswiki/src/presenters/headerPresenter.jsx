@@ -8,6 +8,7 @@ export default function HeaderPresenter(props) {
 
 	function handleSearchSelect(item) {
 		let name = item.name.replaceAll('/', '%2F').replaceAll('.', '%2E');
+		props.model.unSetCurrentDetails();
 		navigate('/' + item.type + '/' + name);
 	}
 

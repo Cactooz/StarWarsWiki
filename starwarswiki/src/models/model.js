@@ -52,6 +52,10 @@ export default {
 		this.favorites = data;
 	},
 
+	unSetCurrentDetails() {
+		this.currentDetails = undefined;
+	},
+
 	async setDetails(params) {
 		this.detailsLoaded = false;
 		await fetchSWDatabank(params, {}, params);
