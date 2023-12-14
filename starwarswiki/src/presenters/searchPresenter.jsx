@@ -26,10 +26,5 @@ export default observer(function SearchPresenter(props) {
 		else if (searchReady) return <h2>No results</h2>;
 		else return <Vortex />;
 	}
-	return (
-		<>
-			<SearchBarPresenter model={props.model} />
-			{render(props.model.searchReady)}
-		</>
-	);
+	return <>{render(props.model.searchReady)}</>;
 });

@@ -9,18 +9,24 @@ import HeaderPresenter from './presenters/headerPresenter.jsx';
 import ProfilePresenter from './presenters/profilePresenter.jsx';
 import SearchPresenter from './presenters/searchPresenter.jsx';
 import MoreDetailsPresenter from './presenters/moreDetailsPresenter.jsx';
+import SearchBarPresenter from './presenters/searchBarPresenter.jsx';
 
 function makeRouter(props) {
 	return createBrowserRouter([
 		{
 			path: '/',
-			element: <LandingPagePresenter model={props.model} />,
-			errorElement: <LandingPagePresenter />,
+			element: (
+				<>
+					<SearchBarPresenter model={props.model} />
+					<LandingPagePresenter model={props.model} />
+				</>
+			),
 		},
 		{
 			path: '/search',
 			element: (
 				<>
+					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
 					<SearchPresenter model={props.model} />
 				</>
@@ -30,12 +36,7 @@ function makeRouter(props) {
 			path: '/characters',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
-				</>
-			),
-			errorElement: (
-				<>
+					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
 					<Browse model={props.model} />
 				</>
@@ -45,12 +46,7 @@ function makeRouter(props) {
 			path: '/locations',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
-				</>
-			),
-			errorElement: (
-				<>
+					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
 					<Browse model={props.model} />
 				</>
@@ -60,12 +56,7 @@ function makeRouter(props) {
 			path: '/vehicles',
 			element: (
 				<>
-					<HeaderPresenter model={props.model} />
-					<Browse model={props.model} />
-				</>
-			),
-			errorElement: (
-				<>
+					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
 					<Browse model={props.model} />
 				</>
@@ -75,15 +66,10 @@ function makeRouter(props) {
 			path: '/characters/:name',
 			element: (
 				<>
+					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
 					<MoreDetailsPresenter model={props.model} />
-				</>
-			),
-			errorElement: (
-				<>
-					<HeaderPresenter model={props.model} />
-					<ErrorPresenter />
 				</>
 			),
 		},
@@ -91,15 +77,10 @@ function makeRouter(props) {
 			path: '/locations/:name',
 			element: (
 				<>
+					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
 					<MoreDetailsPresenter model={props.model} />
-				</>
-			),
-			errorElement: (
-				<>
-					<HeaderPresenter model={props.model} />
-					<ErrorPresenter />
 				</>
 			),
 		},
@@ -107,15 +88,10 @@ function makeRouter(props) {
 			path: '/vehicles/:name',
 			element: (
 				<>
+					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
 					<DetailsPresenter model={props.model} />
 					<MoreDetailsPresenter model={props.model} />
-				</>
-			),
-			errorElement: (
-				<>
-					<HeaderPresenter model={props.model} />
-					<ErrorPresenter />
 				</>
 			),
 		},
@@ -123,6 +99,7 @@ function makeRouter(props) {
 			path: '*',
 			element: (
 				<>
+					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
 					<ErrorPresenter />
 				</>
@@ -132,14 +109,9 @@ function makeRouter(props) {
 			path: '/profile',
 			element: (
 				<>
+					<SearchBarPresenter model={props.model} />
 					<HeaderPresenter model={props.model} />
 					<ProfilePresenter model={props.model} />
-				</>
-			),
-			errorElement: (
-				<>
-					<HeaderPresenter model={props.model} />
-					<ErrorPresenter />
 				</>
 			),
 		},
