@@ -68,7 +68,7 @@ export default observer(
 							                   shouldShowId={props.model.showId} yourID={props.model.user.uid}
 							                   isUser={props.model.isUser} friendRequest={props.model.friendRequests}
 							                   acceptFriend={acceptFriend} declineFriend={declineFriend}/>
-							<ProfileView currentUser={""} favorites={props.model.friendFavorites}/>
+							<ProfileView currentUser={site} favorites={props.model.friendFavorites}/>
 							{props.model.favorites.length ?
 								<BrowseView browseResult={props.model.friendFavorites} doAdd={doAddACB} doRemove={doRemoveACB}
 								            fav={props.model.favorites}
