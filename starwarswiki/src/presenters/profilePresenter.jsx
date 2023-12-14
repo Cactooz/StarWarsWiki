@@ -34,6 +34,16 @@ export default observer(
 			props.model.setId(false)
 		}
 
+		function acceptFriend(uid) {
+			console.log(uid)
+			model.acceptFriendRequest(uid);
+		}
+
+		function declineFriend(uid) {
+			console.log(uid)
+			model.removeFriendRequest(uid);
+		}
+
 		if (props.model.user === undefined)
 			return (
 				<>
@@ -48,7 +58,8 @@ export default observer(
 				<>
 					<FriendSidebarView friends={props.model.friends} addfriend={addFriend} showID={showID} hideID={hideID}
 					                   shouldShowId={props.model.showId} yourID={props.model.user.uid}
-					                   isUser={props.model.isUser} friendRequest={props.model.friendRequests}/>
+					                   isUser={props.model.isUser} friendRequest={props.model.friendRequests}
+					                   acceptFriend={acceptFriend} declineFriend={declineFriend}/>
 					<ProfileView currentUser={props.model.user} favorites={props.model.favorites}/>
 					{props.model.favorites.length ?
 						<BrowseView browseResult={props.model.favorites} doAdd={doAddACB} doRemove={doRemoveACB}
