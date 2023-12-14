@@ -1,11 +1,14 @@
-import { fetchSWDatabank, fetchSWAPI } from '../fetch.js';
+import { fetchSWAPI, fetchSWDatabank } from '../fetch.js';
 import { queryClient } from '../main.jsx';
 import { writeToDB } from './firebaseModel.js';
 
 export default {
 	user: {},
 	favorites: [],
+	friends: [],
 	isLoading: false,
+	showId: false,
+	isUser: undefined,
 
 	currentBrowse: undefined,
 	browseResult: {},
@@ -19,6 +22,18 @@ export default {
 
 	setLoading(state) {
 		this.isLoading = state;
+	},
+
+	setIsUser(user) {
+		this.isUser = user;
+	},
+
+	setId(state) {
+		this.showId = state;
+	},
+
+	addFriend(friendId) {
+		this.friends = [...this.friends, friendId]
 	},
 
 	searchResults: [],
