@@ -69,6 +69,10 @@ export default {
 		this.favorites = data;
 	},
 
+	setFriendRequests(requests) {
+		this.friendRequests = [...this.friendRequests, requests];
+	},
+
 	async setDetails(params) {
 		this.detailsLoaded = false;
 		await fetchSWDatabank(params, {}, params);
