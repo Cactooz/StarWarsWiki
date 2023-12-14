@@ -1,11 +1,12 @@
 import { fetchSWAPI, fetchSWDatabank } from '../fetch.js';
 import { queryClient } from '../main.jsx';
-import { writeToDB } from './firebaseModel.js';
+import { friendRequest, writeToDB } from './firebaseModel.js';
 
 export default {
 	user: {},
 	favorites: [],
 	friends: [],
+	friendRequests: [],
 	isLoading: false,
 	showId: false,
 	isUser: undefined,
@@ -33,6 +34,7 @@ export default {
 	},
 
 	addFriend(friendId) {
+		friendRequest(friendId)
 		this.friends = [...this.friends, friendId]
 	},
 
