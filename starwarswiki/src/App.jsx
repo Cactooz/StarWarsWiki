@@ -3,10 +3,9 @@ import { observer } from 'mobx-react-lite';
 import LandingPagePresenter from './presenters/landingPagePresenter';
 import FooterPresenter from './presenters/footerPresenter.jsx';
 import ErrorPresenter from './presenters/errorPresenter.jsx';
-import HeaderPresenter from './presenters/headerPresenter.jsx';
 import ProfilePresenter from './presenters/profilePresenter.jsx';
 import SearchPresenter from './presenters/searchPresenter.jsx';
-import SearchBarPresenter from './presenters/searchBarPresenter.jsx';
+import HeaderPresenter from './presenters/headerPresenter.jsx';
 import DetailsPresenter from './presenters/detailsPresenter';
 import MoreDetailsPresenter from './presenters/moreDetailsPresenter';
 import BrowsePresenter from './presenters/browsePresenter.jsx';
@@ -15,7 +14,6 @@ function makeRouter(props) {
 	const browseLayout = (
 		<>
 			<HeaderPresenter model={props.model} />
-			<SearchBarPresenter model={props.model} />
 			<BrowsePresenter model={props.model} />
 		</>
 	);
@@ -23,7 +21,6 @@ function makeRouter(props) {
 	const detailsLayout = (
 		<>
 			<HeaderPresenter model={props.model} />
-			<SearchBarPresenter model={props.model} />
 			<DetailsPresenter model={props.model} />
 			<MoreDetailsPresenter model={props.model} />
 		</>
@@ -39,7 +36,6 @@ function makeRouter(props) {
 				element: (
 					<>
 						<HeaderPresenter model={props.model} />
-						<SearchBarPresenter model={props.model} />
 						<LandingPagePresenter model={props.model} />
 					</>
 				),
@@ -48,7 +44,6 @@ function makeRouter(props) {
 				path: '/search',
 				element: (
 					<>
-						<SearchBarPresenter model={props.model} />
 						<HeaderPresenter model={props.model} />
 						<SearchPresenter model={props.model} />
 					</>
@@ -65,7 +60,6 @@ function makeRouter(props) {
 				element: (
 					<>
 						<HeaderPresenter model={props.model} />
-						<SearchBarPresenter model={props.model} />
 						<ErrorPresenter />
 					</>
 				),
@@ -75,7 +69,6 @@ function makeRouter(props) {
 				element: (
 					<>
 						<HeaderPresenter model={props.model} />
-						<SearchBarPresenter model={props.model} />
 						<ProfilePresenter model={props.model} />
 					</>
 				),
