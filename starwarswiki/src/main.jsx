@@ -4,7 +4,7 @@ import App from './App';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import model from './models/model.js';
 import { configure, observable } from 'mobx';
-//import { connectFirebase } from './models/firebaseModel';
+import { persistence } from './models/firebaseModel';
 
 configure({ enforceActions: 'never' });
 export const reactiveModel = observable(model);
@@ -25,5 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 		<App model={reactiveModel} />
 	</QueryClientProvider>,
 );
+
+persistence(reactiveModel);
 
 window.model = reactiveModel;
