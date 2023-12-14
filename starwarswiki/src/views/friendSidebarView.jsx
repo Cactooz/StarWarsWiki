@@ -6,6 +6,13 @@ export default function FriendSidebarView(props) {
 			<button
 				onClick={props.shouldShowId === false ? props.showID : props.hideID}>{props.shouldShowId === false ? "Click to show your ID" : "Click to hide your ID"}</button>
 			<p>{props.shouldShowId === true ? props.yourID : ""}</p>
+			<h3>{props.friendRequest.length ? "Your Friend Requests" : ""}</h3>
+			{props.friendRequest.length ?
+				<div>
+					{props.friendRequest.map(showFriends)}
+					<button>Accept</button>
+					<button>Decline</button>
+				</div> : ""}
 			<h3>These Are Your Friends!</h3>
 			<p>Add friends with friend id:
 				<input type={"text"} placeholder={"Enter Your Friends ID"} onKeyUp={props.addfriend}/>
@@ -17,7 +24,12 @@ export default function FriendSidebarView(props) {
 		</>
 	);
 
+	function showFriends(friend) {
+		return (<div key={friend}>{friend}</div>)
+	}
+
 	function showAllCB(friend) {
+		console.log(friend)
 		return (
 			<div key={friend}>
 				<Link to={friend} key={friend}>
