@@ -36,7 +36,7 @@ export default observer(function Browse(props) {
 		if (props.model.currentBrowse === undefined || props.model.currentBrowse !== site) {
 			props.model.setBrowseResult(site);
 			return <Vortex />;
-		} else if (browseResult === null) return <div >Error While Loading. Please Try Again!</div >;
+		} else if (browseResult === null) return <p >Error While Loading. Please Try Again!</p >;
 		else if (browseResult) {
 			addEventListener('scroll', handleScroll);
 			return (
