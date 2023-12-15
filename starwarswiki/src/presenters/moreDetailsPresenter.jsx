@@ -3,6 +3,9 @@ import MoreDetailsView from '../views/moreDetailsView';
 import { readHash } from '../models/firebaseModel.js';
 
 export default observer(function MoreDetails(props) {
+	let loaded = false;
+	let moreDetails;
+
 	const splitURL = window.location.pathname.split('/');
 	const page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
 
@@ -29,7 +32,7 @@ export default observer(function MoreDetails(props) {
 		props.model.moreDetails[0] !== undefined &&
 		props.model.currentMoreDetails === moreDetailsPage
 	) {
-		let moreDetails = props.model.moreDetails[0]?.[1];
+		moreDetails = props.model.moreDetails[0]?.[1];
 
 		if (moreDetails) {
 			moreDetails = Object.keys(moreDetails).map((key) => {
@@ -53,6 +56,9 @@ export default observer(function MoreDetails(props) {
 			}));
 		}
 
+		loaded = true;
+	}
+	if (loaded) {
 		return <MoreDetailsView details={moreDetails} />;
 	} else {
 		return (
