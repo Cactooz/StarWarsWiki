@@ -39,7 +39,7 @@ onAuthStateChanged(auth, async (user) => {
 		readFriendsDB(user.uid)
 		await findUser(user.uid);
 		if (!reactiveModel.isUser === true) {
-			set(ref(db, '/users/' + user.uid), true)
+			set(ref(db, '/users/' + user.uid), auth.currentUser.displayName)
 		}
 	} else {
 		// No user is signed in
