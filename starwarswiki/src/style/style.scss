@@ -10,6 +10,10 @@ body {
 	color: $white;
 }
 
+h1,
+h2,
+h3,
+h4,
 p {
 	margin: 0;
 }
@@ -145,6 +149,59 @@ p {
 			color: $black;
 			text-shadow: $yellow-stroke-ie;
 			text-transform: capitalize;
+		}
+	}
+}
+
+.details-container {
+	background-color: rgba(30, 32, 35, 0.9);
+	border-radius: $corner-radius;
+	overflow: hidden;
+
+	.details {
+		margin: $margin;
+		display: flex;
+		flex-direction: column;
+		gap: calc($margin / 2);
+
+		.details-title {
+			display: flex;
+			flex-direction: row;
+			align-items: baseline;
+			gap: $margin;
+
+			h2 {
+				text-transform: capitalize;
+			}
+		}
+	}
+
+	img {
+		width: 100%;
+		max-height: 500px;
+		object-fit: cover;
+		object-position: top center;
+	}
+
+	button {
+		background-color: transparent;
+		border: none;
+
+		padding: calc($margin / 2);
+
+		.favorite {
+			transform: rotate(72deg);
+		}
+
+		svg {
+			fill: $yellow;
+			height: 20px;
+
+			transition: all 100ms ease-in-out;
+
+			&:not(.favorite):active {
+				transform: rotate(72deg);
+			}
 		}
 	}
 }
