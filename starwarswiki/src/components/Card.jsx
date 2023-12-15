@@ -16,7 +16,7 @@ export default function (card) {
 	return (
 		<div>
 			<Link to={card.path + '/' + card.name.replaceAll('/', '%2F')}>
-				<img src={card.image} height={'100'}></img>
+				<img src={card.image}></img>
 				<p>{card.name}</p>
 			</Link>
 			{card.auth ? (
