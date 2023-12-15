@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { get, getDatabase, onValue, ref, set } from 'firebase/database';
+import { get, getDatabase, onValue, ref, remove, set } from 'firebase/database';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { reactiveModel } from '../main';
 import { reaction } from 'mobx';
@@ -60,12 +60,12 @@ export function persistence(model) {
 	}
 
 	function friends() {
-		return [reactiveModel.friends, reactiveModel.friendRequests]
+		return [reactiveModel.friends, reactiveModel.friendRequests, reactiveModel.sentRequests]
 	}
 
 	function updateFriends() {
 		writeFriendsToDB()
-		reactiveModel.friends.map(readFriendFromDB)
+		reactiveModel.friends.map(readFriendFavFromDB)
 	}
 }
 
@@ -91,13 +91,12 @@ function readFromDB(uid) {
 	});
 }
 
-export function readFriendFromDB(uid) {
+export function readFriendFavFromDB(uid) {
 	onValue(ref(db, '/userData/' + uid), (snapshot) => {
 		model.ready = false;
-		model.setFriendsFavFromDB(snapshot.val());
+		model.setFriendsFavFromDB(snapshot.val(), uid);
 		model.wrote = false;
 		model.ready = true;
-		console.log(reactiveModel.friendFavorites, snapshot.val())
 	});
 }
 
@@ -107,7 +106,7 @@ function readFriendsDB(uid) {
 			return;
 		model.ready = false
 		const friendsFromDB = snapshot.val();
-		if (friendsFromDB && !model.wrote) {
+		if (!model.wrote) {
 			reactiveModel.setFriends(friendsFromDB);
 		}
 		model.wrote = false;
@@ -118,8 +117,19 @@ function readFriendsDB(uid) {
 			return;
 		model.ready = false
 		const friendRequestsFromDB = snapshot.val();
-		if (friendRequestsFromDB && !model.wrote)
+		if (!model.wrote)
 			reactiveModel.setFriendRequests(friendRequestsFromDB)
+		model.wrote = false;
+		model.ready = true;
+	});
+	onValue(ref(db, '/friends/' + uid + '/requests'), (snapshot) => {
+		if (!model.ready)
+			return;
+		model.ready = false
+		const requestsFromDB = snapshot.val();
+		if (!model.wrote) {
+			reactiveModel.setRequestsFromDb(requestsFromDB)
+		}
 		model.wrote = false;
 		model.ready = true;
 	});
@@ -138,12 +148,17 @@ function writeFriendsToDB() {
 		model.wrote = true;
 		set(ref(db, '/friends/' + reactiveModel.user.uid + '/addedFriends/' + reactiveModel.friends.map(parseFriends)), true)
 		set(ref(db, '/friends/' + reactiveModel.user.uid + '/pendingFriends/' + reactiveModel.friendRequests.map(parseFriends)), true)
+		set(ref(db, '/friends/' + reactiveModel.user.uid + '/requests/' + reactiveModel.sentRequests.map(parseFriends)), true)
 		model.ready = true;
 	}
 }
 
 export function addFriendDB(uid) {
 	set(ref(db, '/friends/' + uid + '/addedFriends/' + reactiveModel.user.uid), true)
+}
+
+export function removeFriendDB(uid) {
+	remove(ref(db, '/friends/' + uid + '/addedFriends/' + reactiveModel.user.uid))
 }
 
 export async function findUser(uid) {
@@ -154,6 +169,14 @@ export async function findUser(uid) {
 
 export function friendRequest(uid) {
 	set(ref(db, '/friends/' + uid + '/pendingFriends/' + reactiveModel.user.uid), true)
+}
+
+export function removeFriendRequest(uid) {
+	remove(ref(db, '/friends/' + uid + '/pendingFriends/' + reactiveModel.user.uid))
+}
+
+export function removeRequest(uid) {
+	remove(ref(db, '/friends/' + uid + '/requests/' + reactiveModel.user.uid))
 }
 
 export function readHash(location) {
