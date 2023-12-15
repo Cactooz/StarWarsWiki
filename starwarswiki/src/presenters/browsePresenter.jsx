@@ -24,18 +24,19 @@ export default observer(function Browse(props) {
 		if (props.model.isLoading || (site[1] !== 'vehicles' && site[1] !== 'characters' && site[1] !== 'locations') || site[2] || !site[1])
 			return;
 		props.model.setLoading(true);
-		let string = props.model.browseResult?.info.next.replace("/api/v1/", "");
-		if (string !== undefined) await props.model.addBrowseResult(string);
+		/*let string = props.model.browseResult?.info.next.replace("/api/v1/", "");
+		if (string !== undefined) await props.model.addBrowseResult(string);*/
+		await props.model.addMoreData()
 		props.model.setLoading(false);
-		return <Vortex/>;
+		return <Vortex />;
 	}
 
 	function render(browseResult) {
 		const site = useLocation().pathname.replace('/', '');
 		if (props.model.currentBrowse === undefined || props.model.currentBrowse !== site) {
 			props.model.setBrowseResult(site);
-			return <Vortex/>;
-		} else if (browseResult === null) return <div>Error While Loading. Please Try Again!</div>;
+			return <Vortex />;
+		} else if (browseResult === null) return <div >Error While Loading. Please Try Again!</div >;
 		else if (browseResult) {
 			addEventListener('scroll', handleScroll);
 			return (
