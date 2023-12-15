@@ -58,13 +58,17 @@ p {
 
 			padding: calc($margin / 2);
 
+			.favorite {
+				transform: rotate(72deg);
+			}
+
 			svg {
 				fill: $yellow;
 				height: 20px;
 
 				transition: all 100ms ease-in-out;
 
-				&:active {
+				&:not(.favorite):active {
 					transform: rotate(72deg);
 				}
 			}
