@@ -98,6 +98,10 @@ export default {
 		this.friendRequests = Object.keys(requests);
 	},
 
+	unSetCurrentDetails() {
+		this.currentDetails = undefined;
+	},
+
 	async setDetails(params) {
 		this.detailsLoaded = false;
 		await fetchSWDatabank(params, {}, params);

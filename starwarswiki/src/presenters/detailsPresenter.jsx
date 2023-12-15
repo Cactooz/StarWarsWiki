@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import DetailsView from '../views/detailsView';
 import Vortex from '../components/Vortex.jsx';
+import { useLocation } from 'react-router-dom';
 
 export default observer(function Details(props) {
 	function addFavoriteACB(object) {
@@ -11,8 +12,7 @@ export default observer(function Details(props) {
 		props.model.removeFromFavorites(object);
 	}
 
-	let path = window.location.pathname;
-	const splitURL = path.split('/');
+	const splitURL = useLocation().pathname.split('/');
 	let page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
 
 	if (!props.model.details || props.model.currentDetails !== page) {
