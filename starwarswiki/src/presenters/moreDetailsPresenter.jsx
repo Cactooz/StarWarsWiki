@@ -14,9 +14,15 @@ export default observer(function MoreDetails(props) {
 		</div>
 	);
 
+	if (
+		props.model.currentDetails !==
+		splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1]
+	) {
+		return moreDetailsSpinner;
+	}
+
 	if (props.model.currentHash !== splitURL[splitURL.length - 2]) {
 		readHash(splitURL[splitURL.length - 2]);
-		return moreDetailsSpinner;
 	}
 
 	let loaded = false;
