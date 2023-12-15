@@ -49,29 +49,33 @@ p {
 
 		transform: scale(1.005);
 
-		transition: all 100ms ease-in;
+		transition: all 200ms ease-in-out;
+
+		overflow: hidden;
+		border-radius: $corner-radius;
+		box-shadow: $yellow-glow;
 
 		&:hover,
 		&:focus,
 		&:active {
-			transform: translate(0px, 4px);
+			transform: translate(0px, 4px) scale(1);
+			box-shadow: $no-glow;
 		}
 
 		&:hover img,
 		&:focus img,
 		&:active img {
 			filter: $no-overlay;
-			box-shadow: $no-glow;
+			transform: scale(1.05) rotate(0);
 		}
 
 		img {
 			width: 100%;
 			aspect-ratio: 16/9;
 			object-fit: cover;
-			border-radius: $corner-radius;
+			transform: scale(1.1) rotate(1deg);
 
-			box-shadow: $yellow-glow;
-			transition: box-shadow 200ms ease-in-out;
+			transition: all 200ms ease-in-out;
 
 			filter: $black-overlay;
 		}
