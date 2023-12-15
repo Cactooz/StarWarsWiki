@@ -10,15 +10,17 @@ export default observer(function MoreDetails(props) {
 
 	const splitURL = useLocation().pathname.split('/');
 
+	const moreDetailsSpinner = (
+		<div>
+			<h3>More Details</h3>
+			<Vortex />
+		</div>
+	);
+
 	if (props.model.currentHash !== splitURL[splitURL.length - 2]) {
 		readHash(splitURL[splitURL.length - 2]);
 		console.log('Vortex 1');
-		return (
-			<div>
-				<h3>More Details</h3>
-				<Vortex />
-			</div>
-		);
+		return moreDetailsSpinner;
 	}
 
 	let moreDetailsPage;
@@ -70,12 +72,7 @@ export default observer(function MoreDetails(props) {
 	}
 	if (!loaded) {
 		console.log('Vortex 2');
-		return (
-			<div>
-				<h3>More Details</h3>
-				<Vortex />
-			</div>
-		);
+		return moreDetailsSpinner;
 	} else if (loaded && moreDetails) {
 		return <MoreDetailsView details={moreDetails} />;
 	} else {
