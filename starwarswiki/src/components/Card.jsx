@@ -14,7 +14,7 @@ export default function (card) {
 	}
 
 	return (
-		<div>
+		<div className='browse-card'>
 			<Link to={card.path + '/' + card.name.replaceAll('/', '%2F')}>
 				<img src={card.image}></img>
 				<p>{card.name}</p>
