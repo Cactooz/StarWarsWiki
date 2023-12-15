@@ -24,8 +24,6 @@ export default observer(function Browse(props) {
 		if (props.model.isLoading || (site[1] !== 'vehicles' && site[1] !== 'characters' && site[1] !== 'locations') || site[2] || !site[1])
 			return;
 		props.model.setLoading(true);
-		/*let string = props.model.browseResult?.info.next.replace("/api/v1/", "");
-		if (string !== undefined) await props.model.addBrowseResult(string);*/
 		await props.model.addMoreData()
 		props.model.setLoading(false);
 		return <Vortex />;
