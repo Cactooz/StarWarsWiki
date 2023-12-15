@@ -26,9 +26,15 @@ function makeRouter(props) {
 		</>
 	);
 
-
+	const searchLayout = (
+		<>
+			<HeaderPresenter model={props.model} />
+			<ProfilePresenter model={props.model} />
+		</>
+	);
 	const browsePaths = ['/characters', '/vehicles', '/locations'];
 	const detailsPaths = ['/characters/:name', '/locations/:name', '/vehicles/:name'];
+	const profilePaths = ['/profile', '/profile/:id']
 
 	return createBrowserRouter(
 		[
@@ -56,21 +62,15 @@ function makeRouter(props) {
 			detailsPaths.map((path) => {
 				return { path: path, element: detailsLayout };
 			}),
+			profilePaths.map((path) => {
+				return { path: path, element: searchLayout }
+			}),
 			{
 				path: '*',
 				element: (
 					<>
 						<HeaderPresenter model={props.model} />
 						<ErrorPresenter />
-					</>
-				),
-			},
-			{
-				path: '/profile',
-				element: (
-					<>
-						<HeaderPresenter model={props.model} />
-						<ProfilePresenter model={props.model} />
 					</>
 				),
 			},
