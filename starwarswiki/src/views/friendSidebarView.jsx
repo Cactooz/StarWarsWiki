@@ -11,13 +11,26 @@ export default function FriendSidebarView(props) {
 			<h3>These Are Your Friends!</h3>
 			<p>Add friends with friend id:
 				<input type={"text"} placeholder={"Enter Your Friends ID"} onKeyUp={props.addfriend}/>
-				{props.isUser === "self" ? "You Can Not Add YourSelf!" : props.isUser === false ? "No User Found With That ID" : "Friend Request Sent!"}
+				{props.customMessage ? props.customMessage : ""}
 			</p>
+			<h3>{props.sentRequests.length ? "Waiting for answer from:" : ""}</h3>
+			{props.sentRequests.length ? props.sentRequests.map(showRequests) : ""}
 			<>
 				{props.friends.length ? props.friends.map(showAllCB) : "Add friends to show them here!"}
 			</>
 		</>
 	);
+
+	function showRequests(friend) {
+		function cancelFriend() {
+			props.cancelFriend(friend)
+		}
+
+		return (<div key={friend}>
+			{friend}
+			<button onClick={cancelFriend}>Cancel</button>
+		</div>)
+	}
 
 	function showFriends(friend) {
 		function acceptFriend() {
@@ -36,11 +49,17 @@ export default function FriendSidebarView(props) {
 	}
 
 	function showAllCB(friend) {
+
+		function removeFriend() {
+			props.removeFriend(friend)
+		}
+
 		return (
 			<div key={friend}>
 				<Link to={"/profile/" + friend} key={friend}>
 					{friend}
 				</Link>
+				<button onClick={removeFriend}>Remove Friend</button>
 			</div>
 		)
 	}
