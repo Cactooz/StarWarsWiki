@@ -253,4 +253,14 @@ footer {
 	.cards-container {
 		flex-direction: row;
 	}
+
+	.details-container {
+		display: flex;
+		flex-direction: row;
+
+		img {
+			max-width: 70%;
+			max-height: 100%;
+		}
+	}
 }
