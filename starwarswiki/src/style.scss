@@ -33,17 +33,43 @@ p {
 	margin: 0;
 }
 
-.cards-container {
-	margin: $margin 0 $margin 0;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
+.browse-page {
 	flex-wrap: wrap;
-	gap: $margin;
+	> * {
+		width: clamp(300px, 100%, 400px);
 
+		img {
+			height: 200px;
+			object-fit: cover;
+			object-position: top center;
+		}
+
+		p {
+			font-size: 1.5rem;
+		}
+	}
+}
+
+.landing-page {
 	> * {
 		width: clamp(200px, calc(100% - 2 * $margin), 1000px);
 
+		p {
+			font-size: 3rem;
+		}
+	}
+}
+
+.cards-container {
+	margin: $margin 0 $margin 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: $margin;
+	text-align: center;
+
+	> * {
 		transform: scale(1.005);
 
 		transition: all 200ms ease-in-out;
@@ -73,7 +99,6 @@ p {
 
 		img {
 			width: 100%;
-			aspect-ratio: 16/9;
 			object-fit: cover;
 			transform: scale(1.1) rotate(1deg);
 
@@ -85,10 +110,9 @@ p {
 		p {
 			position: absolute;
 			font-weight: 900;
-			font-size: 3rem;
 			color: $black;
 			text-shadow: $yellow-stroke-ie;
-			z-index: 1;
+			text-transform: capitalize;
 		}
 	}
 }
