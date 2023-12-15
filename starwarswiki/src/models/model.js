@@ -8,10 +8,11 @@ export default {
 	friends: [],
 	friendRequests: [],
 	sentRequests: [],
-	friendFavorites: [],
+	friendFavorites: {},
 	isLoading: false,
 	showId: false,
 	isUser: undefined,
+	customMessage: undefined,
 
 
 	currentBrowse: undefined,
@@ -44,11 +45,27 @@ export default {
 		friendRequest(friendId)
 	},
 
+	addRequest(friendId) {
+		this.sentRequests = [...this.sentRequests, friendId]
+	},
+
+	setRequestsFromDb(requests) {
+		if (!requests) {
+			requests = [];
+		}
+		this.sentRequests = Object.keys(requests);
+	},
+
 	setFriends(friends) {
+		if (!friends) {
+			friends = [];
+		}
 		this.friends = Object.keys(friends)
 	},
 
-
+	setCustomMessage(msg) {
+		this.customMessage = msg;
+	},
 	setAutoCompleteResults(results) {
 		this.autoCompleteResults = results;
 	},
@@ -77,6 +94,22 @@ export default {
 		this.friendRequests = this.friendRequests.filter(findFriend)
 	},
 
+	removeFriend(uid) {
+		function findFriend(id) {
+			return id !== uid;
+		}
+
+		this.friends = this.friends.filter(findFriend)
+	},
+
+	removeSentRequest(uid) {
+		function findFriend(id) {
+			return id !== uid;
+		}
+
+		this.sentRequests = this.sentRequests.filter(findFriend)
+	},
+
 	acceptFriendRequest(userID) {
 		addFriendDB(userID)
 		this.removeFriendRequest(userID)
@@ -88,13 +121,17 @@ export default {
 		this.favorites = data;
 	},
 
-	setFriendsFavFromDB(data) {
-		if (data === null)
+	setFriendsFavFromDB(data, id) {
+		if (data === null) {
 			data = []
-		this.friendFavorites = data;
+		}
+		this.friendFavorites[id] = data;
 	},
 
 	setFriendRequests(requests) {
+		if (!requests) {
+			requests = [];
+		}
 		this.friendRequests = Object.keys(requests);
 	},
 
