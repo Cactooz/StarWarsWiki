@@ -5,9 +5,6 @@ import Vortex from '../components/Vortex.jsx';
 import { useLocation } from 'react-router-dom';
 
 export default observer(function MoreDetails(props) {
-	let loaded = false;
-	let moreDetails;
-
 	const splitURL = useLocation().pathname.split('/');
 
 	const moreDetailsSpinner = (
@@ -22,6 +19,8 @@ export default observer(function MoreDetails(props) {
 		return moreDetailsSpinner;
 	}
 
+	let loaded = false;
+	let moreDetails;
 	let moreDetailsPage;
 
 	if (props.model.details[0] && props.model.currentHash === splitURL[splitURL.length - 2]) {
