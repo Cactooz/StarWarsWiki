@@ -6,7 +6,9 @@ $margin: 20px;
 
 $yellow-glow: 0px 4px 8px 0px rgba($yellow, 0.5);
 $no-glow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-$black-overlay: brightness(50%);
+
+$black-overlay: brightness(60%);
+$no-overlay: brightness(100%);
 
 $yellow-stroke-ie: -0.75px -0.75px 0 $yellow, 0.75px -0.75px 0 $yellow, -0.75px 0.75px 0 $yellow,
 	0.75px 0.75px 0 $yellow, -0.75px 0px 0 $yellow, 0.75px 0px 0 $yellow, 0px 0.75px 0 $yellow,
@@ -50,6 +52,13 @@ body {
 			transform: translate(0px, 4px);
 		}
 
+		&:hover img,
+		&:focus img,
+		&:active img {
+			filter: $no-overlay;
+			box-shadow: $no-glow;
+		}
+
 		img {
 			width: 100%;
 			aspect-ratio: 16/9;
@@ -59,11 +68,7 @@ body {
 			box-shadow: $yellow-glow;
 			transition: box-shadow 200ms ease-in-out;
 
-			&:hover,
-			&:focus,
-			&:active {
-				box-shadow: $no-glow;
-			}
+			filter: $black-overlay;
 		}
 
 		p {
