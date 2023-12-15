@@ -1,23 +1,4 @@
-$yellow: #ffe81f;
-$black: #000000;
-$white: #ffffff;
-
-$margin: 20px;
-
-$yellow-glow: 0px 4px 8px 0px rgba($yellow, 0.5);
-$no-glow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
-
-$black-overlay: brightness(60%);
-$no-overlay: brightness(100%);
-
-$yellow-stroke-ie: -0.75px -0.75px 0 $yellow, 0.75px -0.75px 0 $yellow, -0.75px 0.75px 0 $yellow,
-	0.75px 0.75px 0 $yellow, -0.75px 0px 0 $yellow, 0.75px 0px 0 $yellow, 0px 0.75px 0 $yellow,
-	0px -0.75px 0 $yellow;
-$yellow-stroke: 0.75px $yellow;
-
-$corner-radius: 20px;
-
-$stars-background: url('../assets/images/pexels-francesco-ungaro-stars.webp');
+@import './variables.scss';
 
 body {
 	background-color: $black;
