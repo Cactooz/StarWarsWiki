@@ -1,16 +1,24 @@
 import { observer } from 'mobx-react-lite';
 import MoreDetailsView from '../views/moreDetailsView';
 import { readHash } from '../models/firebaseModel.js';
+import Vortex from '../components/Vortex.jsx';
+import { useLocation } from 'react-router-dom';
 
 export default observer(function MoreDetails(props) {
 	let loaded = false;
 	let moreDetails;
 
-	const splitURL = window.location.pathname.split('/');
-	const page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
+	const splitURL = useLocation().pathname.split('/');
 
 	if (props.model.currentHash !== splitURL[splitURL.length - 2]) {
 		readHash(splitURL[splitURL.length - 2]);
+		console.log('Vortex 1');
+		return (
+			<div>
+				<h3>More Details</h3>
+				<Vortex />
+			</div>
+		);
 	}
 
 	let moreDetailsPage;
@@ -21,6 +29,8 @@ export default observer(function MoreDetails(props) {
 		if (hashedItem) {
 			const moreDetailsPath = atob(hashedItem.swapiId).split(':');
 			moreDetailsPage = `${moreDetailsPath[0]}/${moreDetailsPath[1]}`;
+		} else {
+			loaded = true;
 		}
 
 		if (props.model.currentMoreDetails !== moreDetailsPage) {
@@ -58,7 +68,15 @@ export default observer(function MoreDetails(props) {
 
 		loaded = true;
 	}
-	if (loaded) {
+	if (!loaded) {
+		console.log('Vortex 2');
+		return (
+			<div>
+				<h3>More Details</h3>
+				<Vortex />
+			</div>
+		);
+	} else if (loaded && moreDetails) {
 		return <MoreDetailsView details={moreDetails} />;
 	} else {
 		return (
