@@ -91,3 +91,9 @@ footer {
 	margin-top: $margin;
 	text-align: center;
 }
+
+@media only screen and (min-width: 800px) {
+	.landing-cards {
+		flex-direction: row;
+	}
+}
