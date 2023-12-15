@@ -6,7 +6,7 @@ import model from './models/model.js';
 import { configure, observable } from 'mobx';
 import { persistence } from './models/firebaseModel';
 
-import './style.scss';
+import './style/style.scss';
 
 configure({ enforceActions: 'never' });
 export const reactiveModel = observable(model);
