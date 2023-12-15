@@ -19,7 +19,6 @@ export default observer(function MoreDetails(props) {
 
 	if (props.model.currentHash !== splitURL[splitURL.length - 2]) {
 		readHash(splitURL[splitURL.length - 2]);
-		console.log('Vortex 1');
 		return moreDetailsSpinner;
 	}
 
@@ -71,7 +70,6 @@ export default observer(function MoreDetails(props) {
 		loaded = true;
 	}
 	if (!loaded) {
-		console.log('Vortex 2');
 		return moreDetailsSpinner;
 	} else if (loaded && moreDetails) {
 		return <MoreDetailsView details={moreDetails} />;
