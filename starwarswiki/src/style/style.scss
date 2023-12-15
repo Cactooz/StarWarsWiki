@@ -218,6 +218,23 @@ p {
 	}
 }
 
+.more-details {
+	background-color: $background-gray;
+	border-radius: $corner-radius;
+	padding: $margin;
+	margin-top: $margin;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: $margin;
+
+	h4,
+	p {
+		text-transform: capitalize;
+	}
+}
+
 footer {
 	margin-top: $margin;
 	text-align: center;
