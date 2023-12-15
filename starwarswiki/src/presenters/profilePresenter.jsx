@@ -3,7 +3,7 @@ import ProfileView from "../views/profileView.jsx";
 import { Link, useLocation } from "react-router-dom";
 import BrowseView from "../views/browseView.jsx";
 import FriendSidebarView from "../views/friendSidebarView.jsx";
-import { findUser } from "../models/firebaseModel.js";
+import { findUser, removeFriendDB, removeFriendRequest, removeRequest } from "../models/firebaseModel.js";
 import ErrorView from "../views/errorView.jsx";
 
 export default observer(
@@ -17,19 +17,28 @@ export default observer(
 		}
 
 		async function addFriend(event) {
+			props.model.setCustomMessage(undefined);
 			if (event.key === 'Enter') {
-				if (event.target.value !== props.model.user.uid) {
-					await findUser(event.target.value)
-					if (props.model.isUser === true) {
-						props.model.addFriend(event.target.value)
-					} else {
-						props.model.setIsUser(false)
-					}
+				console.log(event.target.value)
+				await findUser(event.target.value)
+				if (event.target.value === props.model.user.uid)
+					props.model.setCustomMessage("That is your ID!");
+				else if (props.model.friends.find((element) => element === event.target.value))
+					props.model.setCustomMessage("You are Friends!")
+				else if (props.model.sentRequests.find((element) => element === event.target.value))
+					props.model.setCustomMessage("Wait for your friend to respond")
+				else if (props.model.friendRequests.find((element) => element === event.target.value))
+					props.model.setCustomMessage("Add Friend by Accepting their Friend Request")
+				else if (props.model.isUser === true) {
+					props.model.addFriend(event.target.value)
+					props.model.addRequest(event.target.value)
+					props.model.setCustomMessage("Friend Request Sent!")
 				} else {
-					props.model.setIsUser("self");
+					props.model.setCustomMessage("Wrong ID!")
 				}
 			}
 		}
+
 
 		function showID() {
 			props.model.setId(true)
@@ -40,11 +49,23 @@ export default observer(
 		}
 
 		function acceptFriend(uid) {
-			model.acceptFriendRequest(uid);
+			props.model.acceptFriendRequest(uid);
+			removeRequest(uid)
+		}
+
+		function cancelRequest(uid) {
+			props.model.removeSentRequest(uid);
+			removeFriendRequest(uid);
 		}
 
 		function declineFriend(uid) {
-			model.removeFriendRequest(uid);
+			props.model.removeFriendRequest(uid);
+			removeRequest(uid)
+		}
+
+		function removeFriend(uid) {
+			props.model.removeFriend(uid)
+			removeFriendDB(uid)
 		}
 
 		if (props.model.user === undefined)
@@ -58,19 +79,19 @@ export default observer(
 			)
 		if (props.model.user) {
 			const site = useLocation().pathname.split("/")[2];
-			console.log(site)
 			if (site) {
 				if (props.model.friends.find((element) => element === site)) {
-
 					return (
 						<>
 							<FriendSidebarView friends={props.model.friends} addfriend={addFriend} showID={showID} hideID={hideID}
 							                   shouldShowId={props.model.showId} yourID={props.model.user.uid}
-							                   isUser={props.model.isUser} friendRequest={props.model.friendRequests}
-							                   acceptFriend={acceptFriend} declineFriend={declineFriend}/>
-							<ProfileView currentUser={site} favorites={props.model.friendFavorites}/>
+							                   customMessage={props.model.customMessage} friendRequest={props.model.friendRequests}
+							                   acceptFriend={acceptFriend} declineFriend={declineFriend}
+							                   sentRequests={props.model.sentRequests} cancelFriend={cancelRequest}
+							                   removeFriend={removeFriend}/>
+							<ProfileView currentUser={site}/>
 							{props.model.favorites.length ?
-								<BrowseView browseResult={props.model.friendFavorites} doAdd={doAddACB} doRemove={doRemoveACB}
+								<BrowseView browseResult={props.model.friendFavorites[site]} doAdd={doAddACB} doRemove={doRemoveACB}
 								            fav={props.model.favorites}
 								            auth={props.model.user}/> : "You have not added any favorites yet..."}
 						</>
@@ -83,8 +104,10 @@ export default observer(
 					<>
 						<FriendSidebarView friends={props.model.friends} addfriend={addFriend} showID={showID} hideID={hideID}
 						                   shouldShowId={props.model.showId} yourID={props.model.user.uid}
-						                   isUser={props.model.isUser} friendRequest={props.model.friendRequests}
-						                   acceptFriend={acceptFriend} declineFriend={declineFriend}/>
+						                   customMessage={props.model.customMessage} friendRequest={props.model.friendRequests}
+						                   acceptFriend={acceptFriend} declineFriend={declineFriend}
+						                   sentRequests={props.model.sentRequests} cancelFriend={cancelRequest}
+						                   removeFriend={removeFriend}/>
 						<ProfileView currentUser={props.model.user} favorites={props.model.favorites}/>
 						{props.model.favorites.length ?
 							<BrowseView browseResult={props.model.favorites} doAdd={doAddACB} doRemove={doRemoveACB}
