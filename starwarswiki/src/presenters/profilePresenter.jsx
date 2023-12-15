@@ -71,10 +71,10 @@ export default observer(
 		if (props.model.user === undefined)
 			return (
 				<>
-					<h2>You are not logged in. Sign in above.</h2>
-					<Link to={"/"}>
-						<h2>Return to home!</h2>
-					</Link>
+					<h2 >You are not logged in. Sign in above.</h2 >
+					<Link to={"/"} >
+						<h2 >Return to home!</h2 >
+					</Link >
 				</>
 			)
 		if (props.model.user) {
@@ -88,16 +88,16 @@ export default observer(
 							                   customMessage={props.model.customMessage} friendRequest={props.model.friendRequests}
 							                   acceptFriend={acceptFriend} declineFriend={declineFriend}
 							                   sentRequests={props.model.sentRequests} cancelFriend={cancelRequest}
-							                   removeFriend={removeFriend}/>
-							<ProfileView currentUser={site}/>
-							{props.model.favorites.length ?
+							                   removeFriend={removeFriend} />
+							<ProfileView currentUser={site} />
+							{props.model.friends.length ?
 								<BrowseView browseResult={props.model.friendFavorites[site]} doAdd={doAddACB} doRemove={doRemoveACB}
 								            fav={props.model.favorites}
-								            auth={props.model.user}/> : "You have not added any favorites yet..."}
+								            auth={props.model.user} /> : "You have not added any favorites yet..."}
 						</>
 					);
 				} else {
-					return <ErrorView/>
+					return <ErrorView />
 				}
 			} else
 				return (
@@ -107,12 +107,12 @@ export default observer(
 						                   customMessage={props.model.customMessage} friendRequest={props.model.friendRequests}
 						                   acceptFriend={acceptFriend} declineFriend={declineFriend}
 						                   sentRequests={props.model.sentRequests} cancelFriend={cancelRequest}
-						                   removeFriend={removeFriend}/>
-						<ProfileView currentUser={props.model.user} favorites={props.model.favorites}/>
+						                   removeFriend={removeFriend} />
+						<ProfileView currentUser={props.model.user} favorites={props.model.favorites} />
 						{props.model.favorites.length ?
 							<BrowseView browseResult={props.model.favorites} doAdd={doAddACB} doRemove={doRemoveACB}
 							            fav={props.model.favorites}
-							            auth={props.model.user}/> : "You have not added any favorites yet..."}
+							            auth={props.model.user} /> : "You have not added any favorites yet..."}
 					</>
 				);
 		}
