@@ -103,6 +103,18 @@ p {
 		border-radius: $corner-radius;
 		box-shadow: $yellow-glow;
 
+		background-image: repeating-linear-gradient(
+			0deg,
+			transparent,
+			transparent 5px,
+			rgba(77, 172, 220, 0.6) 10px,
+			rgba(77, 128, 230, 0.6) 15px
+		);
+
+		background-size: 200% 200%;
+
+		animation: hologram-animation 10s linear infinite;
+
 		&:hover,
 		&:focus,
 		&:active {
@@ -146,6 +158,15 @@ p {
 footer {
 	margin-top: $margin;
 	text-align: center;
+}
+
+@keyframes hologram-animation {
+	from {
+		background-position: top;
+	}
+	to {
+		background-position: bottom;
+	}
 }
 
 @media only screen and (min-width: 800px) {
