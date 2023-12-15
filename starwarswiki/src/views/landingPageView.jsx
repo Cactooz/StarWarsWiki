@@ -4,7 +4,7 @@ export default function LandingPageView(props) {
 	return (
 		<div>
 			<h1>STAR WARS WIKI</h1>
-			<div className='landing-cards'>
+			<div className='cards-container'>
 				<LandingCard
 					text='CHARACTERS'
 					image='https://lumiere-a.akamaihd.net/v1/images/Yoda-Retina_2a7ecc26.jpeg'

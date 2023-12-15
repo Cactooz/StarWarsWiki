@@ -9,7 +9,7 @@ export default function browseView(props) {
 		props.doAdd({ id: card.id, image: card.image, name: card.name, path: card.path });
 	}
 
-	return <>{props.browseResult.map(showAllCB)}</>;
+	return <div className='cards-container'>{props.browseResult.map(showAllCB)}</div>;
 
 	function showAllCB(card) {
 		return (

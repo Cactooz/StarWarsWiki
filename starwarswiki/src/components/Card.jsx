@@ -14,10 +14,10 @@ export default function (card) {
 	}
 
 	return (
-		<div className='cards'>
+		<div>
 			<Link to={card.path + '/' + card.name.replaceAll('/', '%2F')}>
 				<img src={card.image} height={'100'}></img>
-				<div>{card.name}</div>
+				<p>{card.name}</p>
 			</Link>
 			{card.auth ? (
 				card.fav.find(findFavCB) ? (
