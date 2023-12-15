@@ -1,5 +1,3 @@
-//import '/src/style.css';
-
 import LandingCard from '../components/LandingCard';
 
 export default function LandingPageView(props) {

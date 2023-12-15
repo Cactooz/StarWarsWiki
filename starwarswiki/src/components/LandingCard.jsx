@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import '/src/style.css';
 
 export default function LandingCard(props) {
 	return (
