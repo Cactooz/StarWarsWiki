@@ -23,9 +23,7 @@ export default observer(function Browse(props) {
 		let site = window.location.pathname.split("/");
 		if (props.model.isLoading || (site[1] !== 'vehicles' && site[1] !== 'characters' && site[1] !== 'locations') || site[2] || !site[1])
 			return;
-		props.model.setLoading(true);
 		await props.model.addMoreData()
-		props.model.setLoading(false);
 		return <Vortex />;
 	}
 
