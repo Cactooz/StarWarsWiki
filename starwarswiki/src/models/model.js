@@ -1,4 +1,4 @@
-import { fetchSWDatabank, fetchSWAPI } from '../fetch.js';
+import { fetchSWAPI, fetchSWDatabank } from '../fetch.js';
 import { queryClient } from '../main.jsx';
 
 export default {
@@ -15,10 +15,6 @@ export default {
 	moreDetails: {},
 	currentHash: undefined,
 	hash: {},
-
-	setLoading(state) {
-		this.isLoading = state;
-	},
 
 	searchResults: [],
 	searchReady: true,
@@ -78,6 +74,18 @@ export default {
 		await fetchSWDatabank(params, {}, params);
 		this.browseResult = queryClient.getQueryData(params);
 		this.currentBrowse = params;
+		await this.addMoreData()
+	},
+
+	async addMoreData() {
+		this.isLoading = true
+		let string1 = this.browseResult?.info?.next?.replace("/api/v1/", "");
+		if (string1) await this.addBrowseResult(string1);
+		let string2 = this.browseResult?.info?.next?.replace("/api/v1/", "");
+		if (string2) await this.addBrowseResult(string2);
+		let string3 = this.browseResult?.info?.next?.replace("/api/v1/", "");
+		if (string3) await this.addBrowseResult(string3);
+		this.isLoading = false;
 	},
 
 	async addBrowseResult(params) {
