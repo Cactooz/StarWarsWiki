@@ -16,10 +16,6 @@ export default {
 	currentHash: undefined,
 	hash: {},
 
-	setLoading(state) {
-		this.isLoading = state;
-	},
-
 	searchResults: [],
 	searchReady: true,
 	autoCompleteResults: [],
