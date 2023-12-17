@@ -8,82 +8,62 @@ import SearchPresenter from './presenters/searchPresenter';
 import ProfilePresenter from './presenters/profilePresenter';
 import ErrorPresenter from './presenters/errorPresenter';
 import { AnimatePresence, motion } from 'framer-motion';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import '../src/style.css';
 
 export default function AnimatedRoutes(props) {
 	const location = useLocation();
-
-	const browseLayout = (
-		<>
-			<HeaderPresenter model={props.model} />
-			<BrowsePresenter model={props.model} />
-		</>
-	);
-
 	const detailsLayout = (
 		<>
-			<HeaderPresenter model={props.model} />
 			<DetailsPresenter model={props.model} />
 			<MoreDetailsPresenter model={props.model} />
 		</>
 	);
 
+	function transition(originalComponent) {
+		return (
+			<>
+				<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+					{originalComponent}
+				</motion.div>
+			</>
+		);
+	}
+
 	const browsePaths = ['/characters', '/vehicles', '/locations'];
 	const detailsPaths = ['/characters/:name', '/locations/:name', '/vehicles/:name'];
 
 	return (
-		<TransitionGroup>
-			<CSSTransition key={location.pathname} classNames={'fade'} timeout={300} unmountOnExit>
-				<Routes location={location}>
-					<Route
-						exact
-						path='/'
-						element={
-							<>
-								<LandingPagePresenter model={props.model} />
-							</>
-						}
-					/>
+		<>
+			<HeaderPresenter model={props.model} />
+			<AnimatePresence mode='wait'>
+				<Routes location={location} key={location.pathname}>
+					<Route index element={transition(<LandingPagePresenter model={props.model} />)} />
 					<Route
 						exact
 						path='/search'
-						element={
-							<>
-								<HeaderPresenter model={props.model} />
-								<SearchPresenter model={props.model} />
-							</>
-						}
+						element={transition(<SearchPresenter model={props.model} />)}
 					/>
 					{browsePaths.map((path) => {
-						return <Route exact path={path} element={browseLayout} />;
+						return (
+							<Route
+								exact
+								path={path}
+								element={transition(<BrowsePresenter model={props.model} />)}
+							/>
+						);
 					})}
 					{detailsPaths.map((path) => {
-						return <Route exact path={path} element={detailsLayout} />;
+						return <Route exact path={path} element={transition(detailsLayout)} />;
 					})}
 					<Route
 						exact
 						path='/profile'
-						element={
-							<>
-								<HeaderPresenter model={props.model} />
-								<ProfilePresenter model={props.model} />
-							</>
-						}
+						element={transition(<ProfilePresenter model={props.model} />)}
 					/>
-					<Route
-						exact
-						path='*'
-						element={
-							<>
-								<HeaderPresenter model={props.model} />
-								<ErrorPresenter />
-							</>
-						}
-					/>
+					<Route exact path='*' element={transition(<ErrorPresenter />)} />
 				</Routes>
-			</CSSTransition>
-		</TransitionGroup>
+			</AnimatePresence>
+		</>
 	);
 }
