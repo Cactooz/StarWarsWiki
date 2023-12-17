@@ -47,6 +47,7 @@ export default function AnimatedRoutes(props) {
 					{browsePaths.map((path) => {
 						return (
 							<Route
+								key={path}
 								exact
 								path={path}
 								element={transition(<BrowsePresenter model={props.model} />)}
@@ -54,7 +55,7 @@ export default function AnimatedRoutes(props) {
 						);
 					})}
 					{detailsPaths.map((path) => {
-						return <Route exact path={path} element={transition(detailsLayout)} />;
+						return <Route key={path} exact path={path} element={transition(detailsLayout)} />;
 					})}
 					<Route
 						exact
