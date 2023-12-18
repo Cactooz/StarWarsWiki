@@ -20,7 +20,7 @@ export default function browseView(props) {
 						? card.path
 						: window.location.pathname
 				}
-				id={card._id}
+				id={card._id ? card._id : card.id}
 				name={card.name}
 				image={card.image}
 				removeFavorite={removeACB}
