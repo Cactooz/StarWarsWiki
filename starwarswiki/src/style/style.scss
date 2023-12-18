@@ -78,6 +78,8 @@ header {
 
 main {
 	margin-top: calc(1.5rem + 2 * $margin);
+	display: flex;
+	justify-content: center;
 }
 
 .browse-page {
