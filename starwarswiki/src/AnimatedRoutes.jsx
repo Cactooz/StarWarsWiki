@@ -31,7 +31,7 @@ export default function AnimatedRoutes(props) {
 	const browsePaths = ['/characters', '/vehicles', '/locations'];
 	const detailsPaths = ['/characters/:name', '/locations/:name', '/vehicles/:name'];
 	const searchPaths = ['/search', '/search/:string'];
-	const profilePaths = ['/search', '/search/:string'];
+	const profilePaths = ['/profile', '/profile/:string'];
 
 	return (
 		<>
