@@ -26,7 +26,7 @@ function makeRouter(props) {
 		</>
 	);
 
-	const searchLayout = (
+	const profileLayout = (
 		<>
 			<HeaderPresenter model={props.model} />
 			<ProfilePresenter model={props.model} />
@@ -63,7 +63,7 @@ function makeRouter(props) {
 				return { path: path, element: detailsLayout };
 			}),
 			profilePaths.map((path) => {
-				return { path: path, element: searchLayout }
+				return { path: path, element: profileLayout }
 			}),
 			{
 				path: '*',
