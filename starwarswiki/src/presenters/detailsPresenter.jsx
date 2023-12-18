@@ -29,6 +29,7 @@ export default observer(function Details(props) {
 				id={props.model.details[0]._id}
 				path={splitURL[splitURL.length - 2]}
 				fav={props.model.favorites}
+				maxFavorites={props.model.maxFavorites}
 				removeFavorite={removeFavoriteACB}
 				addFavorite={addFavoriteACB}
 			/>
