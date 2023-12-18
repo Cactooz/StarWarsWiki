@@ -27,7 +27,7 @@ export default function FriendSidebarView(props) {
 		}
 
 		return (<div key={friend} >
-			{friend}
+			{props.names[friend]}
 			<button onClick={cancelFriend} >Cancel</button >
 		</div >)
 	}
@@ -42,7 +42,7 @@ export default function FriendSidebarView(props) {
 		}
 
 		return (<div key={friend} >
-			{friend}
+			{props.names[friend]}
 			<button onClick={acceptFriend} >Accept</button >
 			<button onClick={declineFriend} >Decline</button >
 		</div >)
