@@ -32,18 +32,24 @@ export default function AnimatedRoutes(props) {
 
 	const browsePaths = ['/characters', '/vehicles', '/locations'];
 	const detailsPaths = ['/characters/:name', '/locations/:name', '/vehicles/:name'];
+	const searchPaths = ['/search', '/search/:string'];
 
 	return (
 		<>
 			<HeaderPresenter model={props.model} />
 			<AnimatePresence mode='wait'>
-				<Routes location={location} key={location.pathname}>
+				<Routes location={location} key={location.key}>
 					<Route index element={transition(<LandingPagePresenter model={props.model} />)} />
-					<Route
-						exact
-						path='/search'
-						element={transition(<SearchPresenter model={props.model} />)}
-					/>
+					{searchPaths.map((path) => {
+						return (
+							<Route
+								key={path}
+								exact
+								path={path}
+								element={transition(<SearchPresenter model={props.model} />)}
+							/>
+						);
+					})}
 					{browsePaths.map((path) => {
 						return (
 							<Route
