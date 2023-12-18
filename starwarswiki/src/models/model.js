@@ -4,6 +4,7 @@ import { queryClient } from '../main.jsx';
 export default {
 	user: {},
 	favorites: [],
+	maxFavorites: 9,
 	isLoading: false,
 
 	currentBrowse: undefined,
