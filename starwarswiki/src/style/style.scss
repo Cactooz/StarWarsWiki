@@ -1,5 +1,11 @@
 @import './variables.scss';
 
+html,
+body,
+#root {
+	height: 100%;
+}
+
 body {
 	background-color: $black;
 	background-image: $stars-background;
@@ -20,7 +26,13 @@ p {
 }
 
 #root {
+	display: flex;
+	flex-direction: column;
 	padding: 0 $margin 0 $margin;
+
+	> *:not(header):not(footer) {
+		flex: 1 0 auto;
+	}
 }
 
 header {
@@ -280,7 +292,8 @@ header {
 }
 
 footer {
-	margin-top: $margin;
+	flex-shrink: 0;
+	padding: $margin;
 	text-align: center;
 }
 
