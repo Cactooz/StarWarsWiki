@@ -24,9 +24,8 @@ p {
 }
 
 .browse-page {
-	flex-wrap: wrap;
 	> * {
-		width: clamp(300px, 100%, 400px);
+		width: 400px;
 
 		img {
 			height: 200px;
@@ -74,8 +73,6 @@ p {
 
 .landing-page {
 	> * {
-		width: clamp(200px, calc(100% - 2 * $margin), 1000px);
-
 		p {
 			font-size: 3rem;
 		}
@@ -170,20 +167,18 @@ p {
 	overflow: hidden;
 	display: flex;
 	flex-wrap: wrap;
-	gap: calc($margin / 2);
 
 	.details {
-		margin: $margin;
 		display: flex;
 		flex-direction: column;
-		gap: calc($margin / 2);
+		padding: $margin;
 
 		.details-title {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
 			align-items: baseline;
-			gap: $margin;
+			gap: calc($margin / 2);
 
 			h2 {
 				text-transform: capitalize;
@@ -201,8 +196,6 @@ p {
 	button {
 		background-color: transparent;
 		border: none;
-
-		padding: calc($margin / 2);
 
 		cursor: pointer;
 
@@ -258,9 +251,17 @@ footer {
 	}
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: $big-screen) {
 	.cards-container {
 		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.landing-page {
+		flex-wrap: wrap;
+		> * {
+			width: clamp(320px, 30vw, 1200px);
+		}
 	}
 
 	.details-container {
