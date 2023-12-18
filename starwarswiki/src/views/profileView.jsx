@@ -4,8 +4,7 @@ export default function ProfileView(props) {
 	return (
 		<>
 			<SignOutButton />
-			<h2>Hello There {props.currentUser.displayName}!</h2>
-			<img src={props.currentUser.photoURL} />
+			<h2>Hello there, {props.name}!</h2>
 		</>
 	);
 }
