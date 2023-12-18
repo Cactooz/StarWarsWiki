@@ -77,6 +77,10 @@ header {
 	}
 }
 
+main {
+	margin-top: calc(1.5 * $margin);
+}
+
 .browse-page {
 	> * {
 		width: 400px;
@@ -134,7 +138,6 @@ header {
 }
 
 .cards-container {
-	margin: $margin 0 $margin 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
