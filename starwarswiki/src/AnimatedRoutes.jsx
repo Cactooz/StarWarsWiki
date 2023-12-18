@@ -9,8 +9,6 @@ import ProfilePresenter from './presenters/profilePresenter';
 import ErrorPresenter from './presenters/errorPresenter';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import '../src/style.css';
-
 export default function AnimatedRoutes(props) {
 	const location = useLocation();
 	const detailsLayout = (

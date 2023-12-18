@@ -1,7 +1,6 @@
 function MoreDetailsView(props) {
 	return (
-		<div>
-			<h3>More Details</h3>
+		<div className='more-details'>
 			{props.details?.map((item) => {
 				return (
 					<div key={item.key}>
