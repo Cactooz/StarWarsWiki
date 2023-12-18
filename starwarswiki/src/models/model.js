@@ -71,6 +71,7 @@ export default {
 	},
 
 	async setBrowseResult(params) {
+		this.isLoading = true;
 		await fetchSWDatabank(params, {}, params);
 		this.browseResult = queryClient.getQueryData(params);
 		this.currentBrowse = params;

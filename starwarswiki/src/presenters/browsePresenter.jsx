@@ -2,6 +2,7 @@ import BrowseView from '../views/browseView.jsx';
 import Vortex from '../components/Vortex.jsx';
 import { observer } from 'mobx-react-lite';
 import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
 
 export default observer(function Browse(props) {
 	function doAddACB(card) {
@@ -27,10 +28,16 @@ export default observer(function Browse(props) {
 		return <Vortex />;
 	}
 
+
 	function render(browseResult) {
 		const site = useLocation().pathname.replace('/', '');
+		useEffect(() => {
+			if (props.model.currentBrowse === undefined || props.model.currentBrowse !== site) {
+				if (!props.model.isLoading)
+					props.model.setBrowseResult(site);
+			}
+		}, [site]);
 		if (props.model.currentBrowse === undefined || props.model.currentBrowse !== site) {
-			props.model.setBrowseResult(site);
 			return <Vortex />;
 		} else if (browseResult === null) return <p >Error While Loading. Please Try Again!</p >;
 		else if (browseResult) {
