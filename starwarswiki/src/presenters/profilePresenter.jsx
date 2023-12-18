@@ -5,6 +5,7 @@ import BrowseView from "../views/browseView.jsx";
 import FriendSidebarView from "../views/friendSidebarView.jsx";
 import { findUser, removeFriendDB, removeFriendRequest, removeRequest } from "../models/firebaseModel.js";
 import ErrorView from "../views/errorView.jsx";
+import Vortex from "../components/Vortex.jsx"
 
 export default observer(
 	function ProfilePresenter(props) {
@@ -68,6 +69,10 @@ export default observer(
 			removeFriendDB(uid)
 		}
 
+		function checkNames(id) {
+			return props.model.users[id]
+		}
+
 		if (props.model.user === undefined)
 			return (
 				<>
@@ -83,17 +88,12 @@ export default observer(
 				if (props.model.friends.find((element) => element === site)) {
 					return (
 						<>
-							<FriendSidebarView friends={props.model.friends} addfriend={addFriend} showID={showID} hideID={hideID}
-							                   shouldShowId={props.model.showId} yourID={props.model.user.uid}
-							                   customMessage={props.model.customMessage} friendRequest={props.model.friendRequests}
-							                   acceptFriend={acceptFriend} declineFriend={declineFriend}
-							                   sentRequests={props.model.sentRequests} cancelFriend={cancelRequest}
-							                   removeFriend={removeFriend} />
-							<ProfileView currentUser={site} />
-							{props.model.friends.length ?
+							{defaultRender()}
+							<ProfileView currentUser={props.model.users[site]} />
+							{props.model.friendFavorites[site]?.length ?
 								<BrowseView browseResult={props.model.friendFavorites[site]} doAdd={doAddACB} doRemove={doRemoveACB}
 								            fav={props.model.favorites}
-								            auth={props.model.user} /> : "You have not added any favorites yet..."}
+								            auth={props.model.user} /> : site + " does not have any favorites yet..."}
 						</>
 					);
 				} else {
@@ -102,19 +102,32 @@ export default observer(
 			} else
 				return (
 					<>
-						<FriendSidebarView friends={props.model.friends} addfriend={addFriend} showID={showID} hideID={hideID}
-						                   shouldShowId={props.model.showId} yourID={props.model.user.uid}
-						                   customMessage={props.model.customMessage} friendRequest={props.model.friendRequests}
-						                   acceptFriend={acceptFriend} declineFriend={declineFriend}
-						                   sentRequests={props.model.sentRequests} cancelFriend={cancelRequest}
-						                   removeFriend={removeFriend} />
-						<ProfileView currentUser={props.model.user} favorites={props.model.favorites} />
+						{defaultRender()}
+						<ProfileView currentUser={props.model.user} />
 						{props.model.favorites.length ?
 							<BrowseView browseResult={props.model.favorites} doAdd={doAddACB} doRemove={doRemoveACB}
 							            fav={props.model.favorites}
 							            auth={props.model.user} /> : "You have not added any favorites yet..."}
 					</>
 				);
+		}
+
+		function defaultRender() {
+			if (props.model.friends.map(checkNames))
+				return (
+					<>
+						<FriendSidebarView friends={props.model.friends} names={props.model.users} addfriend={addFriend}
+						                   showID={showID} hideID={hideID}
+						                   shouldShowId={props.model.showId} yourID={props.model.user.uid}
+						                   customMessage={props.model.customMessage} friendRequest={props.model.friendRequests}
+						                   acceptFriend={acceptFriend} declineFriend={declineFriend}
+						                   sentRequests={props.model.sentRequests} cancelFriend={cancelRequest}
+						                   removeFriend={removeFriend} />
+					</>
+				)
+			else {
+				return <Vortex />
+			}
 		}
 	}
 );
