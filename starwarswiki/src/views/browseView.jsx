@@ -27,6 +27,7 @@ export default function browseView(props) {
 				removeFavorite={removeACB}
 				addFavorite={addACB}
 				fav={props.fav}
+				maxFavorites={props.maxFavorites}
 				auth={props.auth}
 			/>
 		);
