@@ -38,7 +38,7 @@ onAuthStateChanged(auth, async (user) => {
 		readFromDB(user.uid);
 		readFriendsDB(user.uid)
 		await findUser(user.uid);
-		if (!reactiveModel.isUser === true) {
+		if (!reactiveModel.isUser) {
 			set(ref(db, '/users/' + user.uid), auth.currentUser.displayName)
 		}
 	} else {
