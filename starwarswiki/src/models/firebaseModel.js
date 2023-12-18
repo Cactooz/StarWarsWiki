@@ -68,7 +68,11 @@ export function writeToDB() {
 function readFromDB(uid) {
 	onValue(ref(db, '/userData/' + uid), (snapshot) => {
 		model.ready = false;
-		if (!model.wrote) model.setFavsFromDB(snapshot.val());
+		if (!model.wrote) {
+			model.loadingFavs = true;
+			model.setFavsFromDB(snapshot.val());
+			model.loadingFavs = false;
+		}
 		model.wrote = false;
 		model.ready = true;
 	});
