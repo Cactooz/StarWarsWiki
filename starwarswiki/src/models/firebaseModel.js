@@ -109,6 +109,7 @@ function readFriendsDB(uid) {
 		if (!model.wrote) {
 			reactiveModel.setFriends(friendsFromDB);
 		}
+		Object.keys(friendsFromDB).map(findUser)
 		model.wrote = false;
 		model.ready = true;
 	});
@@ -164,6 +165,7 @@ export function removeFriendDB(uid) {
 export async function findUser(uid) {
 	await get(ref(db, '/users/' + uid)).then((snapshot) => {
 		reactiveModel.setIsUser(snapshot.val())
+		reactiveModel.addUser(uid, snapshot.val())
 	})
 }
 
