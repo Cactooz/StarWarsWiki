@@ -14,7 +14,7 @@ function DetailsView(props) {
 
 	function addACB() {
 		if (props.fav.length >= props.maxFavorites)
-			toast.info(`You can up to ${props.maxFavorites} favorites. Remove some to add more!`);
+			toast.info(`You can have up to ${props.maxFavorites} favorites. Remove some to add more!`);
 		else props.addFavorite(object);
 	}
 

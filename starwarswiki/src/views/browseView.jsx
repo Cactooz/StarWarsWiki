@@ -9,7 +9,7 @@ export default function browseView(props) {
 
 	function addACB(card) {
 		if (props.fav.length >= props.maxFavorites)
-			toast.info(`You can up to ${card.maxFavorites} favorites. Remove some to add more!`);
+			toast.info(`You can have up to ${card.maxFavorites} favorites. Remove some to add more!`);
 		else props.doAdd({ id: card.id, image: card.image, name: card.name, path: card.path });
 	}
 
