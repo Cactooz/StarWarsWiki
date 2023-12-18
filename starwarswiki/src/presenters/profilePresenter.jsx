@@ -22,22 +22,29 @@ export default observer(function ProfilePresenter(props) {
 				</Link>
 			</>
 		);
+
 	let userName = props.model.user.displayName;
 	if (props.model.user)
 		return (
 			<>
-				{userName ? <ProfileView name={userName} /> : <Vortex />}
-				<h3>These are your favorite pages</h3>
-				{props.model.favorites.length ? (
-					<BrowseView
-						browseResult={props.model.favorites}
-						doAdd={doAddACB}
-						doRemove={doRemoveACB}
-						fav={props.model.favorites}
-						auth={props.model.user}
-					/>
+				{props.model.loadingFavs !== undefined ? (
+					<>
+						<ProfileView name={userName} />
+						<h3>These are your favorite pages</h3>
+						{props.model.favorites.length ? (
+							<BrowseView
+								browseResult={props.model.favorites}
+								doAdd={doAddACB}
+								doRemove={doRemoveACB}
+								fav={props.model.favorites}
+								auth={props.model.user}
+							/>
+						) : (
+							'You have not added any favorites yet...'
+						)}
+					</>
 				) : (
-					'You have not added any favorites yet...'
+					<Vortex />
 				)}
 			</>
 		);
