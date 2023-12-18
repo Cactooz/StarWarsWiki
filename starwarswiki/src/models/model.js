@@ -12,6 +12,7 @@ export default {
 	isLoading: false,
 	showId: false,
 	isUser: undefined,
+	users: {},
 	customMessage: undefined,
 
 
@@ -32,7 +33,9 @@ export default {
 	setLoading(state) {
 		this.isLoading = state;
 	},
-
+	addUser(user, name) {
+		this.users[user] = name;
+	},
 	setIsUser(user) {
 		this.isUser = user;
 	},
