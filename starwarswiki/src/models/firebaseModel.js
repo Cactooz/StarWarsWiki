@@ -102,36 +102,25 @@ export function readFriendFavFromDB(uid) {
 
 function readFriendsDB(uid) {
 	onValue(ref(db, '/friends/' + uid + '/addedFriends/'), (snapshot) => {
-		if (!model.ready)
-			return;
 		model.ready = false
 		const friendsFromDB = snapshot.val();
-		if (!model.wrote) {
-			reactiveModel.setFriends(friendsFromDB);
-		}
+		reactiveModel.setFriends(friendsFromDB);
 		if (friendsFromDB)
-			Object.keys(friendsFromDB).map(findUser)
+			reactiveModel.friends.map(findUser)
 		model.wrote = false;
 		model.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/pendingFriends'), (snapshot) => {
-		if (!model.ready)
-			return;
 		model.ready = false
 		const friendRequestsFromDB = snapshot.val();
-		if (!model.wrote)
-			reactiveModel.setFriendRequests(friendRequestsFromDB)
+		reactiveModel.setFriendRequests(friendRequestsFromDB)
 		model.wrote = false;
 		model.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/requests'), (snapshot) => {
-		if (!model.ready)
-			return;
 		model.ready = false
 		const requestsFromDB = snapshot.val();
-		if (!model.wrote) {
-			reactiveModel.setRequestsFromDb(requestsFromDB)
-		}
+		reactiveModel.setRequestsFromDb(requestsFromDB)
 		model.wrote = false;
 		model.ready = true;
 	});
@@ -148,12 +137,35 @@ function writeFriendsToDB() {
 	if (model.user && model.ready) {
 		model.ready = false;
 		model.wrote = true;
-		set(ref(db, '/friends/' + reactiveModel.user.uid + '/addedFriends/' + reactiveModel.friends.map(parseFriends)), true)
-		set(ref(db, '/friends/' + reactiveModel.user.uid + '/pendingFriends/' + reactiveModel.friendRequests.map(parseFriends)), true)
-		set(ref(db, '/friends/' + reactiveModel.user.uid + '/requests/' + reactiveModel.sentRequests.map(parseFriends)), true)
+		if (reactiveModel.friends.length)
+			reactiveModel.friends.map(writeAddedFriends)
+		else
+			writeAddedFriends("")
+		if (reactiveModel.friendRequests.length)
+			reactiveModel.friendRequests.map(writePendingFriends)
+		else
+			writePendingFriends("")
+		if (reactiveModel.sentRequests.length)
+			reactiveModel.sentRequests.map(writeFriendRequests)
+		else
+			writeFriendRequests("")
 		model.ready = true;
 	}
 }
+
+function writeAddedFriends(friend) {
+	set(ref(db, '/friends/' + reactiveModel.user.uid + '/addedFriends/' + friend), true)
+}
+
+function writePendingFriends(friend) {
+	set(ref(db, '/friends/' + reactiveModel.user.uid + '/pendingFriends/' + friend), true)
+}
+
+function writeFriendRequests(friend) {
+
+	set(ref(db, '/friends/' + reactiveModel.user.uid + '/requests/' + friend), true)
+}
+
 
 export function addFriendDB(uid) {
 	set(ref(db, '/friends/' + uid + '/addedFriends/' + reactiveModel.user.uid), true)
