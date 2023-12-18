@@ -8,15 +8,15 @@ export default function FriendSidebarView(props) {
 			<p >{props.shouldShowId === true ? props.yourID : ""}</p >
 			<h3 >{props.friendRequest.length ? "Your Friend Requests" : ""}</h3 >
 			{props.friendRequest.length ? props.friendRequest.map(showFriends) : ""}
-			<h3 >These Are Your Friends!</h3 >
 			<p >Add friends with friend id:
 				<input type={"text"} placeholder={"Enter Your Friends ID"} onKeyUp={props.addfriend} />
 				{props.customMessage ? props.customMessage : ""}
 			</p >
 			<h3 >{props.sentRequests.length ? "Waiting for answer from:" : ""}</h3 >
 			{props.sentRequests.length ? props.sentRequests.map(showRequests) : ""}
+			<h3 >{props.friends.length ? "These are your Friends" : "Add friends to show them here!"}</h3 >
 			<>
-				{props.friends.length ? props.friends.map(showAllCB) : "Add friends to show them here!"}
+				{props.friends.length ? props.friends.map(showAllCB) : ""}
 			</>
 		</>
 	);
