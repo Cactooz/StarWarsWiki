@@ -16,7 +16,7 @@ export default function browseView(props) {
 			<Card
 				key={card._id ? card._id : card.id}
 				path={
-					window.location.pathname === '/profile' || window.location.pathname === '/search'
+					window.location.pathname.startsWith('/profile') || window.location.pathname === '/search'
 						? card.path
 						: window.location.pathname
 				}
