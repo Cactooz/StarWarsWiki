@@ -3,7 +3,7 @@ $black: #000000;
 $white: #ffffff;
 $background-gray: #1e2023;
 
-$margin: 20px;
+$margin: 40px;
 
 $yellow-glow: 0px 4px 8px 0px rgba($yellow, 0.5);
 $no-glow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
@@ -19,3 +19,5 @@ $yellow-stroke: 0.75px $yellow;
 $corner-radius: 20px;
 
 $stars-background: url('../assets/images/stars.webp');
+
+$big-screen: 800px;
