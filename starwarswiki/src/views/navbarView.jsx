@@ -8,7 +8,7 @@ export default function NavbarView(props) {
 	}
 
 	return (
-		<div className='header'>
+		<nav>
 			<Link to='/'>
 				<p>Home</p>
 			</Link>
@@ -22,6 +22,6 @@ export default function NavbarView(props) {
 				<p>Locations</p>
 			</Link>
 			{props.user ? <GoToProfile /> : <SignInButton />}
-		</div>
+		</nav>
 	);
 }
