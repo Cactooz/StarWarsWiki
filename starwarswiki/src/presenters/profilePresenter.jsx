@@ -39,7 +39,6 @@ export default observer(
 			}
 		}
 
-
 		function showID() {
 			props.model.setId(true)
 		}
