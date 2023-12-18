@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
-import '/src/style.css';
 
 export default function LandingCard(props) {
 	return (
-		<Link to={props.linkTo}>
-			<div className='landing-card'>
-				<p>{props.text}</p>
+		<div className='loading-card'>
+			<Link to={props.linkTo}>
 				<img src={props.image} />
-			</div>
-		</Link>
+				<p>{props.text}</p>
+			</Link>
+		</div>
 	);
 }

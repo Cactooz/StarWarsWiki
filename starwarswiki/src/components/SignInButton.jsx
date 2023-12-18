@@ -5,9 +5,5 @@ export default function SignInButton() {
 		const response = await signInWithGooglePopup();
 	}
 
-	return (
-		<div>
-			<button onClick={logInGoogle}>Sign in here</button>
-		</div>
-	);
+	return <a onClick={logInGoogle}>Sign in</a>;
 }

@@ -9,14 +9,15 @@ export default function browseView(props) {
 		props.doAdd({ id: card.id, image: card.image, name: card.name, path: card.path });
 	}
 
-	return <>{props.browseResult.map(showAllCB)}</>;
+	return <div className='cards-container browse-page' >{props.browseResult.map(showAllCB)}</div >;
 
 	function showAllCB(card) {
 		return (
 			<Card
 				key={card._id ? card._id : card.id}
 				path={
-					window.location.pathname.startsWith('/profile') || window.location.pathname === '/search'
+					window.location.pathname.startsWith('/profile') ||
+					window.location.pathname.startsWith('/search')
 						? card.path
 						: window.location.pathname
 				}
