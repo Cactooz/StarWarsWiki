@@ -20,7 +20,6 @@ export default observer(
 		async function addFriend(event) {
 			props.model.setCustomMessage(undefined);
 			if (event.key === 'Enter') {
-				console.log(event.target.value)
 				await findUser(event.target.value)
 				if (event.target.value === props.model.user.uid)
 					props.model.setCustomMessage("That is your ID!");
