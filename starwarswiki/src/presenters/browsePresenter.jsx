@@ -41,10 +41,10 @@ export default observer(function Browse(props) {
 				if (!props.model.isLoading)
 					props.model.setBrowseResult(site);
 			}
-		}, [site]);
+		}, [site, props.model.isLoading]);
 		if (props.model.currentBrowse === undefined || props.model.currentBrowse !== site) {
 			return <Vortex />;
-		} else if (browseResult === null) return <p>Error While Loading. Please Try Again!</p>;
+		} else if (browseResult === null) return <p >Error While Loading. Please Try Again!</p >;
 		else if (browseResult) {
 			addEventListener('scroll', handleScroll);
 			return (
