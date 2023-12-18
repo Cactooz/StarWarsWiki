@@ -21,9 +21,9 @@ export default function AnimatedRoutes(props) {
 	function transition(originalComponent) {
 		return (
 			<>
-				<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+				<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} >
 					{originalComponent}
-				</motion.div>
+				</motion.div >
 			</>
 		);
 	}
@@ -31,12 +31,13 @@ export default function AnimatedRoutes(props) {
 	const browsePaths = ['/characters', '/vehicles', '/locations'];
 	const detailsPaths = ['/characters/:name', '/locations/:name', '/vehicles/:name'];
 	const searchPaths = ['/search', '/search/:string'];
+	const profilePaths = ['/search', '/search/:string'];
 
 	return (
 		<>
 			<HeaderPresenter model={props.model} />
-			<AnimatePresence mode='wait'>
-				<Routes location={location} key={location.key}>
+			<AnimatePresence mode='wait' >
+				<Routes location={location} key={location.key} >
 					<Route index element={transition(<LandingPagePresenter model={props.model} />)} />
 					{searchPaths.map((path) => {
 						return (
@@ -61,14 +62,19 @@ export default function AnimatedRoutes(props) {
 					{detailsPaths.map((path) => {
 						return <Route key={path} exact path={path} element={transition(detailsLayout)} />;
 					})}
-					<Route
-						exact
-						path='/profile'
-						element={transition(<ProfilePresenter model={props.model} />)}
-					/>
+					{profilePaths.map((path) => {
+						return (
+							<Route
+								key={path}
+								exact
+								path={path}
+								element={transition(<ProfilePresenter model={props.model} />)}
+							/>
+						);
+					})}
 					<Route exact path='*' element={transition(<ErrorPresenter />)} />
-				</Routes>
-			</AnimatePresence>
+				</Routes >
+			</AnimatePresence >
 		</>
 	);
 }
