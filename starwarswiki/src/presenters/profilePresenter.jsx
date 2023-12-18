@@ -30,7 +30,7 @@ export default observer(
 					props.model.setCustomMessage("Wait for your friend to respond")
 				else if (props.model.friendRequests.find((element) => element === event.target.value))
 					props.model.setCustomMessage("Add Friend by Accepting their Friend Request")
-				else if (props.model.isUser === true) {
+				else if (props.model.isUser) {
 					props.model.addFriend(event.target.value)
 					props.model.addRequest(event.target.value)
 					props.model.setCustomMessage("Friend Request Sent!")
