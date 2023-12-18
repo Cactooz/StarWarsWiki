@@ -1,4 +1,6 @@
 import Card from '../components/Card.jsx';
+import { toast } from 'react-toastify';
+import Toastify from '../components/Toastify.jsx';
 
 export default function browseView(props) {
 	function removeACB(card) {
@@ -6,10 +8,21 @@ export default function browseView(props) {
 	}
 
 	function addACB(card) {
-		props.doAdd({ id: card.id, image: card.image, name: card.name, path: card.path });
+		if (props.fav.length >= props.maxFavorites)
+			toast.info(`You can have up to ${card.maxFavorites} favorites. Remove some to add more!`);
+		else props.doAdd({ id: card.id, image: card.image, name: card.name, path: card.path });
 	}
 
-	return <div className='cards-container browse-page'>{props.browseResult.map(showAllCB)}</div>;
+	function messageACB() {
+		toast.info('Sign in to add items to your favorites!');
+	}
+
+	return (
+		<>
+			<div className='cards-container browse-page'>{props.browseResult.map(showAllCB)}</div>
+			<Toastify />
+		</>
+	);
 
 	function showAllCB(card) {
 		return (
@@ -26,7 +39,9 @@ export default function browseView(props) {
 				image={card.image}
 				removeFavorite={removeACB}
 				addFavorite={addACB}
+				signInMessage={messageACB}
 				fav={props.fav}
+				maxFavorites={props.maxFavorites}
 				auth={props.auth}
 			/>
 		);
