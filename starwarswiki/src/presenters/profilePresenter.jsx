@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import ProfileView from '../views/profileView.jsx';
 import { Link } from 'react-router-dom';
 import BrowseView from '../views/browseView.jsx';
+import Vortex from '../components/Vortex.jsx';
 
 export default observer(function ProfilePresenter(props) {
 	function doAddACB(card) {
@@ -21,10 +22,12 @@ export default observer(function ProfilePresenter(props) {
 				</Link>
 			</>
 		);
+	let userName = props.model.user.displayName;
 	if (props.model.user)
 		return (
 			<>
-				<ProfileView currentUser={props.model.user} favorites={props.model.favorites} />
+				{userName ? <ProfileView name={userName} /> : <Vortex />}
+				<h3>These are your favorite pages</h3>
 				{props.model.favorites.length ? (
 					<BrowseView
 						browseResult={props.model.favorites}
