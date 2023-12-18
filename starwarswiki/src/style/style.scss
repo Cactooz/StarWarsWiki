@@ -23,6 +23,47 @@ p {
 	padding: 0 $margin 0 $margin;
 }
 
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	padding-bottom: $margin;
+	background: linear-gradient(180deg, $black, rgba(0, 0, 0, 0.5) 70%, transparent);
+
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: $margin;
+
+		padding: calc($margin / 2) $margin calc($margin / 2) 0;
+
+		a {
+			color: $yellow;
+			text-decoration: none;
+			font-weight: 900;
+			font-size: 1.5rem;
+
+			transition: all 100ms ease-in-out;
+
+			&:hover {
+				transform: scale(0.9);
+			}
+		}
+	}
+
+	form {
+		width: clamp(200px, 100%, 500px);
+	}
+}
+
 .browse-page {
 	> * {
 		width: 400px;
