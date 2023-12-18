@@ -15,11 +15,12 @@ export default observer(function HeaderPresenter(props) {
 
 	async function handleFormSubmit(event) {
 		event.preventDefault(); //Stop page from refreshing
-		navigate('/search');
+		navigate('/search/' + props.model.searchString);
 		await props.model.setSearchResults();
 	}
 
 	function handleOnSearch(string, results) {
+		props.model.setSearchString(string);
 		props.model.setAutoCompleteResults(results);
 	}
 
