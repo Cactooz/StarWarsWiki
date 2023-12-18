@@ -1,15 +1,32 @@
 import { observer } from 'mobx-react-lite';
 import MoreDetailsView from '../views/moreDetailsView';
 import { readHash } from '../models/firebaseModel.js';
+import Vortex from '../components/Vortex.jsx';
+import { useLocation } from 'react-router-dom';
 
 export default observer(function MoreDetails(props) {
-	const splitURL = window.location.pathname.split('/');
-	const page = splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1];
+	const splitURL = useLocation().pathname.split('/');
+
+	const moreDetailsSpinner = (
+		<div>
+			<h3>More Details</h3>
+			<Vortex />
+		</div>
+	);
+
+	if (
+		props.model.currentDetails !==
+		splitURL[splitURL.length - 2] + '/name/' + splitURL[splitURL.length - 1]
+	) {
+		return moreDetailsSpinner;
+	}
 
 	if (props.model.currentHash !== splitURL[splitURL.length - 2]) {
 		readHash(splitURL[splitURL.length - 2]);
 	}
 
+	let loaded = false;
+	let moreDetails;
 	let moreDetailsPage;
 
 	if (props.model.details[0] && props.model.currentHash === splitURL[splitURL.length - 2]) {
@@ -18,6 +35,8 @@ export default observer(function MoreDetails(props) {
 		if (hashedItem) {
 			const moreDetailsPath = atob(hashedItem.swapiId).split(':');
 			moreDetailsPage = `${moreDetailsPath[0]}/${moreDetailsPath[1]}`;
+		} else {
+			loaded = true;
 		}
 
 		if (props.model.currentMoreDetails !== moreDetailsPage) {
@@ -29,7 +48,7 @@ export default observer(function MoreDetails(props) {
 		props.model.moreDetails[0] !== undefined &&
 		props.model.currentMoreDetails === moreDetailsPage
 	) {
-		let moreDetails = props.model.moreDetails[0]?.[1];
+		moreDetails = props.model.moreDetails[0]?.[1];
 
 		if (moreDetails) {
 			moreDetails = Object.keys(moreDetails).map((key) => {
@@ -41,7 +60,8 @@ export default observer(function MoreDetails(props) {
 
 			moreDetails = moreDetails.filter(({ key, value }) => {
 				if (key === 'name' || key === 'created' || key === 'edited') return false;
-				if (value === 'unknown' || value === 'n/a' || value === 'none') return false;
+				if (value === 'unknown' || value === 'n/a' || value == 'N/A' || value === 'none')
+					return false;
 				if (typeof value === 'string' && value.startsWith('http')) return false;
 				if (Array.isArray(value)) return false;
 				return true;
@@ -53,6 +73,11 @@ export default observer(function MoreDetails(props) {
 			}));
 		}
 
+		loaded = true;
+	}
+	if (!loaded) {
+		return moreDetailsSpinner;
+	} else if (loaded && moreDetails) {
 		return <MoreDetailsView details={moreDetails} />;
 	} else {
 		return (

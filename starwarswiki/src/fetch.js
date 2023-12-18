@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { useQuery, useQueries } from 'react-query';
-import {queryClient} from "./main.jsx"
+import { useQueries } from 'react-query';
+import { queryClient } from "./main.jsx"
 
 async function fetchApi(url, path, params, key) {
 	return queryClient.getQueryData(key) ?? await queryClient.fetchQuery({
@@ -10,31 +10,23 @@ async function fetchApi(url, path, params, key) {
 		queryFn: () =>
 			axios.get(`${url}${path}?${new URLSearchParams(params)}`).then((res) => res.data),
 	})
-
-	/*useQuery({
-		concurrentQueriesLimit: 5,
-		staleTime: 86400000,
-		queryKey: [key],
-		queryFn: () =>
-			axios.get(`${url}${path}?${new URLSearchParams(params)}`).then((res) => res.data),
-	});*/
 }
 
 export async function fetchSWAPI(path, params, key) {
-	 await fetchApi('https://swapi.dev/api/', path, params, key);
+	await fetchApi('https://swapi.dev/api/', path, params, key);
 
 }
 
 export async function fetchSWDatabank(path, params, key) {
 	//let { isLoading, isError, data } =
-	 await fetchApi(
+	await fetchApi(
 		'https://starwars-databank-server.vercel.app/api/v1/',
 		path,
 		params,
 		key,
 	);
 
-	if(queryClient.getQueryState(key).data === "These aren't the droids you're looking for..."){
+	if (queryClient.getQueryState(key).data === "These aren't the droids you're looking for...") {
 		queryClient.setQueryData(key, null);
 	}
 }
