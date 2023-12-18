@@ -92,7 +92,7 @@ export default observer(
 							{props.model.friendFavorites[site]?.length ?
 								<BrowseView browseResult={props.model.friendFavorites[site]} doAdd={doAddACB} doRemove={doRemoveACB}
 								            fav={props.model.favorites}
-								            auth={props.model.user} /> : site + " does not have any favorites yet..."}
+								            auth={props.model.user} /> : props.model.users[site] + " does not have any favorites yet..."}
 						</>
 					);
 				} else {
