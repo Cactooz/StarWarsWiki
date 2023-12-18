@@ -109,7 +109,8 @@ function readFriendsDB(uid) {
 		if (!model.wrote) {
 			reactiveModel.setFriends(friendsFromDB);
 		}
-		Object.keys(friendsFromDB).map(findUser)
+		if (Object.keys(friendsFromDB).length)
+			Object.keys(friendsFromDB).map(findUser)
 		model.wrote = false;
 		model.ready = true;
 	});
