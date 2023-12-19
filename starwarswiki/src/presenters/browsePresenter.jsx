@@ -35,7 +35,7 @@ export default observer(function Browse(props) {
 
 
 	function render(browseResult) {
-		if (props.model.currentBrowse === undefined || props.model.currentBrowse !== site || props.model.suspense) {
+		if (props.model.suspense) {
 			return <Vortex />;
 		} else if (browseResult === null) {
 			return <p >Error While Loading. Please Try Again!</p >;
