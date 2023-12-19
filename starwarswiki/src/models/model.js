@@ -9,6 +9,7 @@ export default {
 	friendRequests: [],
 	sentRequests: [],
 	friendFavorites: {},
+	maxFavorites: 9,
 	isLoading: false,
 	showId: false,
 	isUser: undefined,

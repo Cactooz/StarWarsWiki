@@ -327,4 +327,13 @@ footer {
 			width: 50vw;
 		}
 	}
+
+	.details-container {
+		flex-direction: row;
+		flex-wrap: nowrap;
+
+		img {
+			width: 50vw;
+		}
+	}
 }
