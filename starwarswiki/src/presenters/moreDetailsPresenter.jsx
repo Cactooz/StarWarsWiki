@@ -9,7 +9,6 @@ export default observer(function MoreDetails(props) {
 
 	const moreDetailsSpinner = (
 		<div>
-			<h3>More Details</h3>
 			<Vortex />
 		</div>
 	);
