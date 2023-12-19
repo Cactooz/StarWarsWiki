@@ -32,7 +32,7 @@ export default function browseView(props) {
 					window.location.pathname.startsWith('/profile') ||
 					window.location.pathname.startsWith('/search')
 						? card.path
-						: window.location.pathname
+						: props.path
 				}
 				id={card._id ? card._id : card.id}
 				name={card.name}
