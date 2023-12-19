@@ -59,7 +59,7 @@ export default {
 		this.detailsLoaded = false;
 		await fetchSWDatabank(params, {}, params);
 		this.details = queryClient.getQueryData(params);
-		this.currentDetails = params;
+		if (this.details !== undefined) this.currentDetails = params;
 	},
 
 	async setMoreDetails(params) {
@@ -94,11 +94,11 @@ export default {
 			const first = await this.addBrowseResult(string1);
 			if (first.data && first.info) {
 				info = first.info;
-				data = first.data
+				data = first.data;
 			}
 		} else {
 			this.isLoading = false;
-			return
+			return;
 		}
 		let string2 = info?.next?.replace('/api/v1/', '');
 		if (string2) {
@@ -113,12 +113,12 @@ export default {
 			const third = await this.addBrowseResult(string3);
 			if (third.data && third.info) {
 				info = third.info;
-				data = [...data, ...third.data]
+				data = [...data, ...third.data];
 			}
 		}
 		if (data && info) {
-			this.browseResult.data = [...this.browseResult.data, ...data]
-			this.browseResult.info = info
+			this.browseResult.data = [...this.browseResult.data, ...data];
+			this.browseResult.info = info;
 		}
 		this.isLoading = false;
 	},
