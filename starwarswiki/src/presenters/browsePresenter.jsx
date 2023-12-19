@@ -39,7 +39,7 @@ export default observer(function Browse(props) {
 			return <Vortex />;
 		} else if (browseResult === null) {
 			return <p >Error While Loading. Please Try Again!</p >;
-		} else if (browseResult.data) {
+		} else if (browseResult?.data) {
 			return (
 				<BrowseView
 					browseResult={browseResult.data}

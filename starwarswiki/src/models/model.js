@@ -92,7 +92,7 @@ export default {
 		let string1 = this.browseResult?.info?.next?.replace('/api/v1/', '');
 		if (string1) {
 			const first = await this.addBrowseResult(string1);
-			if (first) {
+			if (first.data && first.info) {
 				info = first.info;
 				data = first.data
 			}
@@ -103,7 +103,7 @@ export default {
 		let string2 = info?.next?.replace('/api/v1/', '');
 		if (string2) {
 			const second = await this.addBrowseResult(string2);
-			if (second) {
+			if (second.data && second.info) {
 				info = second.info
 				data = [...data, ...second.data]
 			}
@@ -111,7 +111,7 @@ export default {
 		let string3 = info?.next?.replace('/api/v1/', '');
 		if (string3) {
 			const third = await this.addBrowseResult(string3);
-			if (third) {
+			if (third.data && third.info) {
 				info = third.info;
 				data = [...data, ...third.data]
 			}
@@ -125,8 +125,8 @@ export default {
 
 	async addBrowseResult(params) {
 		await fetchSWDatabank(params, {}, params);
-		let data = queryClient.getQueryData(params).data;
-		let info = queryClient.getQueryData(params).info;
+		let data = queryClient.getQueryData(params)?.data;
+		let info = queryClient.getQueryData(params)?.info;
 
 		return { data, info };
 	},
