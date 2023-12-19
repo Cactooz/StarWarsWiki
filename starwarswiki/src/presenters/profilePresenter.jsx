@@ -40,7 +40,7 @@ export default observer(function ProfilePresenter(props) {
 								auth={props.model.user}
 							/>
 						) : (
-							'You have not added any favorites yet...'
+							<p>You have not added any favorites yet...</p>
 						)}
 					</>
 				) : (
