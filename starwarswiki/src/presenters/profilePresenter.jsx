@@ -179,7 +179,6 @@ export default observer(function ProfilePresenter(props) {
 						hideID={hideID}
 						shouldShowId={props.model.showId}
 						yourID={props.model.user.uid}
-						customMessage={props.model.customMessage}
 						friendRequest={props.model.friendRequests}
 						acceptFriend={acceptFriend}
 						declineFriend={declineFriend}
