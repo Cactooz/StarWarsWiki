@@ -4,8 +4,6 @@ export default function () {
 	return (
 		<Vortex
 			visible={true}
-			height='360'
-			width='360'
 			ariaLabel='vortex-loading'
 			wrapperStyle={{}}
 			wrapperClass='vortex-wrapper'

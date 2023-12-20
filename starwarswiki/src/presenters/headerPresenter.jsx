@@ -29,7 +29,7 @@ export default observer(function HeaderPresenter(props) {
 	}
 
 	return (
-		<header>
+		<header id='header'>
 			<NavbarView onClickHandler={updateData} user={props.model.user} />
 			<SearchBarView
 				handleSearchSelect={handleSearchSelect}
