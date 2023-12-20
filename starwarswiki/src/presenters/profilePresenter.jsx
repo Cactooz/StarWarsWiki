@@ -6,6 +6,7 @@ import FriendSidebarView from "../views/friendSidebarView.jsx";
 import { findUser, removeFriendDB, removeFriendRequest, removeRequest } from "../models/firebaseModel.js";
 import Vortex from "../components/Vortex.jsx"
 import NoPermissionView from "../views/noPermissionView.jsx";
+import ErrorView from "../views/errorView.jsx";
 
 export default observer(
 	function ProfilePresenter(props) {
@@ -72,13 +73,13 @@ export default observer(
 		}
 
 		let site = useLocation().pathname.split("/")[2];
-		if (props.model.user === undefined)
+		if (props.model.user === undefined) {
 			return (
 				<>
 					<ProfileView user={props.model.user} />
 				</>
 			)
-		if (props.model.user) {
+		} else if (props.model.user) {
 			if (site) {
 				if (props.model.loadingFriends) {
 					return <Vortex />
@@ -94,9 +95,13 @@ export default observer(
 								<Vortex /> : props.model.users[site] + " does not have any favorites yet..."}
 						</>
 					);
-				} else if (props.model.friends.find((element) => element !== site) || !props.model.friends.length && props.model.loadingFriends) {
+				} else if (props.model.friends.find((element) => element !== site) || !props.model.friends.length || props.model.loadingFriends) {
+					findUser(window.location.pathname.split("/")[2])
 					if (window.location.pathname.split("/")[2]) {
-						return <NoPermissionView />
+						if (props.model.users[window.location.pathname.split("/")[2]])
+							return <NoPermissionView />
+						else
+							return <ErrorView />
 					}
 
 				}
