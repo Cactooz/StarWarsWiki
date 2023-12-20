@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import SignInButton from '../components/SignInButton.jsx';
 import GoToProfile from '../components/GoToProfile.jsx';
+import Logo from '../../assets/images/sww-logo.svg';
 
 export default function NavbarView(props) {
 	function browseDataACB(event) {
@@ -10,10 +11,7 @@ export default function NavbarView(props) {
 	return (
 		<nav>
 			<Link to='/'>
-				<img
-					src='../../assets/images/sww-logo.svg'
-					alt='Star Wars Wiki logo of green Yoda with red christmashat'
-				/>
+				<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
 			</Link>
 			<Link to='/characters' onClick={browseDataACB}>
 				<p>Characters</p>
