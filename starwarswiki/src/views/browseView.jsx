@@ -29,10 +29,9 @@ export default function browseView(props) {
 			<Card
 				key={card._id ? card._id : card.id}
 				path={
-					window.location.pathname.startsWith('/profile') ||
-					window.location.pathname.startsWith('/search')
+					props.path.startsWith('/profile') || props.path.startsWith('/search')
 						? card.path
-						: window.location.pathname
+						: props.path
 				}
 				id={card._id ? card._id : card.id}
 				name={card.name}
@@ -43,6 +42,7 @@ export default function browseView(props) {
 				fav={props.fav}
 				maxFavorites={props.maxFavorites}
 				auth={props.auth}
+				inAnimation={props.inAnimation}
 			/>
 		);
 	}
