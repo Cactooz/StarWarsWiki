@@ -19,7 +19,7 @@ export default function browseView(props) {
 
 	return (
 		<>
-			<div className='cards-container browse-page'>{props.browseResult.map(showAllCB)}</div>
+			<div className='cards-container browse-page' >{props.browseResult.map(showAllCB)}</div >
 			<Toastify />
 		</>
 	);
@@ -34,7 +34,7 @@ export default function browseView(props) {
 						? card.path
 						: window.location.pathname
 				}
-				id={card._id}
+				id={card._id ? card._id : card.id}
 				name={card.name}
 				image={card.image}
 				removeFavorite={removeACB}

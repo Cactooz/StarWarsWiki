@@ -1,5 +1,6 @@
 import { fetchSWAPI, fetchSWDatabank } from '../fetch.js';
-import { queryClient } from '../main.jsx';
+import { queryClient, reactiveModel } from '../main.jsx';
+import { addFriendDB, friendRequest } from './firebaseModel.js'
 
 export default {
 	user: {},
@@ -21,6 +22,18 @@ export default {
 	searchString: undefined,
 	searchReady: true,
 	autoCompleteResults: [],
+
+	friends: [],
+	friendRequests: [],
+	sentRequests: [],
+	friendFavorites: {},
+	showId: false,
+	isUser: undefined,
+	users: {},
+	customMessage: undefined,
+	loadingFriends: true,
+	loadingFriendsFav: true,
+	gettingUser: true,
 
 	setAutoCompleteResults(results) {
 		this.autoCompleteResults = results;
@@ -149,4 +162,88 @@ export default {
 		this.hash = hash;
 		this.currentHash = location;
 	},
+
+	setLoading(state) {
+		this.isLoading = state;
+	},
+	addUser(user, name) {
+		this.users[user] = name;
+		reactiveModel.gettingUser = false;
+	},
+	setIsUser(user) {
+		this.isUser = user;
+	},
+
+	setId(state) {
+		this.showId = state;
+	},
+
+	addFriend(friendId) {
+		friendRequest(friendId)
+	},
+
+	addRequest(friendId) {
+		this.sentRequests = [...this.sentRequests, friendId]
+	},
+
+	setRequestsFromDb(requests) {
+		if (!requests) {
+			requests = [];
+		}
+		this.sentRequests = Object.keys(requests);
+	},
+
+	setFriends(friends) {
+		if (!friends) {
+			friends = [];
+		}
+		this.friends = Object.keys(friends)
+	},
+
+	setCustomMessage(msg) {
+		this.customMessage = msg;
+	},
+	removeFriendRequest(uid) {
+		function findFriend(id) {
+			return id !== uid;
+		}
+
+		this.friendRequests = this.friendRequests.filter(findFriend)
+	},
+
+	removeFriend(uid) {
+		function findFriend(id) {
+			return id !== uid;
+		}
+
+		this.friends = this.friends.filter(findFriend)
+	},
+
+	removeSentRequest(uid) {
+		function findFriend(id) {
+			return id !== uid;
+		}
+
+		this.sentRequests = this.sentRequests.filter(findFriend)
+	},
+
+	acceptFriendRequest(userID) {
+		addFriendDB(userID)
+		this.removeFriendRequest(userID)
+		this.friends = [...this.friends, userID]
+	},
+	setFriendsFavFromDB(data, id) {
+		if (data === null) {
+			data = []
+		}
+		this.friendFavorites[id] = data;
+	},
+
+	setFriendRequests(requests) {
+		if (!requests) {
+			requests = [];
+		}
+		this.friendRequests = Object.keys(requests);
+	},
+
 };
