@@ -20,6 +20,7 @@ export default observer(function SearchPresenter(props) {
 					doAdd={doAddACB}
 					doRemove={doRemoveACB}
 					fav={props.model.favorites}
+					maxFavorites={props.model.maxFavorites}
 					auth={props.model.user}
 				/>
 			);
