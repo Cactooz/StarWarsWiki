@@ -10,7 +10,10 @@ export default function NavbarView(props) {
 	return (
 		<nav>
 			<Link to='/'>
-				<p>Home</p>
+				<img
+					src='../../assets/images/sww-logo.svg'
+					alt='Star Wars Wiki logo of green Yoda with red christmashat'
+				/>
 			</Link>
 			<Link to='/characters' onClick={browseDataACB}>
 				<p>Characters</p>
