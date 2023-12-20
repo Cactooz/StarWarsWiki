@@ -44,7 +44,7 @@ header {
 	padding: $margin;
 
 	position: fixed;
-	width: calc(100vw - 2 * $margin);
+	width: calc(100% - 2 * $margin);
 	z-index: 1;
 	top: 0;
 	left: 0;
@@ -54,6 +54,7 @@ header {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
+		align-items: center;
 		gap: $margin;
 
 		a {
@@ -68,6 +69,11 @@ header {
 			&:hover {
 				transform: scale(0.9);
 			}
+		}
+
+		img {
+			width: 2.5rem;
+			margin: auto;
 		}
 	}
 
@@ -323,7 +329,6 @@ footer {
 	}
 
 	.landing-page {
-		flex-wrap: wrap;
 		> * {
 			width: clamp(320px, 32%, 1200px);
 		}
