@@ -22,7 +22,7 @@ export default function NavbarView(props) {
 			<Link to='/locations' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
 				<p>Locations</p>
 			</Link>
-			{props.user ? <GoToProfile /> : <SignInButton />}
+			{props.user ? <GoToProfile inAnimation={props.inAnimation} /> : <SignInButton />}
 		</nav>
 	);
 }
