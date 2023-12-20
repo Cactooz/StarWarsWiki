@@ -47,6 +47,7 @@ function DetailsView(props) {
 							<Toastify />
 						</>
 					)}
+					<p>{props.path.replace('s', '')}</p>
 				</div>
 				<p>{props.details}</p>
 			</div>
