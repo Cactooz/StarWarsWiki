@@ -13,6 +13,8 @@ import Vortex from '../components/Vortex.jsx';
 import NoPermissionView from '../views/noPermissionView.jsx';
 import ErrorView from '../views/errorView.jsx';
 import { useEffect } from 'react';
+import Toastify from '../components/Toastify.jsx';
+import { toast } from 'react-toastify';
 
 export default observer(function ProfilePresenter(props) {
 	function doAddACB(card) {
@@ -24,23 +26,24 @@ export default observer(function ProfilePresenter(props) {
 	}
 
 	async function addFriend(event) {
-		props.model.setCustomMessage(undefined);
 		if (event.key === 'Enter') {
 			await findUser(event.target.value);
-			if (event.target.value === props.model.user.uid)
-				props.model.setCustomMessage('That is your ID!');
-			else if (props.model.friends.find((element) => element === event.target.value))
-				props.model.setCustomMessage('You are Friends!');
-			else if (props.model.sentRequests.find((element) => element === event.target.value))
-				props.model.setCustomMessage('Wait for your friend to respond');
-			else if (props.model.friendRequests.find((element) => element === event.target.value))
-				props.model.setCustomMessage('Add Friend by Accepting their Friend Request');
-			else if (props.model.isUser) {
+			if (event.target.value === props.model.user.uid) {
+				toast.info('That is your ID. Add a friend instead!');
+			} else if (props.model.friends.find((element) => element === event.target.value)) {
+				toast.info(`You and ${props.model.users[event.target.value]} are already friends!`);
+			} else if (props.model.sentRequests.find((element) => element === event.target.value))
+				toast.info(
+					`You have already sent a friend request to ${props.model.users[event.target.value]}!`,
+				);
+			else if (props.model.friendRequests.find((element) => element === event.target.value)) {
+				//props.model.setCustomMessage('Add Friend by Accepting their Friend Request');
+			} else if (props.model.isUser) {
 				props.model.addFriend(event.target.value);
 				props.model.addRequest(event.target.value);
-				props.model.setCustomMessage('Friend Request Sent!');
+				toast.success(`Friend request sent to ${props.model.users[event.target.value]}.`);
 			} else {
-				props.model.setCustomMessage('Wrong ID!');
+				toast.error('There are no users with that ID, try again!');
 			}
 		}
 	}
@@ -114,6 +117,7 @@ export default observer(function ProfilePresenter(props) {
 						) : (
 							props.model.users[site] + ' does not have any favorites yet...'
 						)}
+						<Toastify />
 					</>
 				);
 			} else if (
