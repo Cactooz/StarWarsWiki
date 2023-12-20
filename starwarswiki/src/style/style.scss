@@ -40,22 +40,21 @@ header {
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
+	gap: calc($margin / 2) $margin;
+	padding: $margin;
 
 	position: fixed;
-	width: 100%;
+	width: calc(100vw - 2 * $margin);
 	z-index: 1;
 	top: 0;
 	left: 0;
-	padding-bottom: $margin;
-	background: linear-gradient(180deg, $black, rgba(0, 0, 0, 0.5) 70%, transparent);
+	background: linear-gradient(180deg, $black, rgba(0, 0, 0, 0.5) 80%, transparent);
 
 	nav {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
 		gap: $margin;
-
-		padding: calc($margin / 2) $margin calc($margin / 2) 0;
 
 		a {
 			color: $yellow;
@@ -77,9 +76,21 @@ header {
 	}
 }
 
+main {
+	margin: calc(1.5rem + 2 * $margin) auto auto auto;
+	display: flex;
+	justify-content: center;
+	max-width: 3000px;
+}
+
+.vortex-wrapper {
+	height: 320px;
+	width: min(320px, 100%);
+}
+
 .browse-page {
 	> * {
-		width: 400px;
+		width: min(100%, 400px);
 
 		img {
 			height: 200px;
@@ -134,7 +145,6 @@ header {
 }
 
 .cards-container {
-	margin: $margin 0 $margin 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -315,16 +325,7 @@ footer {
 	.landing-page {
 		flex-wrap: wrap;
 		> * {
-			width: clamp(320px, 30vw, 1200px);
-		}
-	}
-
-	.details-container {
-		flex-direction: row;
-		flex-wrap: nowrap;
-
-		img {
-			width: 50vw;
+			width: clamp(320px, 32%, 1200px);
 		}
 	}
 

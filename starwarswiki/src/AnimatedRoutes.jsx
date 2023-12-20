@@ -36,45 +36,47 @@ export default function AnimatedRoutes(props) {
 	return (
 		<>
 			<HeaderPresenter model={props.model} />
-			<AnimatePresence mode='wait' >
-				<Routes location={location} key={location.key} >
-					<Route index element={transition(<LandingPagePresenter model={props.model} />)} />
-					{searchPaths.map((path) => {
-						return (
-							<Route
-								key={path}
-								exact
-								path={path}
-								element={transition(<SearchPresenter model={props.model} />)}
-							/>
-						);
-					})}
-					{browsePaths.map((path) => {
-						return (
-							<Route
-								key={path}
-								exact
-								path={path}
-								element={transition(<BrowsePresenter model={props.model} />)}
-							/>
-						);
-					})}
-					{detailsPaths.map((path) => {
-						return <Route key={path} exact path={path} element={transition(detailsLayout)} />;
-					})}
-					{profilePaths.map((path) => {
-						return (
-							<Route
-								key={path}
-								exact
-								path={path}
-								element={transition(<ProfilePresenter model={props.model} />)}
-							/>
-						);
-					})}
-					<Route exact path='*' element={transition(<ErrorPresenter />)} />
-				</Routes >
-			</AnimatePresence >
+			<main id='main' >
+				<AnimatePresence mode='wait' >
+					<Routes location={location} key={location.key} >
+						<Route index element={transition(<LandingPagePresenter model={props.model} />)} />
+						{searchPaths.map((path) => {
+							return (
+								<Route
+									key={path}
+									exact
+									path={path}
+									element={transition(<SearchPresenter model={props.model} />)}
+								/>
+							);
+						})}
+						{browsePaths.map((path) => {
+							return (
+								<Route
+									key={path}
+									exact
+									path={path}
+									element={transition(<BrowsePresenter model={props.model} />)}
+								/>
+							);
+						})}
+						{detailsPaths.map((path) => {
+							return <Route key={path} exact path={path} element={transition(detailsLayout)} />;
+						})}
+						{profilePaths.map((path) => {
+							return (
+								<Route
+									key={path}
+									exact
+									path={path}
+									element={transition(<ProfilePresenter model={props.model} />)}
+								/>
+							);
+						})}
+						<Route exact path='*' element={transition(<ErrorPresenter />)} />
+					</Routes >
+				</AnimatePresence >
+			</main >
 		</>
 	);
 }

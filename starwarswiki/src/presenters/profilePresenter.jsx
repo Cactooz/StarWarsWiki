@@ -101,11 +101,24 @@ export default observer(
 				return (
 					<>
 						{defaultRender()}
-						<ProfileView currentUser={props.model.user} />
-						{props.model.favorites.length ?
-							<BrowseView browseResult={props.model.favorites} doAdd={doAddACB} doRemove={doRemoveACB}
-							            fav={props.model.favorites}
-							            auth={props.model.user} /> : "You have not added any favorites yet..."}
+						{props.model.loadingFavs !== undefined && props.model.user.displayName ? (
+							<>
+								<ProfileView name={props.model.user.displayName} user={props.model.user} />
+								{props.model.favorites.length ? (
+									<BrowseView
+										browseResult={props.model.favorites}
+										doAdd={doAddACB}
+										doRemove={doRemoveACB}
+										fav={props.model.favorites}
+										auth={props.model.user}
+									/>
+								) : (
+									<p >You have not added any favorites yet...</p >
+								)}
+							</>
+						) : (
+							<Vortex />
+						)}
 					</>
 				);
 		}

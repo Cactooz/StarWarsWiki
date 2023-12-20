@@ -1,22 +1,12 @@
 import { fetchSWAPI, fetchSWDatabank } from '../fetch.js';
 import { queryClient } from '../main.jsx';
-import { addFriendDB, friendRequest } from './firebaseModel.js';
 
 export default {
 	user: {},
 	favorites: [],
-	friends: [],
-	friendRequests: [],
-	sentRequests: [],
-	friendFavorites: {},
 	maxFavorites: 9,
 	isLoading: false,
-	showId: false,
-	isUser: undefined,
-	users: {},
-	customMessage: undefined,
-
-
+	suspense: false,
 	currentBrowse: undefined,
 	browseResult: {},
 
@@ -32,45 +22,6 @@ export default {
 	searchReady: true,
 	autoCompleteResults: [],
 
-	setLoading(state) {
-		this.isLoading = state;
-	},
-	addUser(user, name) {
-		this.users[user] = name;
-	},
-	setIsUser(user) {
-		this.isUser = user;
-	},
-
-	setId(state) {
-		this.showId = state;
-	},
-
-	addFriend(friendId) {
-		friendRequest(friendId)
-	},
-
-	addRequest(friendId) {
-		this.sentRequests = [...this.sentRequests, friendId]
-	},
-
-	setRequestsFromDb(requests) {
-		if (!requests) {
-			requests = [];
-		}
-		this.sentRequests = Object.keys(requests);
-	},
-
-	setFriends(friends) {
-		if (!friends) {
-			friends = [];
-		}
-		this.friends = Object.keys(friends)
-	},
-
-	setCustomMessage(msg) {
-		this.customMessage = msg;
-	},
 	setAutoCompleteResults(results) {
 		this.autoCompleteResults = results;
 	},
@@ -95,53 +46,9 @@ export default {
 		this.favorites = this.favorites.filter(findFavCB);
 	},
 
-	removeFriendRequest(uid) {
-		function findFriend(id) {
-			return id !== uid;
-		}
-
-		this.friendRequests = this.friendRequests.filter(findFriend)
-	},
-
-	removeFriend(uid) {
-		function findFriend(id) {
-			return id !== uid;
-		}
-
-		this.friends = this.friends.filter(findFriend)
-	},
-
-	removeSentRequest(uid) {
-		function findFriend(id) {
-			return id !== uid;
-		}
-
-		this.sentRequests = this.sentRequests.filter(findFriend)
-	},
-
-	acceptFriendRequest(userID) {
-		addFriendDB(userID)
-		this.removeFriendRequest(userID)
-		this.friends = [...this.friends, userID]
-	},
-
 	setFavsFromDB(data) {
 		if (data === null) data = [];
 		this.favorites = data;
-	},
-
-	setFriendsFavFromDB(data, id) {
-		if (data === null) {
-			data = []
-		}
-		this.friendFavorites[id] = data;
-	},
-
-	setFriendRequests(requests) {
-		if (!requests) {
-			requests = [];
-		}
-		this.friendRequests = Object.keys(requests);
 	},
 
 	unSetCurrentDetails() {
@@ -152,7 +59,7 @@ export default {
 		this.detailsLoaded = false;
 		await fetchSWDatabank(params, {}, params);
 		this.details = queryClient.getQueryData(params);
-		this.currentDetails = params;
+		if (this.details !== undefined) this.currentDetails = params;
 	},
 
 	async setMoreDetails(params) {
@@ -170,29 +77,58 @@ export default {
 	},
 
 	async setBrowseResult(params) {
+		this.suspense = true;
+		this.isLoading = true;
 		await fetchSWDatabank(params, {}, params);
 		this.browseResult = queryClient.getQueryData(params);
 		this.currentBrowse = params;
 		await this.addMoreData();
+		this.suspense = false;
 	},
 
 	async addMoreData() {
 		this.isLoading = true;
+		let { data, info } = [];
 		let string1 = this.browseResult?.info?.next?.replace('/api/v1/', '');
-		if (string1) await this.addBrowseResult(string1);
-		let string2 = this.browseResult?.info?.next?.replace('/api/v1/', '');
-		if (string2) await this.addBrowseResult(string2);
-		let string3 = this.browseResult?.info?.next?.replace('/api/v1/', '');
-		if (string3) await this.addBrowseResult(string3);
+		if (string1) {
+			const first = await this.addBrowseResult(string1);
+			if (first.data && first.info) {
+				info = first.info;
+				data = first.data;
+			}
+		} else {
+			this.isLoading = false;
+			return;
+		}
+		let string2 = info?.next?.replace('/api/v1/', '');
+		if (string2) {
+			const second = await this.addBrowseResult(string2);
+			if (second.data && second.info) {
+				info = second.info
+				data = [...data, ...second.data]
+			}
+		}
+		let string3 = info?.next?.replace('/api/v1/', '');
+		if (string3) {
+			const third = await this.addBrowseResult(string3);
+			if (third.data && third.info) {
+				info = third.info;
+				data = [...data, ...third.data];
+			}
+		}
+		if (data && info) {
+			this.browseResult.data = [...this.browseResult.data, ...data];
+			this.browseResult.info = info;
+		}
 		this.isLoading = false;
 	},
 
 	async addBrowseResult(params) {
 		await fetchSWDatabank(params, {}, params);
-		let data = [...this.browseResult.data, ...queryClient.getQueryData(params).data];
-		let info = queryClient.getQueryData(params).info;
+		let data = queryClient.getQueryData(params)?.data;
+		let info = queryClient.getQueryData(params)?.info;
 
-		this.browseResult = { data, info };
+		return { data, info };
 	},
 
 	async setSearchResults() {
