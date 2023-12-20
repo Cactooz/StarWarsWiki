@@ -136,7 +136,8 @@ export default observer(
 						                   customMessage={props.model.customMessage} friendRequest={props.model.friendRequests}
 						                   acceptFriend={acceptFriend} declineFriend={declineFriend}
 						                   sentRequests={props.model.sentRequests} cancelFriend={cancelRequest}
-						                   removeFriend={removeFriend} />
+						                   removeFriend={removeFriend}
+						                   site={useLocation().pathname.split("/")[2]} />
 					</>
 				)
 			else {
