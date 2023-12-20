@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function HamburgerView() {
 	return (
 		<Menu>
-			<p>Characters</p>
+			<Link to='/characters'>Characters</Link>
 		</Menu>
 	);
 }
