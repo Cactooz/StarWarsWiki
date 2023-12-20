@@ -66,16 +66,19 @@ export default observer(function ProfilePresenter(props) {
 	function cancelRequest(uid) {
 		props.model.removeSentRequest(uid);
 		removeFriendRequest(uid);
+		toast.success(`Cancelled friend request to ${props.model.users[uid]}.`);
 	}
 
 	function declineFriend(uid) {
 		props.model.removeFriendRequest(uid);
 		removeRequest(uid);
+		toast.success(`Declined friend request from ${props.model.users[uid]}.`);
 	}
 
 	function removeFriend(uid) {
 		props.model.removeFriend(uid);
 		removeFriendDB(uid);
+		toast.success(`Removed ${props.model.users[uid]} from friend list.`);
 	}
 
 	function checkNames(id) {
