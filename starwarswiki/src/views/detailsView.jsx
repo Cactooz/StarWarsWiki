@@ -32,20 +32,20 @@ function DetailsView(props) {
 								<RemoveStar />
 							</button>
 						) : (
-							<>
+							<div>
 								<button onClick={addACB}>
 									<AddStar />
 								</button>
 								<Toastify />
-							</>
+							</div>
 						)
 					) : (
-						<>
+						<div>
 							<button onClick={() => toast.info('Sign in to add items to your favorites!')}>
 								<AddStar />
 							</button>
 							<Toastify />
-						</>
+						</div>
 					)}
 					<p>{props.path.replace('s', '')}</p>
 				</div>
