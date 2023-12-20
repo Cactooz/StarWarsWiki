@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import ProfileView from "../views/profileView.jsx";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import BrowseView from "../views/browseView.jsx";
 import FriendSidebarView from "../views/friendSidebarView.jsx";
 import { findUser, removeFriendDB, removeFriendRequest, removeRequest } from "../models/firebaseModel.js";
@@ -75,10 +75,7 @@ export default observer(
 		if (props.model.user === undefined)
 			return (
 				<>
-					<h2 >You are not logged in. Sign in above.</h2 >
-					<Link to={"/"} >
-						<h2 >Return to home!</h2 >
-					</Link >
+					<ProfileView user={props.model.user} />
 				</>
 			)
 		if (props.model.user) {
