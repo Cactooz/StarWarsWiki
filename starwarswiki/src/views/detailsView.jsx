@@ -26,6 +26,7 @@ function DetailsView(props) {
 			<div className='details'>
 				<div className='details-title'>
 					<h2>{props.name}</h2>
+					<p>{props.path.replace('s', '')}</p>
 					{props.loggedIn ? (
 						props.fav.find(findFavCB) ? (
 							<button onClick={removeACB}>
@@ -47,7 +48,6 @@ function DetailsView(props) {
 							<Toastify />
 						</div>
 					)}
-					<p>{props.path.replace('s', '')}</p>
 				</div>
 				<p>{props.details}</p>
 			</div>
