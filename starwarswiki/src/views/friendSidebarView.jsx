@@ -53,13 +53,15 @@ export default function FriendSidebarView(props) {
 		function removeFriend() {
 			props.removeFriend(friend)
 		}
-
+		
 		return (
 			<div key={friend} >
 				<Link to={"/profile/" + friend} key={friend} >
 					{props.names[friend]}
 				</Link >
-				<button onClick={removeFriend} >Remove Friend</button >
+				{props.site === friend ? <Link to={"/profile"} >
+					<button onClick={removeFriend} >Remove Friend</button >
+				</Link > : <button onClick={removeFriend} >Remove Friend</button >}
 			</div >
 		)
 	}
