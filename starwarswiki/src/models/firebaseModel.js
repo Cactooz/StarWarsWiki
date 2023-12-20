@@ -106,59 +106,64 @@ export function readFriendFavFromDB(uid) {
 
 function readFriendsDB(uid) {
 	onValue(ref(db, '/friends/' + uid + '/addedFriends/'), (snapshot) => {
-		model.ready2 = false
+		model.ready = false
 		const friendsFromDB = snapshot.val();
 		reactiveModel.setFriends(friendsFromDB);
 		if (friendsFromDB && Object.keys(friendsFromDB).length !== 0) {
 
 			reactiveModel.friends.map(findUser)
 		}
-		model.justRead = true;
+		model.wrote = false;
 		reactiveModel.loadingFriendsFav = false;
-		model.ready2 = true;
+		model.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/pendingFriends'), (snapshot) => {
-		model.ready2 = false
+		model.ready = false
 		const friendRequestsFromDB = snapshot.val();
 		reactiveModel.setFriendRequests(friendRequestsFromDB)
 		if (friendRequestsFromDB && Object.keys(friendRequestsFromDB).length !== 0) {
 			reactiveModel.friendRequests.map(findUser)
 		}
-		model.justRead = true;
+		model.wrote = false;
 		model.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/requests'), (snapshot) => {
-		model.ready2 = false
+		model.ready = false
 		const requestsFromDB = snapshot.val();
 		reactiveModel.setRequestsFromDb(requestsFromDB)
 		if (requestsFromDB && Object.keys(requestsFromDB).length !== 0) {
 			reactiveModel.sentRequests.map(findUser)
 		}
-		model.justRead = true;
-		model.ready2 = true;
+		model.wrote = false;
+		model.ready = true;
 	});
 	reactiveModel.loadingFriends = false;
 }
 
+function parseFriends(friends) {
+	if (!friends)
+		return ""
+	else
+		return friends
+}
+
 function writeFriendsToDB() {
-	if (model.user && model.ready && !model.justRead) {
-		model.ready2 = false;
+	if (model.user && model.ready) {
+		model.ready = false;
 		model.wrote = true;
-		if (reactiveModel.friends.length) {
+		if (reactiveModel.friends.length)
 			reactiveModel.friends.map(writeAddedFriends)
-		} else
+		else
 			writeAddedFriends("")
-		if (reactiveModel.friendRequests.length) {
+		if (reactiveModel.friendRequests.length)
 			reactiveModel.friendRequests.map(writePendingFriends)
-		} else
+		else
 			writePendingFriends("")
 		if (reactiveModel.sentRequests.length)
 			reactiveModel.sentRequests.map(writeFriendRequests)
 		else
 			writeFriendRequests("")
-		model.ready2 = true;
-	} else {
-		model.justRead = false;
+		model.ready = true;
 	}
 }
 
