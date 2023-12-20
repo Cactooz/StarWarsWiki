@@ -5,13 +5,6 @@ import NavbarView from '../views/navbarView';
 import { observer } from 'mobx-react-lite';
 
 export default observer(function HeaderPresenter(props) {
-	window.onresize = function () {
-		const main = document.getElementById('main');
-		if (main) {
-			main.style.marginTop = `${document.getElementById('header')?.offsetHeight}px`;
-		}
-	};
-
 	const navigate = useNavigate();
 
 	function handleSearchSelect(item) {
