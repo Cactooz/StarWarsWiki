@@ -83,18 +83,21 @@ export default observer(
 		if (props.model.user) {
 			const site = useLocation().pathname.split("/")[2];
 			if (site) {
-				if (props.model.friends.find((element) => element === site)) {
+				if (props.model.loadingFriends) {
+					return <Vortex />
+				} else if (props.model.friends.find((element) => element === site)) {
 					return (
 						<>
 							{defaultRender()}
-							<ProfileView currentUser={props.model.users[site]} />
-							{props.model.friendFavorites[site]?.length ?
+							<ProfileView user={props.model.users[site]} />
+							{props.model.friendFavorites[site]?.length ? !props.model.loadingFriendsFav ?
 								<BrowseView browseResult={props.model.friendFavorites[site]} doAdd={doAddACB} doRemove={doRemoveACB}
 								            fav={props.model.favorites}
-								            auth={props.model.user} /> : props.model.users[site] + " does not have any favorites yet..."}
+								            auth={props.model.user} /> :
+								<Vortex /> : props.model.users[site] + " does not have any favorites yet..."}
 						</>
 					);
-				} else {
+				} else if (props.model.friends.find((element) => element !== site)) {
 					return <ErrorView />
 				}
 			} else
@@ -103,7 +106,7 @@ export default observer(
 						{defaultRender()}
 						{props.model.loadingFavs !== undefined && props.model.user.displayName ? (
 							<>
-								<ProfileView name={props.model.user.displayName} user={props.model.user} />
+								<ProfileView user={props.model.user} />
 								{props.model.favorites.length ? (
 									<BrowseView
 										browseResult={props.model.favorites}
