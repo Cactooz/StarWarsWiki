@@ -71,6 +71,7 @@ export default observer(
 			return props.model.users[id]
 		}
 
+		let site = useLocation().pathname.split("/")[2];
 		if (props.model.user === undefined)
 			return (
 				<>
@@ -81,7 +82,6 @@ export default observer(
 				</>
 			)
 		if (props.model.user) {
-			const site = useLocation().pathname.split("/")[2];
 			if (site) {
 				if (props.model.loadingFriends) {
 					return <Vortex />
@@ -98,7 +98,10 @@ export default observer(
 						</>
 					);
 				} else if (props.model.friends.find((element) => element !== site) || !props.model.friends.length) {
-					return <ErrorView />
+					if (window.location.pathname.split("/")[2]) {
+						return <ErrorView />
+					}
+
 				}
 			} else
 				return (
