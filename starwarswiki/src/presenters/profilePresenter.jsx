@@ -29,11 +29,11 @@ export default observer(function ProfilePresenter(props) {
 		if (event.key === 'Enter') {
 			await findUser(event.target.value);
 			if (event.target.value === props.model.user.uid) {
-				toast.info('That is your ID. Add a friend instead!');
+				toast.error('That is your ID. Add a friend instead!');
 			} else if (props.model.friends.find((element) => element === event.target.value)) {
-				toast.info(`You and ${props.model.users[event.target.value]} are already friends!`);
+				toast.error(`You and ${props.model.users[event.target.value]} are already friends!`);
 			} else if (props.model.sentRequests.find((element) => element === event.target.value))
-				toast.info(
+				toast.error(
 					`You have already sent a friend request to ${props.model.users[event.target.value]}!`,
 				);
 			else if (props.model.friendRequests.find((element) => element === event.target.value)) {
