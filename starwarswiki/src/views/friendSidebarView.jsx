@@ -53,7 +53,7 @@ export default function FriendSidebarView(props) {
 		function removeFriend() {
 			props.removeFriend(friend)
 		}
-		
+
 		return (
 			<div key={friend} >
 				<Link to={"/profile/" + friend} key={friend} >

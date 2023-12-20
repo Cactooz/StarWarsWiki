@@ -119,6 +119,8 @@ function readFriendsDB(uid) {
 		model.ready = false
 		const friendRequestsFromDB = snapshot.val();
 		reactiveModel.setFriendRequests(friendRequestsFromDB)
+		if (friendRequestsFromDB)
+			reactiveModel.friendRequests.map(findUser)
 		model.wrote = false;
 		model.ready = true;
 	});
@@ -126,6 +128,8 @@ function readFriendsDB(uid) {
 		model.ready = false
 		const requestsFromDB = snapshot.val();
 		reactiveModel.setRequestsFromDb(requestsFromDB)
+		if (requestsFromDB)
+			reactiveModel.sentRequests.map(findUser)
 		model.wrote = false;
 		model.ready = true;
 	});
