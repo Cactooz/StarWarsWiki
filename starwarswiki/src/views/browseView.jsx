@@ -43,6 +43,7 @@ export default function browseView(props) {
 				fav={props.fav}
 				maxFavorites={props.maxFavorites}
 				auth={props.auth}
+				inAnimation={props.inAnimation}
 			/>
 		);
 	}

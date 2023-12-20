@@ -49,6 +49,7 @@ export default observer(function Browse(props) {
 					maxFavorites={props.model.maxFavorites}
 					auth={props.model.user}
 					path={location.pathname}
+					inAnimation={props.model.inAnimation}
 				/>
 			);
 		}

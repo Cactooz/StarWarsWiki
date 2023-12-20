@@ -21,7 +21,7 @@ export default function (card) {
 	let linkTo = card.path + '/' + card.name.replaceAll('/', '%2F');
 	return (
 		<div className='browse-card'>
-			<Link to={linkTo} replace={window.location.pathname === linkTo ? true : false}>
+			<Link to={linkTo} replace={card.inAnimation ? true : false}>
 				<img src={card.image} />
 				<p>{card.name}</p>
 			</Link>
