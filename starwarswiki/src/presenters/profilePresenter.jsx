@@ -94,7 +94,7 @@ export default observer(
 								<Vortex /> : props.model.users[site] + " does not have any favorites yet..."}
 						</>
 					);
-				} else if (props.model.friends.find((element) => element !== site) || !props.model.friends.length) {
+				} else if (props.model.friends.find((element) => element !== site) || !props.model.friends.length && props.model.loadingFriends) {
 					if (window.location.pathname.split("/")[2]) {
 						return <ErrorView />
 					}
