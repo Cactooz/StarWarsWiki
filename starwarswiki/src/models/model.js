@@ -1,5 +1,5 @@
 import { fetchSWAPI, fetchSWDatabank } from '../fetch.js';
-import { queryClient } from '../main.jsx';
+import { queryClient, reactiveModel } from '../main.jsx';
 import { addFriendDB, friendRequest } from './firebaseModel.js'
 
 export default {
@@ -33,7 +33,7 @@ export default {
 	customMessage: undefined,
 	loadingFriends: true,
 	loadingFriendsFav: true,
-	gettingUser: false,
+	gettingUser: true,
 
 	setAutoCompleteResults(results) {
 		this.autoCompleteResults = results;
@@ -168,6 +168,7 @@ export default {
 	},
 	addUser(user, name) {
 		this.users[user] = name;
+		reactiveModel.gettingUser = false;
 	},
 	setIsUser(user) {
 		this.isUser = user;

@@ -7,6 +7,7 @@ import { findUser, removeFriendDB, removeFriendRequest, removeRequest } from "..
 import Vortex from "../components/Vortex.jsx"
 import NoPermissionView from "../views/noPermissionView.jsx";
 import ErrorView from "../views/errorView.jsx";
+import { useEffect } from "react";
 
 export default observer(
 	function ProfilePresenter(props) {
@@ -73,6 +74,9 @@ export default observer(
 		}
 
 		let site = useLocation().pathname.split("/")[2];
+		useEffect(() => {
+			findUser(site)
+		}, []);
 		if (props.model.user === undefined) {
 			return (
 				<>
@@ -96,13 +100,14 @@ export default observer(
 						</>
 					);
 				} else if (props.model.friends.find((element) => element !== site) || !props.model.friends.length || props.model.loadingFriends) {
-					if (window.location.pathname.split("/")[2]) {
-						if (props.model.users[site] && props.model.gettingUser)
-							return <NoPermissionView />
-						else
-							return <ErrorView />
+					if (!props.model.gettingUser) {
+						if (window.location.pathname.split("/")[2]) {
+							if (props.model.users[site]) {
+								return <NoPermissionView />
+							} else
+								return <ErrorView />
+						}
 					}
-
 				}
 			} else
 				return (

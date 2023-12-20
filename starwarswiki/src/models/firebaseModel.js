@@ -195,7 +195,6 @@ export async function findUser(uid) {
 		reactiveModel.setIsUser(snapshot.val())
 		reactiveModel.addUser(uid, snapshot.val())
 	})
-	reactiveModel.gettingUser = false;
 }
 
 export function friendRequest(uid) {
