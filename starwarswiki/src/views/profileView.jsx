@@ -15,8 +15,8 @@ export default function ProfileView(props) {
 		return (
 			<>
 				<SignOutButton />
-				<h2 >{props.currentUser.displayName === undefined ? "Welcome to " + props.currentUser + "s Profile" : "Hello There " + props.currentUser.displayName + "!"}</h2 >
-				<h3 >{props.currentUser.displayName === undefined ? "These are " + props.currentUser + "s Favorites" : "These Are Your Favorites!"}</h3 >
+				<h2 >{props.user.displayName === undefined ? "Welcome to " + props.user + "s Profile" : "Hello There " + props.user.displayName + "!"}</h2 >
+				<h3 >{props.user.displayName === undefined ? "These are " + props.user + "s Favorites" : "These Are Your Favorites!"}</h3 >
 			</>
 		);
 	}
