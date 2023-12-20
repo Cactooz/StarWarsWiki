@@ -37,7 +37,9 @@ export default observer(function ProfilePresenter(props) {
 					`You have already sent a friend request to ${props.model.users[event.target.value]}!`,
 				);
 			else if (props.model.friendRequests.find((element) => element === event.target.value)) {
-				//props.model.setCustomMessage('Add Friend by Accepting their Friend Request');
+				// you have a friend request from that user already
+				acceptFriend(event.target.value);
+				toast.success(`Added ${props.model.users[event.target.value]} to your friends!`);
 			} else if (props.model.isUser) {
 				props.model.addFriend(event.target.value);
 				props.model.addRequest(event.target.value);
