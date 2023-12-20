@@ -141,9 +141,9 @@ export default observer(function ProfilePresenter(props) {
 		} else
 			return (
 				<>
-					{defaultRender()}
 					{props.model.loadingFavs !== undefined && props.model.user.displayName ? (
 						<>
+							{defaultRender()}
 							<ProfileView user={props.model.user} inAnimation={props.model.inAnimation} />
 							{props.model.favorites.length ? (
 								<BrowseView
