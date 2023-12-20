@@ -1,0 +1,29 @@
+@import './variables.scss';
+
+.bm-burger-button {
+	position: fixed;
+	width: $margin;
+	height: $margin;
+	right: calc($margin / 2);
+	top: calc($margin / 2);
+}
+
+.bm-burger-bars {
+	background-color: $yellow;
+	border-radius: $corner-radius;
+}
+
+.bm-cross {
+	background-color: $yellow;
+}
+
+.bm-menu {
+	background: $background-gray;
+}
+
+.bm-menu-wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
