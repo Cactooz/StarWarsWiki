@@ -242,16 +242,25 @@ main {
 		display: flex;
 		flex-direction: column;
 		padding: $margin;
+		gap: calc($margin / 2);
 
 		.details-title {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
-			align-items: baseline;
+			align-items: center;
 			gap: calc($margin / 2);
+			justify-content: center;
 
-			h2 {
+			h2,
+			p {
 				text-transform: capitalize;
+			}
+			p {
+				padding: 4px 8px;
+				border: 1px solid $yellow;
+				border-radius: $corner-radius;
+				color: $yellow;
 			}
 		}
 	}
@@ -337,6 +346,10 @@ footer {
 	.details-container {
 		flex-direction: row;
 		flex-wrap: nowrap;
+
+		.details .details-title {
+			justify-content: left;
+		}
 
 		img {
 			width: 50vw;

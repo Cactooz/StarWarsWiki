@@ -26,26 +26,27 @@ function DetailsView(props) {
 			<div className='details'>
 				<div className='details-title'>
 					<h2>{props.name}</h2>
+					<p>{props.path.replace('s', '')}</p>
 					{props.loggedIn ? (
 						props.fav.find(findFavCB) ? (
 							<button onClick={removeACB}>
 								<RemoveStar />
 							</button>
 						) : (
-							<>
+							<div>
 								<button onClick={addACB}>
 									<AddStar />
 								</button>
 								<Toastify />
-							</>
+							</div>
 						)
 					) : (
-						<>
+						<div>
 							<button onClick={() => toast.info('Sign in to add items to your favorites!')}>
 								<AddStar />
 							</button>
 							<Toastify />
-						</>
+						</div>
 					)}
 				</div>
 				<p>{props.details}</p>
