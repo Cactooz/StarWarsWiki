@@ -41,7 +41,7 @@ header {
 	align-items: center;
 	flex-wrap: wrap;
 	gap: calc($margin / 2) $margin;
-	padding: $margin;
+	padding: calc($margin / 2) $margin;
 
 	position: fixed;
 	width: calc(100% - 2 * $margin);
@@ -55,7 +55,7 @@ header {
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		gap: $margin;
+		gap: calc($margin / 2) $margin;
 
 		a {
 			color: $yellow;
