@@ -140,7 +140,7 @@ export default observer(
 						                   acceptFriend={acceptFriend} declineFriend={declineFriend}
 						                   sentRequests={props.model.sentRequests} cancelFriend={cancelRequest}
 						                   removeFriend={removeFriend}
-						                   site={useLocation().pathname.split("/")[2]} />
+						                   site={site} />
 					</>
 				)
 			else {
