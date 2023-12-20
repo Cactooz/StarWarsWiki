@@ -13,6 +13,8 @@ import Vortex from '../components/Vortex.jsx';
 import NoPermissionView from '../views/noPermissionView.jsx';
 import ErrorView from '../views/errorView.jsx';
 import { useEffect } from 'react';
+import Toastify from '../components/Toastify.jsx';
+import { toast } from 'react-toastify';
 
 export default observer(function ProfilePresenter(props) {
 	function doAddACB(card) {
@@ -24,23 +26,25 @@ export default observer(function ProfilePresenter(props) {
 	}
 
 	async function addFriend(event) {
-		props.model.setCustomMessage(undefined);
 		if (event.key === 'Enter') {
 			await findUser(event.target.value);
-			if (event.target.value === props.model.user.uid)
-				props.model.setCustomMessage('That is your ID!');
-			else if (props.model.friends.find((element) => element === event.target.value))
-				props.model.setCustomMessage('You are Friends!');
-			else if (props.model.sentRequests.find((element) => element === event.target.value))
-				props.model.setCustomMessage('Wait for your friend to respond');
-			else if (props.model.friendRequests.find((element) => element === event.target.value))
-				props.model.setCustomMessage('Add Friend by Accepting their Friend Request');
-			else if (props.model.isUser) {
+			if (event.target.value === props.model.user.uid) {
+				toast.error('That is your ID. Add a friend instead!');
+			} else if (props.model.friends.find((element) => element === event.target.value)) {
+				toast.error(`You and ${props.model.users[event.target.value]} are already friends!`);
+			} else if (props.model.sentRequests.find((element) => element === event.target.value))
+				toast.error(
+					`You have already sent a friend request to ${props.model.users[event.target.value]}!`,
+				);
+			else if (props.model.friendRequests.find((element) => element === event.target.value)) {
+				// you have a friend request from that user already
+				acceptFriend(event.target.value);
+			} else if (props.model.isUser) {
 				props.model.addFriend(event.target.value);
 				props.model.addRequest(event.target.value);
-				props.model.setCustomMessage('Friend Request Sent!');
+				toast.success(`Friend request sent to ${props.model.users[event.target.value]}.`);
 			} else {
-				props.model.setCustomMessage('Wrong ID!');
+				toast.error('There are no users with that ID, try again!');
 			}
 		}
 	}
@@ -56,21 +60,25 @@ export default observer(function ProfilePresenter(props) {
 	function acceptFriend(uid) {
 		props.model.acceptFriendRequest(uid);
 		removeRequest(uid);
+		toast.success(`Added ${props.model.users[uid]} to your friends!`);
 	}
 
 	function cancelRequest(uid) {
 		props.model.removeSentRequest(uid);
 		removeFriendRequest(uid);
+		toast.success(`Cancelled friend request to ${props.model.users[uid]}.`);
 	}
 
 	function declineFriend(uid) {
 		props.model.removeFriendRequest(uid);
 		removeRequest(uid);
+		toast.success(`Declined friend request from ${props.model.users[uid]}.`);
 	}
 
 	function removeFriend(uid) {
 		props.model.removeFriend(uid);
 		removeFriendDB(uid);
+		toast.success(`Removed ${props.model.users[uid]} from friend list.`);
 	}
 
 	function checkNames(id) {
@@ -114,6 +122,7 @@ export default observer(function ProfilePresenter(props) {
 						) : (
 							props.model.users[site] + ' does not have any favorites yet...'
 						)}
+						<Toastify />
 					</>
 				);
 			} else if (
@@ -132,9 +141,9 @@ export default observer(function ProfilePresenter(props) {
 		} else
 			return (
 				<>
-					{defaultRender()}
 					{props.model.loadingFavs !== undefined && props.model.user.displayName ? (
 						<>
+							{defaultRender()}
 							<ProfileView user={props.model.user} inAnimation={props.model.inAnimation} />
 							{props.model.favorites.length ? (
 								<BrowseView
@@ -173,7 +182,6 @@ export default observer(function ProfilePresenter(props) {
 						hideID={hideID}
 						shouldShowId={props.model.showId}
 						yourID={props.model.user.uid}
-						customMessage={props.model.customMessage}
 						friendRequest={props.model.friendRequests}
 						acceptFriend={acceptFriend}
 						declineFriend={declineFriend}

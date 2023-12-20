@@ -1,6 +1,6 @@
 import { fetchSWAPI, fetchSWDatabank } from '../fetch.js';
 import { queryClient, reactiveModel } from '../main.jsx';
-import { addFriendDB, friendRequest } from './firebaseModel.js'
+import { addFriendDB, friendRequest } from './firebaseModel.js';
 
 export default {
 	user: {},
@@ -123,8 +123,8 @@ export default {
 		if (string2) {
 			const second = await this.addBrowseResult(string2);
 			if (second.data && second.info) {
-				info = second.info
-				data = [...data, ...second.data]
+				info = second.info;
+				data = [...data, ...second.data];
 			}
 		}
 		let string3 = info?.next?.replace('/api/v1/', '');
@@ -185,11 +185,11 @@ export default {
 	},
 
 	addFriend(friendId) {
-		friendRequest(friendId)
+		friendRequest(friendId);
 	},
 
 	addRequest(friendId) {
-		this.sentRequests = [...this.sentRequests, friendId]
+		this.sentRequests = [...this.sentRequests, friendId];
 	},
 
 	setRequestsFromDb(requests) {
@@ -203,18 +203,15 @@ export default {
 		if (!friends) {
 			friends = [];
 		}
-		this.friends = Object.keys(friends)
+		this.friends = Object.keys(friends);
 	},
 
-	setCustomMessage(msg) {
-		this.customMessage = msg;
-	},
 	removeFriendRequest(uid) {
 		function findFriend(id) {
 			return id !== uid;
 		}
 
-		this.friendRequests = this.friendRequests.filter(findFriend)
+		this.friendRequests = this.friendRequests.filter(findFriend);
 	},
 
 	removeFriend(uid) {
@@ -222,7 +219,7 @@ export default {
 			return id !== uid;
 		}
 
-		this.friends = this.friends.filter(findFriend)
+		this.friends = this.friends.filter(findFriend);
 	},
 
 	removeSentRequest(uid) {
@@ -230,17 +227,17 @@ export default {
 			return id !== uid;
 		}
 
-		this.sentRequests = this.sentRequests.filter(findFriend)
+		this.sentRequests = this.sentRequests.filter(findFriend);
 	},
 
 	acceptFriendRequest(userID) {
-		addFriendDB(userID)
-		this.removeFriendRequest(userID)
-		this.friends = [...this.friends, userID]
+		addFriendDB(userID);
+		this.removeFriendRequest(userID);
+		this.friends = [...this.friends, userID];
 	},
 	setFriendsFavFromDB(data, id) {
 		if (data === null) {
-			data = []
+			data = [];
 		}
 		this.friendFavorites[id] = data;
 	},
@@ -251,5 +248,4 @@ export default {
 		}
 		this.friendRequests = Object.keys(requests);
 	},
-
 };
