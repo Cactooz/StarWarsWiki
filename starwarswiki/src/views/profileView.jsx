@@ -17,13 +17,13 @@ export default function ProfileView(props) {
 				<SignOutButton />
 				<h2>
 					{props.user.displayName === undefined
-						? 'Welcome to ' + props.user + "'s Profile"
-						: 'Hello There ' + props.user.displayName + '!'}
+						? 'Welcome to ' + props.user + "'s profile"
+						: 'Hello there, ' + props.user.displayName + '!'}
 				</h2>
 				<h3>
 					{props.user.displayName === undefined
-						? 'These are ' + props.user + "'s Favorites"
-						: 'These Are Your Favorites!'}
+						? props.user + "'s favorite pages"
+						: 'Your favorite pages'}
 				</h3>
 			</>
 		);
