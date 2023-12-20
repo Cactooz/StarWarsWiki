@@ -113,6 +113,7 @@ function readFriendsDB(uid) {
 
 			reactiveModel.friends.map(findUser)
 		}
+		model.justRead = true;
 		reactiveModel.loadingFriendsFav = false;
 		model.ready2 = true;
 	});
@@ -123,6 +124,7 @@ function readFriendsDB(uid) {
 		if (friendRequestsFromDB && Object.keys(friendRequestsFromDB).length !== 0) {
 			reactiveModel.friendRequests.map(findUser)
 		}
+		model.justRead = true;
 		model.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/requests'), (snapshot) => {
@@ -132,6 +134,7 @@ function readFriendsDB(uid) {
 		if (requestsFromDB && Object.keys(requestsFromDB).length !== 0) {
 			reactiveModel.sentRequests.map(findUser)
 		}
+		model.justRead = true;
 		model.ready2 = true;
 	});
 	reactiveModel.loadingFriends = false;
@@ -141,11 +144,11 @@ function writeFriendsToDB() {
 	if (model.user && model.ready) {
 		model.ready2 = false;
 		model.wrote = true;
-		if (reactiveModel.friends.length) {
+		if (reactiveModel.friends.length && !model.justRead) {
 			reactiveModel.friends.map(writeAddedFriends)
 		} else
 			writeAddedFriends("")
-		if (reactiveModel.friendRequests.length) {
+		if (reactiveModel.friendRequests.length && !model.justRead) {
 			reactiveModel.friendRequests.map(writePendingFriends)
 		} else
 			writePendingFriends("")
@@ -154,6 +157,8 @@ function writeFriendsToDB() {
 		else
 			writeFriendRequests("")
 		model.ready2 = true;
+	} else {
+		model.justRead = false;
 	}
 }
 
