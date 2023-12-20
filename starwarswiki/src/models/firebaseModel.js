@@ -109,8 +109,10 @@ function readFriendsDB(uid) {
 		model.ready = false
 		const friendsFromDB = snapshot.val();
 		reactiveModel.setFriends(friendsFromDB);
-		if (friendsFromDB)
+		if (friendsFromDB && Object.keys(friendsFromDB).length !== 0) {
+			console.log("1")
 			reactiveModel.friends.map(findUser)
+		}
 		model.wrote = false;
 		reactiveModel.loadingFriendsFav = false;
 		model.ready = true;
@@ -119,8 +121,10 @@ function readFriendsDB(uid) {
 		model.ready = false
 		const friendRequestsFromDB = snapshot.val();
 		reactiveModel.setFriendRequests(friendRequestsFromDB)
-		if (friendRequestsFromDB)
+		if (friendRequestsFromDB && Object.keys(friendRequestsFromDB).length !== 0) {
+			console.log("2", reactiveModel.friendRequests)
 			reactiveModel.friendRequests.map(findUser)
+		}
 		model.wrote = false;
 		model.ready = true;
 	});
@@ -128,8 +132,10 @@ function readFriendsDB(uid) {
 		model.ready = false
 		const requestsFromDB = snapshot.val();
 		reactiveModel.setRequestsFromDb(requestsFromDB)
-		if (requestsFromDB)
+		if (requestsFromDB && Object.keys(requestsFromDB).length !== 0) {
+			console.log("3", reactiveModel.sentRequests)
 			reactiveModel.sentRequests.map(findUser)
+		}
 		model.wrote = false;
 		model.ready = true;
 	});

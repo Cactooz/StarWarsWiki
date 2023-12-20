@@ -127,7 +127,7 @@ export default observer(
 		}
 
 		function defaultRender() {
-			if (props.model.friends.map(checkNames))
+			if (props.model.friends.map(checkNames) && props.model.friendRequests.map(checkNames) && props.model.sentRequests.map(checkNames))
 				return (
 					<>
 						<FriendSidebarView friends={props.model.friends} names={props.model.users} addfriend={addFriend}
