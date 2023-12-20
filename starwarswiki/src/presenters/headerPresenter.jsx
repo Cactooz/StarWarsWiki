@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchBarView from '../views/searchBarView';
 import NavbarView from '../views/navbarView';
 import { observer } from 'mobx-react-lite';
+import HamburgerView from '../views/hamburgerView';
 
 export default observer(function HeaderPresenter(props) {
 	const navigate = useNavigate();
@@ -30,11 +31,12 @@ export default observer(function HeaderPresenter(props) {
 
 	return (
 		<header id='header'>
-			<NavbarView
+			{/* <NavbarView
 				onClickHandler={updateData}
 				user={props.model.user}
 				inAnimation={props.model.inAnimation}
-			/>
+			/> */}
+			<HamburgerView />
 			<SearchBarView
 				handleSearchSelect={handleSearchSelect}
 				handleFormSubmit={handleFormSubmit}
