@@ -141,14 +141,14 @@ function readFriendsDB(uid) {
 }
 
 function writeFriendsToDB() {
-	if (model.user && model.ready) {
+	if (model.user && model.ready && !model.justRead) {
 		model.ready2 = false;
 		model.wrote = true;
-		if (reactiveModel.friends.length && !model.justRead) {
+		if (reactiveModel.friends.length) {
 			reactiveModel.friends.map(writeAddedFriends)
 		} else
 			writeAddedFriends("")
-		if (reactiveModel.friendRequests.length && !model.justRead) {
+		if (reactiveModel.friendRequests.length) {
 			reactiveModel.friendRequests.map(writePendingFriends)
 		} else
 			writePendingFriends("")
