@@ -1,11 +1,4 @@
-import {
-	BrowserRouter,
-	Route,
-	RouterProvider,
-	Routes,
-	ScrollRestoration,
-	createBrowserRouter,
-} from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import FooterPresenter from './presenters/footerPresenter.jsx';
 import AnimatedRoutes from './AnimatedRoutes.jsx';
