@@ -80,6 +80,8 @@ main {
 	margin-top: calc(1.5rem + 2 * $margin);
 	display: flex;
 	justify-content: center;
+	max-width: 3000px;
+	margin: auto;
 }
 
 .browse-page {
@@ -319,7 +321,7 @@ footer {
 	.landing-page {
 		flex-wrap: wrap;
 		> * {
-			width: clamp(320px, 30vw, 1200px);
+			width: clamp(320px, 32%, 1200px);
 		}
 	}
 
