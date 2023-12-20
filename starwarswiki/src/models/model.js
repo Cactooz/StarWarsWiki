@@ -35,6 +35,12 @@ export default {
 	loadingFriendsFav: true,
 	gettingUser: true,
 
+	inAnimation: false,
+
+	setInAnimation(boolean) {
+		this.inAnimation = boolean;
+	},
+
 	setAutoCompleteResults(results) {
 		this.autoCompleteResults = results;
 	},

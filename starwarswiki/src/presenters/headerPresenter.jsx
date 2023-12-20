@@ -30,7 +30,11 @@ export default observer(function HeaderPresenter(props) {
 
 	return (
 		<header id='header'>
-			<NavbarView onClickHandler={updateData} user={props.model.user} />
+			<NavbarView
+				onClickHandler={updateData}
+				user={props.model.user}
+				inAnimation={props.model.inAnimation}
+			/>
 			<SearchBarView
 				handleSearchSelect={handleSearchSelect}
 				handleFormSubmit={handleFormSubmit}
