@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import Vortex from '../components/Vortex';
 import BrowseView from '../views/browseView';
 import HeaderPresenter from './headerPresenter';
@@ -13,6 +14,7 @@ export default observer(function SearchPresenter(props) {
 	}
 
 	function render(searchReady) {
+		const location = useLocation();
 		if (searchReady && props.model.searchResults.length !== 0)
 			return (
 				<BrowseView
@@ -22,6 +24,8 @@ export default observer(function SearchPresenter(props) {
 					fav={props.model.favorites}
 					maxFavorites={props.model.maxFavorites}
 					auth={props.model.user}
+					inAnimation={props.model.inAnimation}
+					path={location.pathname}
 				/>
 			);
 		else if (searchReady) return <h2>No results</h2>;
