@@ -112,6 +112,7 @@ function readFriendsDB(uid) {
 		if (friendsFromDB)
 			reactiveModel.friends.map(findUser)
 		model.wrote = false;
+		reactiveModel.loadingFriendsFav = false;
 		model.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/pendingFriends'), (snapshot) => {
@@ -128,6 +129,7 @@ function readFriendsDB(uid) {
 		model.wrote = false;
 		model.ready = true;
 	});
+	reactiveModel.loadingFriends = false;
 }
 
 function parseFriends(friends) {
