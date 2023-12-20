@@ -17,6 +17,7 @@ export default function browseView(props) {
 		toast.info('Sign in to add items to your favorites!');
 	}
 
+	console.log(props.path);
 	return (
 		<>
 			<div className='cards-container browse-page' >{props.browseResult.map(showAllCB)}</div >
@@ -29,8 +30,7 @@ export default function browseView(props) {
 			<Card
 				key={card._id ? card._id : card.id}
 				path={
-					window.location.pathname.startsWith('/profile') ||
-					window.location.pathname.startsWith('/search')
+					props.path.startsWith('/profile') || props.path.startsWith('/search')
 						? card.path
 						: props.path
 				}
