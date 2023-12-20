@@ -4,8 +4,8 @@ import { useLocation } from "react-router-dom";
 import BrowseView from "../views/browseView.jsx";
 import FriendSidebarView from "../views/friendSidebarView.jsx";
 import { findUser, removeFriendDB, removeFriendRequest, removeRequest } from "../models/firebaseModel.js";
-import ErrorView from "../views/errorView.jsx";
 import Vortex from "../components/Vortex.jsx"
+import NoPermissionView from "../views/noPermissionView.jsx";
 
 export default observer(
 	function ProfilePresenter(props) {
@@ -96,7 +96,7 @@ export default observer(
 					);
 				} else if (props.model.friends.find((element) => element !== site) || !props.model.friends.length && props.model.loadingFriends) {
 					if (window.location.pathname.split("/")[2]) {
-						return <ErrorView />
+						return <NoPermissionView />
 					}
 
 				}
