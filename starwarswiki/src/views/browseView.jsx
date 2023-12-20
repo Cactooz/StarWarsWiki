@@ -17,7 +17,6 @@ export default function browseView(props) {
 		toast.info('Sign in to add items to your favorites!');
 	}
 
-	console.log(props.path);
 	return (
 		<>
 			<div className='cards-container browse-page' >{props.browseResult.map(showAllCB)}</div >
