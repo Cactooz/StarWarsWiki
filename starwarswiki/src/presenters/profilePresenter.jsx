@@ -96,9 +96,8 @@ export default observer(
 						</>
 					);
 				} else if (props.model.friends.find((element) => element !== site) || !props.model.friends.length || props.model.loadingFriends) {
-					findUser(window.location.pathname.split("/")[2])
 					if (window.location.pathname.split("/")[2]) {
-						if (props.model.users[window.location.pathname.split("/")[2]])
+						if (props.model.users[site] && props.model.gettingUser)
 							return <NoPermissionView />
 						else
 							return <ErrorView />

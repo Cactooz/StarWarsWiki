@@ -190,10 +190,12 @@ export function removeFriendDB(uid) {
 }
 
 export async function findUser(uid) {
+	reactiveModel.gettingUser = true;
 	await get(ref(db, '/users/' + uid)).then((snapshot) => {
 		reactiveModel.setIsUser(snapshot.val())
 		reactiveModel.addUser(uid, snapshot.val())
 	})
+	reactiveModel.gettingUser = false;
 }
 
 export function friendRequest(uid) {

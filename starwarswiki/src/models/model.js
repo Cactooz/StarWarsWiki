@@ -33,6 +33,7 @@ export default {
 	customMessage: undefined,
 	loadingFriends: true,
 	loadingFriendsFav: true,
+	gettingUser: false,
 
 	setAutoCompleteResults(results) {
 		this.autoCompleteResults = results;
