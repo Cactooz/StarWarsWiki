@@ -83,6 +83,11 @@ main {
 	max-width: 3000px;
 }
 
+.vortex-wrapper {
+	height: 320px;
+	width: min(320px, 100%);
+}
+
 .browse-page {
 	> * {
 		width: min(100%, 400px);
