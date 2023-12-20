@@ -247,11 +247,18 @@ main {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
-			align-items: baseline;
+			align-items: center;
 			gap: calc($margin / 2);
 
-			h2 {
+			h2,
+			p {
 				text-transform: capitalize;
+			}
+			p {
+				padding: 4px 8px;
+				border: 1px solid $yellow;
+				border-radius: $corner-radius;
+				color: $yellow;
 			}
 		}
 	}
