@@ -1,4 +1,11 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+	BrowserRouter,
+	Route,
+	RouterProvider,
+	Routes,
+	ScrollRestoration,
+	createBrowserRouter,
+} from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import FooterPresenter from './presenters/footerPresenter.jsx';
 import AnimatedRoutes from './AnimatedRoutes.jsx';
@@ -14,13 +21,14 @@ export default observer(function ReactRoot(props) {
 		}
 	}
 
+	function Root() {
+		return <AnimatedRoutes model={props.model} />;
+	}
+	const router = createBrowserRouter([{ path: '*', Component: Root }]);
+
 	return (
 		<>
-			<BrowserRouter >
-				<Routes >
-					<Route path='/*' element={<AnimatedRoutes model={props.model} />} />
-				</Routes >
-			</BrowserRouter >
+			<RouterProvider router={router} />
 			<FooterPresenter />
 		</>
 	);
