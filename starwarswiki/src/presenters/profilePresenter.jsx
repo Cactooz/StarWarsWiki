@@ -6,7 +6,6 @@ import FriendSidebarView from "../views/friendSidebarView.jsx";
 import { findUser, removeFriendDB, removeFriendRequest, removeRequest } from "../models/firebaseModel.js";
 import Vortex from "../components/Vortex.jsx"
 import NoPermissionView from "../views/noPermissionView.jsx";
-import ErrorView from "../views/errorView.jsx";
 
 export default observer(
 	function ProfilePresenter(props) {
@@ -96,12 +95,8 @@ export default observer(
 						</>
 					);
 				} else if (props.model.friends.find((element) => element !== site) || !props.model.friends.length && props.model.loadingFriends) {
-					findUser(window.location.pathname.split("/")[2])
 					if (window.location.pathname.split("/")[2]) {
-						if (props.model.users[window.location.pathname.split("/")[2]])
-							return <NoPermissionView />
-						else
-							return <ErrorView />
+						return <NoPermissionView />
 					}
 
 				}
