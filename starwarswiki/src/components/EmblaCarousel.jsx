@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+import Vortex from './Vortex';
 import '../style/embla.scss';
 
-export const EmblaCarousel = () => {
+export function EmblaCarousel(props) {
 	const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
 
 	const scrollPrev = useCallback(() => {
@@ -14,12 +15,20 @@ export const EmblaCarousel = () => {
 		if (emblaApi) emblaApi.scrollNext();
 	}, [emblaApi]);
 
+	if (!props.dataLoaded) {
+		if (!props.loadingData) props.getData();
+		return <Vortex />;
+	}
+
 	return (
 		<div className='embla' ref={emblaRef}>
 			<div className='embla__container'>
-				<div className='embla__slide'>Slide 1</div>
-				<div className='embla__slide'>Slide 2</div>
-				<div className='embla__slide'>Slide 3</div>
+				{props.data.map((item) => (
+					<div className='embla__slide' key={item}>
+						<p>{item.name}</p>
+						<img src={item.image} width='200px' />
+					</div>
+				))}
 			</div>
 			<button className='embla__prev' onClick={scrollPrev}>
 				Prev
@@ -29,4 +38,4 @@ export const EmblaCarousel = () => {
 			</button>
 		</div>
 	);
-};
+}
