@@ -28,6 +28,7 @@ class StarrySky extends React.Component {
 			delay: (el, i) => 50 * i,
 		});
 	};
+
 	shootingStars = () => {
 		anime({
 			targets: ['#shootingstars .wish'],
@@ -51,12 +52,15 @@ class StarrySky extends React.Component {
 			translateX: 350,
 		});
 	};
+
 	randomRadius = () => {
 		return Math.random() + 1;
 	};
+
 	getRandomX = () => {
 		return Math.floor(Math.random() * Math.floor(this.state.vw)).toString();
 	};
+
 	getRandomY = () => {
 		return Math.floor(Math.random() * Math.floor(this.state.vh)).toString();
 	};
