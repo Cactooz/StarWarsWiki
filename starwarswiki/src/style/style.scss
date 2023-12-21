@@ -340,6 +340,23 @@ main {
 	.profile {
 		.profile-title {
 			display: flex;
+			gap: calc($margin / 2);
+			align-items: baseline;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+			}
+
+			svg {
+				fill: $yellow;
+				height: calc($margin / 2);
+
+				&:hover {
+					transform: scale(0.9);
+				}
+			}
 		}
 	}
 }
