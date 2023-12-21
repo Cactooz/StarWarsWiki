@@ -14,8 +14,6 @@ export default observer(function LandingPagePresenter(props) {
 		props.model.setCarouselLoading(true);
 	}
 
-	console.log('run');
-
 	const carouselData = Object.keys(props.model.carouselData).map((key) => {
 		return {
 			name: props.model.carouselData[key].name,
