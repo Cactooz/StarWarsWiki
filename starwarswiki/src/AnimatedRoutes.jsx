@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation, ScrollRestoration } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import HeaderPresenter from './presenters/headerPresenter';
 import BrowsePresenter from './presenters/browsePresenter';
 import DetailsPresenter from './presenters/detailsPresenter';
@@ -15,7 +15,6 @@ export default function AnimatedRoutes(props) {
 		<>
 			<DetailsPresenter model={props.model} />
 			<MoreDetailsPresenter model={props.model} />
-			<ScrollRestoration />
 		</>
 	);
 
