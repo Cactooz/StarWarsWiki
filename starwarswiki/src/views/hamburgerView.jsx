@@ -2,13 +2,16 @@ import { slide as Menu } from 'react-burger-menu';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import Logo from '../../assets/images/sww-logo.svg';
+import SignInButton from '../components/SignInButton.jsx';
+import GoToProfile from '../components/GoToProfile.jsx';
 
 import '../style/burgermenu.scss';
 
-export default function HamburgerView() {
+export default function HamburgerView(props) {
 	const [menuOpen, setMenuOpen] = useState(false);
 
-	function handleOnClick() {
+	function handleOnClick(event) {
+		props.onClickHandler(event.target.innerText.toLowerCase());
 		setMenuOpen(!menuOpen);
 	}
 
@@ -44,6 +47,7 @@ export default function HamburgerView() {
 			<Link to='/locations' onClick={handleOnClick}>
 				Locations
 			</Link>
+			{props.user ? <GoToProfile inAnimation={props.inAnimation} /> : <SignInButton />}
 		</Menu>
 	);
 }
