@@ -8,19 +8,21 @@ import { useState } from 'react';
 
 export default observer(function HeaderPresenter(props) {
 	const navigate = useNavigate();
-	const [menuOpen, setMenuOpen] = useState(false);
 
+	function updateData() {
+		props.model.unSetCurrentBrowse();
+	}
 	function handleOnClick(event) {
 		updateData(event.target.innerText.toLowerCase());
-		setMenuOpen(!menuOpen);
+		props.model.setMenuOpen(!props.model.menuOpen);
 	}
 
 	function handleOnOpen() {
-		setMenuOpen(true);
+		props.model.setMenuOpen(true);
 	}
 
 	function handleOnClose() {
-		setMenuOpen(false);
+		props.model.setMenuOpen(false);
 	}
 
 	function handleSearchSelect(item) {
@@ -40,10 +42,6 @@ export default observer(function HeaderPresenter(props) {
 		props.model.setAutoCompleteResults(results);
 	}
 
-	function updateData() {
-		props.model.unSetCurrentBrowse();
-	}
-
 	return (
 		<header id='header'>
 			<NavbarView
@@ -57,7 +55,7 @@ export default observer(function HeaderPresenter(props) {
 				handleOnOpen={handleOnOpen}
 				handleOnClose={handleOnClose}
 				handleOnClick={handleOnClick}
-				isOpen={menuOpen}
+				isOpen={props.model.menuOpen}
 			/>
 			<SearchBarView
 				handleSearchSelect={handleSearchSelect}
