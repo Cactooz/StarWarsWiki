@@ -3,7 +3,12 @@ import ProfileView from '../views/profileView.jsx';
 import { useLocation } from 'react-router-dom';
 import BrowseView from '../views/browseView.jsx';
 import FriendSidebarView from '../views/friendSidebarView.jsx';
-import { findUser, removeFriendDB, removeFriendRequest, removeRequest, } from '../models/firebaseModel.js';
+import {
+	findUser,
+	removeFriendDB,
+	removeFriendRequest,
+	removeRequest,
+} from '../models/firebaseModel.js';
 import Vortex from '../components/Vortex.jsx';
 import NoPermissionView from '../views/noPermissionView.jsx';
 import ErrorView from '../views/errorView.jsx';
@@ -82,7 +87,6 @@ export default observer(function ProfilePresenter(props) {
 
 	const location = useLocation();
 	let site = location.pathname.split('/')[2];
-	window.scrollTo(0, 0)
 	useEffect(() => {
 		findUser(site);
 	}, []);
@@ -152,7 +156,7 @@ export default observer(function ProfilePresenter(props) {
 									inAnimation={props.model.inAnimation}
 								/>
 							) : (
-								<p >You have not added any favorites yet...</p >
+								<p>You have not added any favorites yet...</p>
 							)}
 						</>
 					) : (

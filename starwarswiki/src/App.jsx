@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, ScrollRestoration } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import FooterPresenter from './presenters/footerPresenter.jsx';
 import AnimatedRoutes from './AnimatedRoutes.jsx';
@@ -18,6 +18,10 @@ export default observer(function ReactRoot(props) {
 		return (
 			<div style={props.model.inAnimation ? { pointerEvents: 'none' } : {}} >
 				<AnimatedRoutes model={props.model} />
+				<ScrollRestoration getKey={(location) => {
+					const sites = ["/characters", "/vehicles", "/locations"]
+					return sites.includes(location.pathname) ? location.pathname : location.key
+				}} />
 			</div >
 		)
 	}
@@ -31,9 +35,3 @@ export default observer(function ReactRoot(props) {
 		</>
 	);
 });
-
-
-/*<ScrollRestoration getKey={(location) => {
-					const sites = ["/characters", "/vehicles", "/locations"]
-					return sites.includes(location.pathname) ? location.pathname : location.key
-				}} />*/
