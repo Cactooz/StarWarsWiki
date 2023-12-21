@@ -5,6 +5,10 @@ import HeaderPresenter from './headerPresenter';
 import { observer } from 'mobx-react-lite';
 
 export default observer(function SearchPresenter(props) {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	function doAddACB(card) {
 		props.model.addToFavorites(card);
 	}
