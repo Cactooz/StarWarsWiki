@@ -29,7 +29,7 @@ export default function AnimatedRoutes(props) {
 					onAnimationComplete={() => props.model.setInAnimation(false)}
 				>
 					{originalComponent}
-				</motion.div>
+				</motion.div >
 			</>
 		);
 	}
@@ -42,9 +42,9 @@ export default function AnimatedRoutes(props) {
 	return (
 		<>
 			<HeaderPresenter model={props.model} />
-			<main id='main'>
-				<AnimatePresence mode='wait'>
-					<Routes location={location} key={location.key}>
+			<main id='main' >
+				<AnimatePresence mode='wait' >
+					<Routes location={location} key={location.key} >
 						<Route index element={transition(<LandingPagePresenter model={props.model} />)} />
 						{searchPaths.map((path) => {
 							return (
@@ -80,9 +80,9 @@ export default function AnimatedRoutes(props) {
 							);
 						})}
 						<Route exact path='*' element={transition(<ErrorPresenter />)} />
-					</Routes>
-				</AnimatePresence>
-			</main>
+					</Routes >
+				</AnimatePresence >
+			</main >
 		</>
 	);
 }
