@@ -102,32 +102,28 @@ export default observer(function ProfilePresenter(props) {
 				return <Vortex />;
 			} else if (props.model.friends.find((element) => element === site)) {
 				return (
-					<div className='profile-view'>
-						<section className='profile'>
-							<ProfileView user={props.model.users[site]} inAnimation={props.model.inAnimation} />
-							<section className='favorites'>
-								<h3>{props.model.users[site] + "'s favorites"}</h3>
-								{props.model.friendFavorites[site]?.length ? (
-									!props.model.loadingFriendsFav ? (
-										<BrowseView
-											browseResult={props.model.friendFavorites[site]}
-											doAdd={doAddACB}
-											doRemove={doRemoveACB}
-											fav={props.model.favorites}
-											auth={props.model.user}
-											path={location.pathname}
-											inAnimation={props.model.inAnimation}
-										/>
-									) : (
-										<Vortex />
-									)
-								) : (
-									<p>{props.model.users[site]} does not have any favorites yet...</p>
-								)}
-							</section>
-						</section>
+					<>
 						{defaultRender()}
-					</div>
+						<ProfileView user={props.model.users[site]} inAnimation={props.model.inAnimation} />
+						{props.model.friendFavorites[site]?.length ? (
+							!props.model.loadingFriendsFav ? (
+								<BrowseView
+									browseResult={props.model.friendFavorites[site]}
+									doAdd={doAddACB}
+									doRemove={doRemoveACB}
+									fav={props.model.favorites}
+									auth={props.model.user}
+									path={location.pathname}
+									inAnimation={props.model.inAnimation}
+								/>
+							) : (
+								<Vortex />
+							)
+						) : (
+							props.model.users[site] + ' does not have any favorites yet...'
+						)}
+						<Toastify />
+					</>
 				);
 			} else if (
 				props.model.friends.find((element) => element !== site) ||
@@ -146,28 +142,23 @@ export default observer(function ProfilePresenter(props) {
 			return (
 				<>
 					{props.model.loadingFavs !== undefined && props.model.user.displayName ? (
-						<div className='profile-view'>
-							<section className='profile'>
-								<ProfileView user={props.model.user} inAnimation={props.model.inAnimation} />
-								<section className='favorites'>
-									<h3>Your favorites</h3>
-									{props.model.favorites.length ? (
-										<BrowseView
-											browseResult={props.model.favorites}
-											doAdd={doAddACB}
-											doRemove={doRemoveACB}
-											fav={props.model.favorites}
-											auth={props.model.user}
-											path={location.pathname}
-											inAnimation={props.model.inAnimation}
-										/>
-									) : (
-										<p>You have not added any favorites yet...</p>
-									)}
-								</section>
-							</section>
+						<>
 							{defaultRender()}
-						</div>
+							<ProfileView user={props.model.user} inAnimation={props.model.inAnimation} />
+							{props.model.favorites.length ? (
+								<BrowseView
+									browseResult={props.model.favorites}
+									doAdd={doAddACB}
+									doRemove={doRemoveACB}
+									fav={props.model.favorites}
+									auth={props.model.user}
+									path={location.pathname}
+									inAnimation={props.model.inAnimation}
+								/>
+							) : (
+								<p>You have not added any favorites yet...</p>
+							)}
+						</>
 					) : (
 						<Vortex />
 					)}
@@ -182,7 +173,7 @@ export default observer(function ProfilePresenter(props) {
 			props.model.sentRequests.map(checkNames)
 		)
 			return (
-				<section className='friends'>
+				<>
 					<FriendSidebarView
 						friends={props.model.friends}
 						names={props.model.users}
@@ -199,7 +190,7 @@ export default observer(function ProfilePresenter(props) {
 						removeFriend={removeFriend}
 						site={site}
 					/>
-				</section>
+				</>
 			);
 		else {
 			return <Vortex />;

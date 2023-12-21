@@ -22,22 +22,22 @@ export default function (card) {
 	return (
 		<div className='browse-card'>
 			<Link to={linkTo} replace={card.inAnimation ? true : false}>
-				<img src={card.image} alt={card.name} />
+				<img src={card.image} />
 				<p>{card.name}</p>
 			</Link>
 			{card.auth ? (
 				card.fav.find(findFavCB) ? (
-					<button onClick={removeACB} title='Remove favorite'>
+					<button onClick={removeACB}>
 						<RemoveStar />
 					</button>
 				) : (
-					<button onClick={addACB} title='Add favorite'>
+					<button onClick={addACB}>
 						<AddStar />
 					</button>
 				)
 			) : (
 				<>
-					<button onClick={messageACB} title='Log in to add favorite'>
+					<button onClick={messageACB}>
 						<AddStar />
 					</button>
 				</>

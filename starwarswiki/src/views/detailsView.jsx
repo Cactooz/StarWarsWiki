@@ -22,7 +22,7 @@ function DetailsView(props) {
 
 	return (
 		<div className='details-container'>
-			<img src={props.image} alt={props.name} />
+			<img src={props.image} />
 			<div className='details'>
 				<div className='details-title'>
 					<h2>{props.name}</h2>
