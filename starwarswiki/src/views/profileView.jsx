@@ -14,12 +14,14 @@ export default function ProfileView(props) {
 	} else {
 		return (
 			<section className='profile-title'>
-				<SignOutButton />
-				<h2>
-					{props.user.displayName === undefined
-						? 'Welcome to ' + props.user + "'s profile"
-						: 'Hello there, ' + props.user.displayName + '!'}
-				</h2>
+				{props.user.displayName === undefined ? (
+					<h2>{props.user}'s profile</h2>
+				) : (
+					<>
+						<h2>Hello there, {props.user.displayName}!</h2>
+						<SignOutButton />
+					</>
+				)}
 			</section>
 		);
 	}
