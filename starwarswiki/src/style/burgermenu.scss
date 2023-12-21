@@ -1,11 +1,9 @@
 @import './variables.scss';
 
 .bm-burger-button {
-	position: fixed;
+	position: sticky;
 	width: $margin;
 	height: $margin;
-	right: calc($margin / 2);
-	top: calc($margin / 2);
 }
 
 .bm-burger-bars {
@@ -29,19 +27,35 @@
 	height: 100%;
 }
 
-.bm-item {
-	text-align: center;
+.bm-item-list {
+	display: flex;
+	align-content: center;
+	> * {
+		text-align: center;
+		width: 100%;
+		&:hover {
+			transform: scale(0.9);
+		}
+	}
+}
+
+.burger-navbar {
+	display: flex;
+	justify-content: space-between;
+	gap: $margin;
 	width: 100%;
-	height: fit-content;
+	img {
+		width: 2.5rem;
+	}
 }
 
 @media only screen and (min-width: $big-screen) {
-	.bm-burger-button {
+	.burger-navbar {
 		display: none;
 	}
 }
 
-@media only screen and (max-width: $big-screen) {
+@media only screen and (max-width: 799px) {
 	#nav {
 		display: none;
 	}
