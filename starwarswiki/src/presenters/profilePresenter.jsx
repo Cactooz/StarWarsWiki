@@ -106,23 +106,25 @@ export default observer(function ProfilePresenter(props) {
 						<section className='profile'>
 							<ProfileView user={props.model.users[site]} inAnimation={props.model.inAnimation} />
 							<section className='favorites'>
-								<h3>{props.model.users[site] + "'s favorites"}</h3>
 								{props.model.friendFavorites[site]?.length ? (
 									!props.model.loadingFriendsFav ? (
-										<BrowseView
-											browseResult={props.model.friendFavorites[site]}
-											doAdd={doAddACB}
-											doRemove={doRemoveACB}
-											fav={props.model.favorites}
-											auth={props.model.user}
-											path={location.pathname}
-											inAnimation={props.model.inAnimation}
-										/>
+										<>
+											<h3>{'Their favorites'}</h3>
+											<BrowseView
+												browseResult={props.model.friendFavorites[site]}
+												doAdd={doAddACB}
+												doRemove={doRemoveACB}
+												fav={props.model.favorites}
+												auth={props.model.user}
+												path={location.pathname}
+												inAnimation={props.model.inAnimation}
+											/>
+										</>
 									) : (
 										<Vortex />
 									)
 								) : (
-									<p>{props.model.users[site]} does not have any favorites yet...</p>
+									<p>They do not have any favorites yet...</p>
 								)}
 							</section>
 						</section>
@@ -150,17 +152,19 @@ export default observer(function ProfilePresenter(props) {
 							<section className='profile'>
 								<ProfileView user={props.model.user} inAnimation={props.model.inAnimation} />
 								<section className='favorites'>
-									<h3>Your favorites</h3>
 									{props.model.favorites.length ? (
-										<BrowseView
-											browseResult={props.model.favorites}
-											doAdd={doAddACB}
-											doRemove={doRemoveACB}
-											fav={props.model.favorites}
-											auth={props.model.user}
-											path={location.pathname}
-											inAnimation={props.model.inAnimation}
-										/>
+										<>
+											<h3>Your favorites</h3>
+											<BrowseView
+												browseResult={props.model.favorites}
+												doAdd={doAddACB}
+												doRemove={doRemoveACB}
+												fav={props.model.favorites}
+												auth={props.model.user}
+												path={location.pathname}
+												inAnimation={props.model.inAnimation}
+											/>
+										</>
 									) : (
 										<p>You have not added any favorites yet...</p>
 									)}
