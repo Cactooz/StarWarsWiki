@@ -4,9 +4,24 @@ import SearchBarView from '../views/searchBarView';
 import NavbarView from '../views/navbarView';
 import { observer } from 'mobx-react-lite';
 import HamburgerView from '../views/hamburgerView';
+import { useState } from 'react';
 
 export default observer(function HeaderPresenter(props) {
 	const navigate = useNavigate();
+	const [menuOpen, setMenuOpen] = useState(false);
+
+	function handleOnClick(event) {
+		updateData(event.target.innerText.toLowerCase());
+		setMenuOpen(!menuOpen);
+	}
+
+	function handleOnOpen() {
+		setMenuOpen(true);
+	}
+
+	function handleOnClose() {
+		setMenuOpen(false);
+	}
 
 	function handleSearchSelect(item) {
 		let name = item.name.replaceAll('/', '%2F').replaceAll('.', '%2E');
@@ -36,7 +51,14 @@ export default observer(function HeaderPresenter(props) {
 				user={props.model.user}
 				inAnimation={props.model.inAnimation}
 			/>
-			<HamburgerView onClickHandler={updateData} user={props.model.user} />
+			<HamburgerView
+				onClickHandler={updateData}
+				user={props.model.user}
+				handleOnOpen={handleOnOpen}
+				handleOnClose={handleOnClose}
+				handleOnClick={handleOnClick}
+				isOpen={menuOpen}
+			/>
 			<SearchBarView
 				handleSearchSelect={handleSearchSelect}
 				handleFormSubmit={handleFormSubmit}
