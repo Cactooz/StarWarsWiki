@@ -1,0 +1,62 @@
+@import './variables.scss';
+
+.bm-burger-button {
+	position: sticky;
+	width: $margin;
+	height: $margin;
+}
+
+.bm-burger-bars {
+	background-color: $yellow;
+	border-radius: $corner-radius;
+}
+
+.bm-cross {
+	background-color: $yellow;
+}
+
+.bm-menu {
+	background: $background-gray;
+}
+
+.bm-menu-wrap,
+.bm-overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
+}
+
+.bm-item-list {
+	display: flex;
+	align-content: center;
+	> * {
+		text-align: center;
+		width: 100%;
+		&:hover {
+			transform: scale(0.9);
+		}
+	}
+}
+
+.burger-navbar {
+	display: flex;
+	justify-content: space-between;
+	gap: $margin;
+	width: 100%;
+	img {
+		width: 2.5rem;
+	}
+}
+
+@media only screen and (min-width: $big-screen) {
+	.burger-navbar {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 799px) {
+	#nav {
+		display: none;
+	}
+}

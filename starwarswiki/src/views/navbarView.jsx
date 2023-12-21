@@ -9,7 +9,7 @@ export default function NavbarView(props) {
 	}
 
 	return (
-		<nav>
+		<nav id='nav'>
 			<Link to='/' replace={props.inAnimation ? true : false}>
 				<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
 			</Link>

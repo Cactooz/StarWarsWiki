@@ -16,13 +16,13 @@ export default observer(function ReactRoot(props) {
 
 	function Root() {
 		return (
-			<>
+			<div style={props.model.inAnimation ? { pointerEvents: 'none' } : {}} >
 				<AnimatedRoutes model={props.model} />
 				<ScrollRestoration getKey={(location) => {
 					const sites = ["/characters", "/vehicles", "/locations"]
 					return sites.includes(location.pathname) ? location.pathname : location.key
 				}} />
-			</>
+			</div >
 		)
 	}
 
