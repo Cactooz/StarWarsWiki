@@ -2,8 +2,11 @@ import LandingCard from '../components/LandingCard';
 
 export default function LandingPageView(props) {
 	return (
-		<div>
-			<h1>STAR WARS WIKI</h1>
+		<>
+			<div className='main-title'>
+				<h1>STAR WARS</h1>
+				<h2>WIKI</h2>
+			</div>
 			<div className='cards-container landing-page'>
 				<LandingCard
 					text='CHARACTERS'
@@ -24,6 +27,6 @@ export default function LandingPageView(props) {
 					inAnimation={props.inAnimation}
 				/>
 			</div>
-		</div>
+		</>
 	);
 }

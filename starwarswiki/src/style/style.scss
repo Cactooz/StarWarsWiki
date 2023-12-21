@@ -41,7 +41,7 @@ header {
 	align-items: center;
 	flex-wrap: wrap;
 	gap: calc($margin / 2) $margin;
-	padding: $margin;
+	padding: calc($margin / 2) $margin;
 
 	position: fixed;
 	width: calc(100% - 2 * $margin);
@@ -55,7 +55,7 @@ header {
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		gap: $margin;
+		gap: calc($margin / 2) $margin;
 
 		a {
 			color: $yellow;
@@ -145,8 +145,25 @@ main {
 .landing-page {
 	> * {
 		p {
-			font-size: 3rem;
+			font-size: 2.5rem;
 		}
+	}
+}
+
+.main-title {
+	text-align: center;
+	margin-bottom: calc($margin / 2);
+
+	color: $black;
+	text-shadow: $yellow-stroke-ie;
+
+	h1 {
+		font-size: 3rem;
+		height: 3.2rem;
+	}
+
+	h2 {
+		font-size: 2rem;
 	}
 }
 
@@ -340,6 +357,13 @@ footer {
 	.landing-page {
 		> * {
 			width: clamp(320px, 32%, 1200px);
+		}
+	}
+
+	.main-title {
+		h1 {
+			font-size: 4rem;
+			height: 4.5rem;
 		}
 	}
 
