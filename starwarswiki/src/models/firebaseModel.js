@@ -1,8 +1,9 @@
 import { initializeApp } from 'firebase/app';
 import { get, getDatabase, onValue, ref, remove, set } from 'firebase/database';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
-import { reactiveModel } from '../main';
+import { queryClient, reactiveModel } from '../main';
 import { reaction } from 'mobx';
+import { fetchSWDatabank } from "../fetch.js";
 
 const app = initializeApp({
 	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -208,6 +209,36 @@ export function removeFriendRequest(uid) {
 export function removeRequest(uid) {
 	remove(ref(db, '/friends/' + uid + '/requests/' + reactiveModel.user.uid))
 }
+
+export async function getPreview() {
+	await get(ref(db, '/apiHash/')).then(async (snapshot) => {
+			const chars = snapshot.val().characters
+			const vehicles = snapshot.val().vehicles
+			const locations = snapshot.val().locations
+			const data = [];
+			let index = 0;
+			console.log(chars, vehicles, locations)
+			for (let i = 0; i < 3; i++) {
+				let path = 'characters/' + Object.keys(chars)[Math.floor(Math.random() * 26)]
+				await fetchSWDatabank(path, {}, path)
+				data[index++] = queryClient.getQueryData(path)
+
+			}
+			for (let i = 0; i < 3; i++) {
+				let path = 'vehicles/' + Object.keys(vehicles)[Math.floor(Math.random() * 23)]
+				await fetchSWDatabank(path, {}, path)
+				data[index++] = queryClient.getQueryData(path)
+			}
+			for (let i = 0; i < 3; i++) {
+				let path = 'locations/' + Object.keys(locations)[Math.floor(Math.random() * 23)]
+				await fetchSWDatabank(path, {}, path)
+				data[index++] = queryClient.getQueryData(path)
+			}
+			reactiveModel.setSwiperImage(data);
+		}
+	);
+}
+
 
 export function readHash(location) {
 	get(ref(db, '/apiHash/' + location)).then((snapshot) =>
