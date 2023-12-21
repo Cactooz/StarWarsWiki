@@ -224,7 +224,7 @@ export async function getPreview() {
 			const { name, image } = queryClient.getQueryData(path);
 			data[index++] = { name: name, image: image, path: 'locations' };
 		}
-		reactiveModel.setSwiperImage(data);
+		reactiveModel.setCarouselData(data);
 	});
 }
 

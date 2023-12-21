@@ -17,7 +17,10 @@ export default {
 	moreDetails: {},
 	currentHash: undefined,
 	hash: {},
-	swiperImages: {},
+
+	carouselLoading: false,
+	carouselDataLoaded: undefined,
+	carouselData: [],
 
 	searchResults: [],
 	searchString: undefined,
@@ -48,8 +51,13 @@ export default {
 		this.inAnimation = boolean;
 	},
 
-	setSwiperImage(images) {
-		this.swiperImages = images;
+	setCarouselData(data) {
+		this.carouselData = data;
+		this.carouselDataLoaded = true;
+	},
+
+	setCarouselLoading(boolean) {
+		this.carouselLoading = boolean;
 	},
 
 	setAutoCompleteResults(results) {
