@@ -31,11 +31,11 @@ export default observer(function HeaderPresenter(props) {
 
 	return (
 		<header id='header'>
-			{/* <NavbarView
+			<NavbarView
 				onClickHandler={updateData}
 				user={props.model.user}
 				inAnimation={props.model.inAnimation}
-			/> */}
+			/>
 			<HamburgerView />
 			<SearchBarView
 				handleSearchSelect={handleSearchSelect}
