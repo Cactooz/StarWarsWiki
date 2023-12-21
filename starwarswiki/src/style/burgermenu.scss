@@ -29,8 +29,20 @@
 	height: 100%;
 }
 
+.bm-item {
+	text-align: center;
+	width: 100%;
+	height: fit-content;
+}
+
 @media only screen and (min-width: $big-screen) {
 	.bm-burger-button {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: $big-screen) {
+	nav {
 		display: none;
 	}
 }
