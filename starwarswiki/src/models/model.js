@@ -17,6 +17,7 @@ export default {
 	moreDetails: {},
 	currentHash: undefined,
 	hash: {},
+	swiperImages: {},
 
 	searchResults: [],
 	searchString: undefined,
@@ -45,6 +46,10 @@ export default {
 
 	setInAnimation(boolean) {
 		this.inAnimation = boolean;
+	},
+
+	setSwiperImage(images) {
+		this.swiperImages = images;
 	},
 
 	setAutoCompleteResults(results) {
