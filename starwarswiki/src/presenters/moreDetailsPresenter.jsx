@@ -20,6 +20,8 @@ export default observer(function MoreDetails(props) {
 		return moreDetailsSpinner;
 	}
 
+	if (props.model.details.length === 0) return null;
+
 	if (props.model.currentHash !== splitURL[splitURL.length - 2]) {
 		readHash(splitURL[splitURL.length - 2]);
 	}
