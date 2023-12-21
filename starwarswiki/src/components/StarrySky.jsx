@@ -5,7 +5,7 @@ import anime from 'animejs/lib/anime.es.js';
 
 class StarrySky extends React.Component {
 	state = {
-		num: 60,
+		num: 100,
 		vw: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
 		vh: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
 	};
@@ -33,7 +33,7 @@ class StarrySky extends React.Component {
 			targets: ['#shootingstars .wish'],
 			easing: 'linear',
 			loop: true,
-			delay: (el, i) => 5000 * i,
+			delay: (el, i) => 3000 * i,
 			opacity: [
 				{
 					duration: 700,
@@ -92,7 +92,7 @@ class StarrySky extends React.Component {
 					))}
 				</svg>
 				<div id='shootingstars'>
-					{[...Array(60)].map((x, y) => (
+					{[...Array(this.state.num)].map((x, y) => (
 						<div
 							key={y}
 							className='wish'
