@@ -16,11 +16,23 @@ export default function FriendSidebarView(props) {
 				{props.shouldShowId === false ? 'Click to show your ID' : props.yourID}
 			</button>
 			{props.friendRequest.length ? <h3>Friend Requests</h3> : null}
-			{props.friendRequest.length ? <table>{props.friendRequest.map(showFriends)}</table> : null}
+			{props.friendRequest.length ? (
+				<table>
+					<tbody>{props.friendRequest.map(showFriends)}</tbody>
+				</table>
+			) : null}
 			{props.sentRequests.length ? <h3>Pending Requests</h3> : null}
-			{props.sentRequests.length ? <table>{props.sentRequests.map(showRequests)}</table> : null}
+			{props.sentRequests.length ? (
+				<table>
+					<tbody>{props.sentRequests.map(showRequests)}</tbody>
+				</table>
+			) : null}
 			{props.friends.length ? <h3>Your Friends</h3> : null}
-			{props.friends.length ? <table>{props.friends.map(showAllCB)}</table> : null}
+			{props.friends.length ? (
+				<table>
+					<tbody>{props.friends.map(showAllCB)}</tbody>
+				</table>
+			) : null}
 		</>
 	);
 
