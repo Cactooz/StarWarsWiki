@@ -352,6 +352,7 @@ main {
 			svg {
 				fill: $yellow;
 				height: calc($margin / 2);
+				transition: all 100ms ease-in-out;
 
 				&:hover {
 					transform: scale(0.9);
