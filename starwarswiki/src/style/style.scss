@@ -336,6 +336,12 @@ main {
 	gap: $margin;
 
 	.profile {
+		display: flex;
+		flex-direction: column;
+		gap: calc($margin / 2);
+
+		align-items: center;
+
 		.profile-title {
 			display: flex;
 			gap: calc($margin / 2);
@@ -356,6 +362,13 @@ main {
 					transform: scale(0.9);
 				}
 			}
+		}
+
+		.favorites {
+			display: flex;
+			flex-direction: column;
+			gap: calc($margin / 2);
+			align-items: center;
 		}
 	}
 }
