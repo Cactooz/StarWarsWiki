@@ -72,7 +72,7 @@ class StarrySky extends React.Component {
 	}
 
 	updateDimensions = () => {
-		this.setState({ vw: window.innerWidth, vh: window.innerHeight });
+		if (this.state.vw >= 800) this.setState({ vw: window.innerWidth, vh: window.innerHeight });
 	};
 
 	render() {
