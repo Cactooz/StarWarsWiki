@@ -36,7 +36,7 @@ export default observer(function HeaderPresenter(props) {
 				user={props.model.user}
 				inAnimation={props.model.inAnimation}
 			/>
-			<HamburgerView />
+			<HamburgerView onClickHandler={updateData} user={props.model.user} />
 			<SearchBarView
 				handleSearchSelect={handleSearchSelect}
 				handleFormSubmit={handleFormSubmit}
