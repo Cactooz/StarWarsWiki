@@ -8,6 +8,8 @@ export default function HamburgerView() {
 	return (
 		<Menu>
 			<Link to='/characters'>Characters</Link>
+			<Link to='/vehicles'>Vehicles</Link>
+			<Link to='/locations'>Locations</Link>
 		</Menu>
 	);
 }
