@@ -37,6 +37,12 @@ export default {
 
 	inAnimation: false,
 
+	menuOpen: false,
+
+	setMenuOpen(boolean) {
+		this.menuOpen = boolean;
+	},
+
 	setInAnimation(boolean) {
 		this.inAnimation = boolean;
 	},

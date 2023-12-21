@@ -15,13 +15,13 @@ export default observer(function ReactRoot(props) {
 	}
 
 	return (
-		<>
-			<BrowserRouter >
-				<Routes >
+		<div style={props.model.inAnimation ? { pointerEvents: 'none' } : {}}>
+			<BrowserRouter>
+				<Routes>
 					<Route path='/*' element={<AnimatedRoutes model={props.model} />} />
-				</Routes >
-			</BrowserRouter >
+				</Routes>
+			</BrowserRouter>
 			<FooterPresenter />
-		</>
+		</div>
 	);
 });
