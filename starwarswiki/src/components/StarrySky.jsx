@@ -55,11 +55,9 @@ class StarrySky extends React.Component {
 		return Math.random() + 1;
 	};
 	getRandomX = () => {
-		console.log(Math.floor(Math.random() * Math.floor(this.state.vw)).toString());
 		return Math.floor(Math.random() * Math.floor(this.state.vw)).toString();
 	};
 	getRandomY = () => {
-		console.log(Math.floor(Math.random() * Math.floor(this.state.vh)).toString());
 		return Math.floor(Math.random() * Math.floor(this.state.vh)).toString();
 	};
 
