@@ -20,7 +20,7 @@ export default observer(function Browse(props) {
 	async function handleScroll() {
 		const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 		if (scrollTop + clientHeight >= scrollHeight - clientHeight * 2) {
-			if (props.model.browseResult.info?.next !== null) {
+			if (props.model.browseResult?.info?.next !== null) {
 				await addData();
 			}
 		}
