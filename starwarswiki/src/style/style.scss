@@ -362,11 +362,13 @@ main {
 				background-color: transparent;
 				border: none;
 				cursor: pointer;
+				padding: 0;
 			}
 
 			svg {
 				fill: $yellow;
 				height: calc($margin / 2);
+				width: calc($margin / 2);
 				transition: all 100ms ease-in-out;
 
 				&:hover {
@@ -387,6 +389,65 @@ main {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		gap: calc($margin / 2);
+		align-self: flex-start;
+		background-color: $background-gray;
+		color: $white;
+
+		padding: $margin;
+		border-radius: $corner-radius;
+
+		button {
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+			padding: 0;
+		}
+
+		.red {
+			fill: red;
+		}
+
+		.green {
+			fill: green;
+		}
+
+		svg {
+			height: calc($margin / 2);
+			width: calc($margin / 2);
+			transition: all 100ms ease-in-out;
+
+			&:hover {
+				transform: scale(0.9);
+			}
+		}
+
+		p,
+		a {
+			font-weight: 400;
+		}
+
+		ul {
+			display: flex;
+			gap: calc($margin / 2);
+			flex-direction: column;
+			align-items: center;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			li {
+				display: flex;
+				align-items: center;
+				gap: calc($margin / 4);
+
+				a {
+					color: $white;
+					text-decoration: none;
+					cursor: pointer;
+				}
+			}
+		}
 
 		input {
 			height: $margin;
@@ -414,10 +475,8 @@ main {
 
 			transition: all 100ms ease-in-out;
 
-			&:hover,
-			&:focus {
+			&:hover {
 				transform: scale(0.9);
-				outline: none;
 			}
 		}
 	}
