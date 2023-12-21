@@ -3,7 +3,7 @@ import { get, getDatabase, onValue, ref, remove, set } from 'firebase/database';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { queryClient, reactiveModel } from '../main';
 import { reaction } from 'mobx';
-import { fetchSWDatabank } from "../fetch.js";
+import { fetchSWDatabank } from '../fetch.js';
 
 const app = initializeApp({
 	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -37,10 +37,10 @@ onAuthStateChanged(auth, async (user) => {
 		// User is signed in
 		reactiveModel.setUser(auth.currentUser);
 		readFromDB(user.uid);
-		readFriendsDB(user.uid)
+		readFriendsDB(user.uid);
 		await findUser(user.uid);
 		if (reactiveModel.isUser !== auth.currentUser.displayName) {
-			set(ref(db, '/users/' + user.uid), auth.currentUser.displayName)
+			set(ref(db, '/users/' + user.uid), auth.currentUser.displayName);
 		}
 	} else {
 		// No user is signed in
@@ -50,7 +50,7 @@ onAuthStateChanged(auth, async (user) => {
 
 export function persistence(model) {
 	reaction(listenACB, changeACB);
-	reaction(friends, updateFriends)
+	reaction(friends, updateFriends);
 
 	function listenACB() {
 		return [model.favorites];
@@ -61,12 +61,12 @@ export function persistence(model) {
 	}
 
 	function friends() {
-		return [reactiveModel.friends, reactiveModel.friendRequests, reactiveModel.sentRequests]
+		return [reactiveModel.friends, reactiveModel.friendRequests, reactiveModel.sentRequests];
 	}
 
 	function updateFriends() {
-		writeFriendsToDB()
-		reactiveModel.friends.map(readFriendFavFromDB)
+		writeFriendsToDB();
+		reactiveModel.friends.map(readFriendFavFromDB);
 	}
 }
 
@@ -107,33 +107,32 @@ export function readFriendFavFromDB(uid) {
 
 function readFriendsDB(uid) {
 	onValue(ref(db, '/friends/' + uid + '/addedFriends/'), (snapshot) => {
-		model.ready = false
+		model.ready = false;
 		const friendsFromDB = snapshot.val();
 		reactiveModel.setFriends(friendsFromDB);
 		if (friendsFromDB && Object.keys(friendsFromDB).length !== 0) {
-
-			reactiveModel.friends.map(findUser)
+			reactiveModel.friends.map(findUser);
 		}
 		model.wrote = false;
 		reactiveModel.loadingFriendsFav = false;
 		model.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/pendingFriends'), (snapshot) => {
-		model.ready = false
+		model.ready = false;
 		const friendRequestsFromDB = snapshot.val();
-		reactiveModel.setFriendRequests(friendRequestsFromDB)
+		reactiveModel.setFriendRequests(friendRequestsFromDB);
 		if (friendRequestsFromDB && Object.keys(friendRequestsFromDB).length !== 0) {
-			reactiveModel.friendRequests.map(findUser)
+			reactiveModel.friendRequests.map(findUser);
 		}
 		model.wrote = false;
 		model.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/requests'), (snapshot) => {
-		model.ready = false
+		model.ready = false;
 		const requestsFromDB = snapshot.val();
-		reactiveModel.setRequestsFromDb(requestsFromDB)
+		reactiveModel.setRequestsFromDb(requestsFromDB);
 		if (requestsFromDB && Object.keys(requestsFromDB).length !== 0) {
-			reactiveModel.sentRequests.map(findUser)
+			reactiveModel.sentRequests.map(findUser);
 		}
 		model.wrote = false;
 		model.ready = true;
@@ -142,103 +141,92 @@ function readFriendsDB(uid) {
 }
 
 function parseFriends(friends) {
-	if (!friends)
-		return ""
-	else
-		return friends
+	if (!friends) return '';
+	else return friends;
 }
 
 function writeFriendsToDB() {
 	if (model.user && model.ready) {
 		model.ready = false;
 		model.wrote = true;
-		if (reactiveModel.friends.length)
-			reactiveModel.friends.map(writeAddedFriends)
-		else
-			writeAddedFriends("")
-		if (reactiveModel.friendRequests.length)
-			reactiveModel.friendRequests.map(writePendingFriends)
-		else
-			writePendingFriends("")
-		if (reactiveModel.sentRequests.length)
-			reactiveModel.sentRequests.map(writeFriendRequests)
-		else
-			writeFriendRequests("")
+		if (reactiveModel.friends.length) reactiveModel.friends.map(writeAddedFriends);
+		else writeAddedFriends('');
+		if (reactiveModel.friendRequests.length) reactiveModel.friendRequests.map(writePendingFriends);
+		else writePendingFriends('');
+		if (reactiveModel.sentRequests.length) reactiveModel.sentRequests.map(writeFriendRequests);
+		else writeFriendRequests('');
 		model.ready = true;
 	}
 }
 
 function writeAddedFriends(friend) {
-	set(ref(db, '/friends/' + reactiveModel.user.uid + '/addedFriends/' + friend), true)
+	set(ref(db, '/friends/' + reactiveModel.user.uid + '/addedFriends/' + friend), true);
 }
 
 function writePendingFriends(friend) {
-	set(ref(db, '/friends/' + reactiveModel.user.uid + '/pendingFriends/' + friend), true)
+	set(ref(db, '/friends/' + reactiveModel.user.uid + '/pendingFriends/' + friend), true);
 }
 
 function writeFriendRequests(friend) {
-
-	set(ref(db, '/friends/' + reactiveModel.user.uid + '/requests/' + friend), true)
+	set(ref(db, '/friends/' + reactiveModel.user.uid + '/requests/' + friend), true);
 }
 
-
 export function addFriendDB(uid) {
-	set(ref(db, '/friends/' + uid + '/addedFriends/' + reactiveModel.user.uid), true)
+	set(ref(db, '/friends/' + uid + '/addedFriends/' + reactiveModel.user.uid), true);
 }
 
 export function removeFriendDB(uid) {
-	remove(ref(db, '/friends/' + uid + '/addedFriends/' + reactiveModel.user.uid))
+	remove(ref(db, '/friends/' + uid + '/addedFriends/' + reactiveModel.user.uid));
 }
 
 export async function findUser(uid) {
 	reactiveModel.gettingUser = true;
 	await get(ref(db, '/users/' + uid)).then((snapshot) => {
-		reactiveModel.setIsUser(snapshot.val())
-		reactiveModel.addUser(uid, snapshot.val())
-	})
+		reactiveModel.setIsUser(snapshot.val());
+		reactiveModel.addUser(uid, snapshot.val());
+	});
 }
 
 export function friendRequest(uid) {
-	set(ref(db, '/friends/' + uid + '/pendingFriends/' + reactiveModel.user.uid), true)
+	set(ref(db, '/friends/' + uid + '/pendingFriends/' + reactiveModel.user.uid), true);
 }
 
 export function removeFriendRequest(uid) {
-	remove(ref(db, '/friends/' + uid + '/pendingFriends/' + reactiveModel.user.uid))
+	remove(ref(db, '/friends/' + uid + '/pendingFriends/' + reactiveModel.user.uid));
 }
 
 export function removeRequest(uid) {
-	remove(ref(db, '/friends/' + uid + '/requests/' + reactiveModel.user.uid))
+	remove(ref(db, '/friends/' + uid + '/requests/' + reactiveModel.user.uid));
 }
 
 export async function getPreview() {
 	await get(ref(db, '/apiHash/')).then(async (snapshot) => {
-			const chars = snapshot.val().characters
-			const vehicles = snapshot.val().vehicles
-			const locations = snapshot.val().locations
-			const data = [];
-			let index = 0;
-			console.log(chars, vehicles, locations)
-			for (let i = 0; i < 3; i++) {
-				let path = 'characters/' + Object.keys(chars)[Math.floor(Math.random() * 26)]
-				await fetchSWDatabank(path, {}, path)
-				data[index++] = queryClient.getQueryData(path)
-
-			}
-			for (let i = 0; i < 3; i++) {
-				let path = 'vehicles/' + Object.keys(vehicles)[Math.floor(Math.random() * 23)]
-				await fetchSWDatabank(path, {}, path)
-				data[index++] = queryClient.getQueryData(path)
-			}
-			for (let i = 0; i < 3; i++) {
-				let path = 'locations/' + Object.keys(locations)[Math.floor(Math.random() * 23)]
-				await fetchSWDatabank(path, {}, path)
-				data[index++] = queryClient.getQueryData(path)
-			}
-			reactiveModel.setSwiperImage(data);
+		const chars = snapshot.val().characters;
+		const vehicles = snapshot.val().vehicles;
+		const locations = snapshot.val().locations;
+		const data = [];
+		let index = 0;
+		for (let i = 0; i < 3; i++) {
+			let path = 'characters/' + Object.keys(chars)[Math.floor(Math.random() * 26)];
+			await fetchSWDatabank(path, {}, path);
+			const { name, image } = queryClient.getQueryData(path);
+			data[index++] = { name: name, image: image, path: 'characters' };
 		}
-	);
+		for (let i = 0; i < 3; i++) {
+			let path = 'vehicles/' + Object.keys(vehicles)[Math.floor(Math.random() * 23)];
+			await fetchSWDatabank(path, {}, path);
+			const { name, image } = queryClient.getQueryData(path);
+			data[index++] = { name: name, image: image, path: 'vehicles' };
+		}
+		for (let i = 0; i < 3; i++) {
+			let path = 'locations/' + Object.keys(locations)[Math.floor(Math.random() * 23)];
+			await fetchSWDatabank(path, {}, path);
+			const { name, image } = queryClient.getQueryData(path);
+			data[index++] = { name: name, image: image, path: 'locations' };
+		}
+		reactiveModel.setSwiperImage(data);
+	});
 }
-
 
 export function readHash(location) {
 	get(ref(db, '/apiHash/' + location)).then((snapshot) =>
