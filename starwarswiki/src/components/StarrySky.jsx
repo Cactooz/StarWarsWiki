@@ -77,6 +77,7 @@ class StarrySky extends React.Component {
 
 	render() {
 		const { num } = this.state;
+		const color = ['#f1caca', '#fff8bd', '#bbf3ff'];
 		return (
 			<div id='App'>
 				<svg id='sky'>
@@ -87,7 +88,7 @@ class StarrySky extends React.Component {
 							r={this.randomRadius()}
 							stroke='none'
 							strokeWidth='0'
-							fill='white'
+							fill={`${color[Math.floor(Math.random() * 3)]}`}
 							key={y}
 							className='star'
 						/>
