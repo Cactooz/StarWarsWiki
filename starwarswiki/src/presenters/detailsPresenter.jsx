@@ -3,8 +3,13 @@ import DetailsView from '../views/detailsView';
 import Vortex from '../components/Vortex.jsx';
 import { useLocation } from 'react-router-dom';
 import ErrorView from '../views/errorView.jsx';
+import { useEffect } from 'react';
 
 export default observer(function Details(props) {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	function addFavoriteACB(object) {
 		props.model.addToFavorites(object);
 	}

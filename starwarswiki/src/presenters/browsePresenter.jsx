@@ -5,6 +5,10 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
 export default observer(function Browse(props) {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	function doAddACB(card) {
 		props.model.addToFavorites(card);
 	}
@@ -16,7 +20,7 @@ export default observer(function Browse(props) {
 	async function handleScroll() {
 		const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 		if (scrollTop + clientHeight >= scrollHeight - clientHeight * 2) {
-			if (props.model.browseResult.info.next !== null) {
+			if (props.model.browseResult.info?.next !== null) {
 				await addData();
 			}
 		}
