@@ -48,7 +48,11 @@ export default function HamburgerView(props) {
 				<Link to='/locations' onClick={handleOnClick}>
 					Locations
 				</Link>
-				{props.user ? <GoToProfile inAnimation={props.inAnimation} /> : <SignInButton />}
+				{props.user ? (
+					<GoToProfile inAnimation={props.inAnimation} onClickHandler={handleOnClick} />
+				) : (
+					<SignInButton />
+				)}
 			</Menu>
 		</div>
 	);
