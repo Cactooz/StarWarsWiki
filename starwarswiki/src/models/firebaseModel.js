@@ -210,19 +210,34 @@ export async function getPreview() {
 			let path = 'characters/' + Object.keys(chars)[Math.floor(Math.random() * 26)];
 			await fetchSWDatabank(path, {}, path);
 			const { name, image } = queryClient.getQueryData(path);
-			data[index++] = { name: name, image: image, path: 'characters' };
+			if (data.some((item) => item.name === name)) {
+				i--;
+				continue;
+			} else {
+				data[index++] = { name: name, image: image, path: 'characters' };
+			}
 		}
 		for (let i = 0; i < 3; i++) {
 			let path = 'vehicles/' + Object.keys(vehicles)[Math.floor(Math.random() * 23)];
 			await fetchSWDatabank(path, {}, path);
 			const { name, image } = queryClient.getQueryData(path);
-			data[index++] = { name: name, image: image, path: 'vehicles' };
+			if (data.some((item) => item.name === name)) {
+				i--;
+				continue;
+			} else {
+				data[index++] = { name: name, image: image, path: 'vehicles' };
+			}
 		}
 		for (let i = 0; i < 3; i++) {
 			let path = 'locations/' + Object.keys(locations)[Math.floor(Math.random() * 23)];
 			await fetchSWDatabank(path, {}, path);
 			const { name, image } = queryClient.getQueryData(path);
-			data[index++] = { name: name, image: image, path: 'locations' };
+			if (data.some((item) => item.name === name)) {
+				i--;
+				continue;
+			} else {
+				data[index++] = { name: name, image: image, path: 'locations' };
+			}
 		}
 		reactiveModel.setCarouselData(data);
 	});
