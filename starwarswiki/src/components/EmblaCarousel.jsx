@@ -24,7 +24,7 @@ export function EmblaCarousel(props) {
 		<div className='embla' ref={emblaRef}>
 			<div className='embla__container'>
 				{props.data.map((item) => (
-					<div className='embla__slide' key={item}>
+					<div className='embla__slide' key={item.name}>
 						<p>{item.name}</p>
 						<img src={item.image} />
 					</div>
