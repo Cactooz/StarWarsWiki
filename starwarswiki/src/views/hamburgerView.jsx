@@ -30,6 +30,7 @@ export default function HamburgerView() {
 			onOpen={handleOnOpen}
 			onClose={handleOnClose}
 			onStateChange={isMenuOpen}
+			right
 		>
 			<Link to='/' onClick={handleOnClick}>
 				<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
