@@ -1,6 +1,8 @@
 import React from 'react';
 import anime from 'animejs/lib/anime.es.js';
 
+// Twinkling Night Sky by Sharna
+
 class StarrySky extends React.Component {
 	state = {
 		num: 60,
@@ -68,9 +70,7 @@ class StarrySky extends React.Component {
 	}
 
 	updateDimensions = () => {
-		this.shootingStars.opacity = 0;
 		this.setState({ vw: window.innerWidth, vh: window.innerHeight });
-		this.shootingStars.opacity = 1;
 	};
 
 	render() {
