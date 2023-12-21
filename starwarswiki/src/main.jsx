@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import model from './models/model.js';
 import { configure, observable } from 'mobx';
 import { persistence } from './models/firebaseModel';
+import StarrySky from './components/StarrySky.jsx';
 
 import './style/style.scss';
 
@@ -23,9 +24,12 @@ export const queryClient = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-	<QueryClientProvider client={queryClient}>
-		<App model={reactiveModel} />
-	</QueryClientProvider>,
+	<>
+		<StarrySky />
+		<QueryClientProvider client={queryClient}>
+			<App model={reactiveModel} />
+		</QueryClientProvider>
+	</>,
 );
 
 persistence(reactiveModel);
