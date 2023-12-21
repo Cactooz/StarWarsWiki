@@ -28,26 +28,28 @@ export default function HamburgerView(props) {
 	}
 
 	return (
-		<Menu
-			isOpen={menuOpen}
-			onOpen={handleOnOpen}
-			onClose={handleOnClose}
-			onStateChange={isMenuOpen}
-			right
-		>
-			<Link to='/' onClick={handleOnClick}>
+		<div className='burger-navbar'>
+			<Link to='/'>
 				<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
 			</Link>
-			<Link to='/characters' onClick={handleOnClick}>
-				Characters
-			</Link>
-			<Link to='/vehicles' onClick={handleOnClick}>
-				Vehicles
-			</Link>
-			<Link to='/locations' onClick={handleOnClick}>
-				Locations
-			</Link>
-			{props.user ? <GoToProfile inAnimation={props.inAnimation} /> : <SignInButton />}
-		</Menu>
+			<Menu
+				isOpen={menuOpen}
+				onOpen={handleOnOpen}
+				onClose={handleOnClose}
+				onStateChange={isMenuOpen}
+				right
+			>
+				<Link to='/characters' onClick={handleOnClick}>
+					Characters
+				</Link>
+				<Link to='/vehicles' onClick={handleOnClick}>
+					Vehicles
+				</Link>
+				<Link to='/locations' onClick={handleOnClick}>
+					Locations
+				</Link>
+				{props.user ? <GoToProfile inAnimation={props.inAnimation} /> : <SignInButton />}
+			</Menu>
+		</div>
 	);
 }
