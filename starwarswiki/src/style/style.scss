@@ -13,7 +13,8 @@ body {
 	background-repeat: repeat;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	color: $white;
+	color: $yellow;
+	font-weight: 900;
 	margin: 0;
 }
 
@@ -60,7 +61,6 @@ header {
 		a {
 			color: $yellow;
 			text-decoration: none;
-			font-weight: 900;
 			font-size: 1.5rem;
 			cursor: pointer;
 
@@ -240,7 +240,6 @@ main {
 
 		p {
 			position: absolute;
-			font-weight: 900;
 			color: $black;
 			text-shadow: $yellow-stroke-ie;
 			text-transform: capitalize;
@@ -254,6 +253,7 @@ main {
 	overflow: hidden;
 	display: flex;
 	flex-wrap: wrap;
+	color: white;
 
 	.details {
 		display: flex;
@@ -279,6 +279,10 @@ main {
 				border-radius: $corner-radius;
 				color: $yellow;
 			}
+		}
+
+		&:not(details-title) {
+			font-weight: 400;
 		}
 	}
 
@@ -326,10 +330,147 @@ main {
 	align-items: center;
 	justify-content: center;
 	gap: $margin;
+	color: $white;
 
 	h4,
 	p {
 		text-transform: capitalize;
+	}
+
+	p {
+		font-weight: 400;
+	}
+}
+
+.profile-view {
+	display: grid;
+	gap: $margin;
+
+	.profile {
+		display: flex;
+		flex-direction: column;
+		gap: calc($margin / 2);
+
+		align-items: center;
+
+		.profile-title {
+			display: flex;
+			gap: calc($margin / 2);
+			align-items: baseline;
+
+			button {
+				background-color: transparent;
+				border: none;
+				cursor: pointer;
+				padding: 0;
+			}
+
+			svg {
+				fill: $yellow;
+				height: calc($margin / 2);
+				width: calc($margin / 2);
+				transition: all 100ms ease-in-out;
+
+				&:hover {
+					transform: scale(0.9);
+				}
+			}
+		}
+
+		.favorites {
+			display: flex;
+			flex-direction: column;
+			gap: calc($margin / 2);
+			align-items: center;
+		}
+	}
+
+	.friends {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: calc($margin / 2);
+		align-self: flex-start;
+		background-color: $background-gray;
+		color: $white;
+
+		padding: $margin;
+		border-radius: $corner-radius;
+
+		button {
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+			padding: 0;
+		}
+
+		.red {
+			fill: red;
+		}
+
+		.green {
+			fill: green;
+		}
+
+		svg {
+			height: calc($margin / 2);
+			width: calc($margin / 2);
+			transition: all 100ms ease-in-out;
+
+			&:hover {
+				transform: scale(0.9);
+			}
+		}
+
+		p,
+		a {
+			font-weight: 400;
+		}
+
+		table {
+			width: 100%;
+			tr {
+				.button {
+					width: calc($margin / 2);
+				}
+				a {
+					color: $white;
+					text-decoration: none;
+					cursor: pointer;
+					display: inline-block;
+
+					transition: all 100ms ease-in-out;
+
+					&:hover {
+						transform: scale(0.9);
+					}
+				}
+			}
+		}
+
+		input,
+		.id-button {
+			height: $margin;
+			width: 15rem;
+			border-radius: $corner-radius;
+			text-align: center;
+			background-color: $background-gray;
+			border: 1px solid $yellow;
+			padding: 0;
+			color: $white;
+		}
+
+		input:focus {
+			outline: none;
+		}
+
+		.id-button {
+			transition: all 100ms ease-in-out;
+
+			&:hover {
+				transform: scale(0.9);
+			}
+		}
 	}
 }
 
@@ -337,6 +478,8 @@ footer {
 	flex-shrink: 0;
 	padding: $margin;
 	text-align: center;
+	color: $white;
+	font-weight: 300;
 }
 
 @keyframes hologram-animation {
@@ -378,5 +521,9 @@ footer {
 		img {
 			width: 50vw;
 		}
+	}
+
+	.profile-view {
+		grid-template-columns: 3fr 1fr;
 	}
 }
