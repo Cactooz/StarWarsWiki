@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import DetailsView from '../views/detailsView';
 import Vortex from '../components/Vortex.jsx';
 import { useLocation } from 'react-router-dom';
+import ErrorView from '../views/errorView.jsx';
 
 export default observer(function Details(props) {
 	function addFavoriteACB(object) {
@@ -18,7 +19,7 @@ export default observer(function Details(props) {
 	if (!props.model.details || props.model.currentDetails !== page) {
 		props.model.setDetails(page);
 		return <Vortex />;
-	} else if (props.model.details === null) return 'Error';
+	} else if (props.model.details.length === 0) return <ErrorView />;
 	else {
 		return (
 			<DetailsView
