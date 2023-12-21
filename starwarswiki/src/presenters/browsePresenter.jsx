@@ -16,7 +16,7 @@ export default observer(function Browse(props) {
 	async function handleScroll() {
 		const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 		if (scrollTop + clientHeight >= scrollHeight - clientHeight * 2) {
-			if (props.model.browseResult.info.next !== null) {
+			if (props.model.browseResult?.info?.next !== null) {
 				await addData();
 			}
 		}
@@ -39,7 +39,7 @@ export default observer(function Browse(props) {
 		if (props.model.suspense) {
 			return <Vortex />;
 		} else if (browseResult === null) {
-			return <p>Error While Loading. Please Try Again!</p>;
+			return <p >Error While Loading. Please Try Again!</p >;
 		} else if (browseResult?.data) {
 			return (
 				<BrowseView
