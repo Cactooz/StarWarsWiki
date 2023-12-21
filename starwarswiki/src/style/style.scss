@@ -427,20 +427,12 @@ main {
 			font-weight: 400;
 		}
 
-		ul {
-			display: flex;
-			gap: calc($margin / 2);
-			flex-direction: column;
-			align-items: center;
-			margin: 0;
-			padding: 0;
-			list-style: none;
-
-			li {
-				display: flex;
-				align-items: center;
-				gap: calc($margin / 4);
-
+		table {
+			width: 100%;
+			tr {
+				.button {
+					width: calc($margin / 2);
+				}
 				a {
 					color: $white;
 					text-decoration: none;
@@ -449,30 +441,23 @@ main {
 			}
 		}
 
-		input {
+		input,
+		.id-button {
 			height: $margin;
-			width: 14rem;
+			width: 15rem;
 			border-radius: $corner-radius;
 			text-align: center;
 			background-color: $background-gray;
 			border: 1px solid $yellow;
 			padding: 0;
 			color: $white;
+		}
 
-			&:focus {
-				outline: none;
-			}
+		input:focus {
+			outline: none;
 		}
 
 		.id-button {
-			background-color: $background-gray;
-			color: $white;
-			border: 1px solid $yellow;
-			border-radius: $corner-radius;
-			width: 14rem;
-			height: $margin;
-			padding: 0;
-
 			transition: all 100ms ease-in-out;
 
 			&:hover {
