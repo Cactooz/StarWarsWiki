@@ -333,6 +333,17 @@ main {
 	}
 }
 
+.profile-view {
+	display: grid;
+	gap: $margin;
+
+	.profile {
+		.profile-title {
+			display: flex;
+		}
+	}
+}
+
 footer {
 	flex-shrink: 0;
 	padding: $margin;
@@ -378,5 +389,9 @@ footer {
 		img {
 			width: 50vw;
 		}
+	}
+
+	.profile-view {
+		grid-template-columns: 3fr 1fr;
 	}
 }
