@@ -17,6 +17,10 @@ import Toastify from '../components/Toastify.jsx';
 import { toast } from 'react-toastify';
 
 export default observer(function ProfilePresenter(props) {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	function doAddACB(card) {
 		props.model.addToFavorites(card);
 	}
