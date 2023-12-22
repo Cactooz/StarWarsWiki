@@ -1,5 +1,5 @@
 import items from '../data/autoCompleteList.json';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SearchBarView from '../views/searchBarView';
 import NavbarView from '../views/navbarView';
 import { observer } from 'mobx-react-lite';
@@ -7,6 +7,7 @@ import HamburgerView from '../views/hamburgerView';
 
 export default observer(function HeaderPresenter(props) {
 	const navigate = useNavigate();
+	const page = useLocation();
 
 	function updateData() {
 		props.model.setSearchString('');
@@ -51,6 +52,7 @@ export default observer(function HeaderPresenter(props) {
 				onClickHandler={updateData}
 				user={props.model.user}
 				inAnimation={props.model.inAnimation}
+				page={page.pathname}
 			/>
 			<HamburgerView
 				onClickHandler={updateData}
@@ -59,6 +61,7 @@ export default observer(function HeaderPresenter(props) {
 				handleOnClose={handleOnClose}
 				handleOnClick={handleOnClick}
 				isOpen={props.model.menuOpen}
+				page={page.pathname}
 			/>
 			<SearchBarView
 				searchString={props.model.searchString}
