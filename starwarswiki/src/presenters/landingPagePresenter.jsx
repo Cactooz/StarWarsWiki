@@ -26,7 +26,7 @@ export default observer(function LandingPagePresenter(props) {
 		<div className='landing-container'>
 			<LandingPageView inAnimation={props.model.inAnimation} />
 			<section>
-				<h2>Recomendations</h2>
+				<h2>Recommendations</h2>
 				<EmblaCarousel
 					data={carouselData}
 					loadingData={props.model.carouselLoading}
