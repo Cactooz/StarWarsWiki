@@ -16,6 +16,17 @@ body {
 	color: $yellow;
 	font-weight: 900;
 	margin: 0;
+	scrollbar-gutter: stable;
+	overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba($yellow, 0.5);
+	-webkit-border-radius: $corner-radius;
 }
 
 #sky {
