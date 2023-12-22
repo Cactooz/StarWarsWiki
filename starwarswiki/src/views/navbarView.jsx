@@ -7,21 +7,25 @@ export default function NavbarView(props) {
 	function browseDataACB(event) {
 		props.onClickHandler(event.target.innerText.toLowerCase());
 	}
-
+	
 	return (
 		<nav id='nav'>
-			<Link to='/' replace={props.inAnimation ? true : false}>
-				<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
-			</Link>
-			<Link to='/characters' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
-				<p>Characters</p>
-			</Link>
-			<Link to='/vehicles' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
-				<p>Vehicles</p>
-			</Link>
-			<Link to='/locations' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
-				<p>Locations</p>
-			</Link>
+			{props.page === '/' ? <img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' /> :
+				<Link to='/' replace={props.inAnimation ? true : false}>
+					<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
+				</Link>}
+			{props.page === '/characters' ? <p>Characters</p> :
+				<Link to='/characters' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
+					<p>Characters</p>
+				</Link>}
+			{props.page === '/vehicles' ? <p>Vehicles</p> :
+				<Link to='/vehicles' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
+					<p>Vehicles</p>
+				</Link>}
+			{props.page === '/locations' ? <p>Locations</p> :
+				<Link to='/locations' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
+					<p>Locations</p>
+				</Link>}
 			{props.user ? <GoToProfile inAnimation={props.inAnimation} /> : <SignInButton />}
 		</nav>
 	);
