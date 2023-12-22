@@ -18,6 +18,10 @@ export default {
 	currentHash: undefined,
 	hash: {},
 
+	carouselLoading: false,
+	carouselDataLoaded: undefined,
+	carouselData: [],
+
 	searchResults: [],
 	searchString: undefined,
 	searchReady: true,
@@ -45,6 +49,15 @@ export default {
 
 	setInAnimation(boolean) {
 		this.inAnimation = boolean;
+	},
+
+	setCarouselData(data) {
+		this.carouselData = data;
+		this.carouselDataLoaded = true;
+	},
+
+	setCarouselLoading(boolean) {
+		this.carouselLoading = boolean;
 	},
 
 	setAutoCompleteResults(results) {

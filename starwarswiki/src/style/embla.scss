@@ -1,0 +1,126 @@
+@import './variables.scss';
+
+.embla {
+	overflow: hidden;
+	width: 100%;
+	padding-bottom: $margin;
+	position: relative;
+	text-align: center;
+
+	mask-image: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 0),
+		rgba(0, 0, 0, 1) 10%,
+		rgba(0, 0, 0, 1) 90%,
+		rgba(0, 0, 0, 0) 100%
+	);
+
+	.embla-container {
+		backface-visibility: hidden;
+		display: flex;
+		touch-action: pan-y;
+	}
+
+	button {
+		background-color: transparent;
+		border: none;
+		position: absolute;
+		top: calc(50% - 1.5 * $margin);
+
+		&.embla-prev {
+			left: 0px;
+		}
+
+		&.embla-next {
+			right: 0px;
+		}
+
+		svg {
+			fill: $yellow;
+			height: calc(2 * $margin);
+			width: calc(2 * $margin);
+			stroke: black;
+			stroke-width: 8px;
+
+			transition: all 100ms ease-in-out;
+
+			&:hover {
+				transform: scale(0.9);
+			}
+		}
+	}
+}
+
+.embla-slide {
+	flex: 0 0 70%;
+	position: relative;
+	overflow: hidden;
+	margin-left: $margin;
+	border-radius: $corner-radius;
+	box-shadow: $yellow-glow;
+
+	background-image: repeating-linear-gradient(
+		0deg,
+		transparent,
+		transparent 5px,
+		rgba(77, 172, 220, 0.6) 10px,
+		rgba(77, 128, 230, 0.6) 15px
+	);
+
+	background-size: 100% 150%;
+	animation: hologram-animation 8s linear infinite;
+	transition: box-shadow 200ms ease-in-out;
+
+	&:hover {
+		box-shadow: $no-glow;
+	}
+
+	&:hover img {
+		filter: $no-overlay;
+		transform: scale(1.05) rotate(0);
+	}
+
+	> * {
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		p {
+			font-size: 1.5rem;
+			position: absolute;
+			color: $black;
+			text-shadow: $yellow-stroke-ie;
+			text-transform: capitalize;
+		}
+
+		img {
+			width: 100%;
+			aspect-ratio: 16/9;
+			object-fit: cover;
+			filter: $black-overlay;
+
+			transition: all 200ms ease-in-out;
+			transform: scale(1.1) rotate(1deg);
+		}
+	}
+}
+
+@media only screen and (min-width: $big-screen) {
+	.embla-slide {
+		flex: 0 0 25%;
+	}
+
+	.embla button {
+		position: absolute;
+
+		&.embla-prev {
+			left: calc($margin * 4);
+		}
+
+		&.embla-next {
+			right: calc($margin * 4);
+		}
+	}
+}
