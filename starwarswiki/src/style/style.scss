@@ -287,6 +287,17 @@ main {
 	}
 }
 
+.landing-container {
+	display: flex;
+	flex-direction: column;
+	gap: $margin;
+	text-align: center;
+
+	section h2 {
+		margin-bottom: calc($margin / 2);
+	}
+}
+
 .details-container {
 	background-color: $background-gray;
 	border-radius: $corner-radius;
