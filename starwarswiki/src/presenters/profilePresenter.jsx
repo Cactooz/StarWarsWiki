@@ -122,6 +122,7 @@ export default observer(function ProfilePresenter(props) {
 												auth={props.model.user}
 												path={location.pathname}
 												inAnimation={props.model.inAnimation}
+												maxFavorites={props.model.maxFavorites}
 											/>
 										</>
 									) : (
@@ -167,6 +168,7 @@ export default observer(function ProfilePresenter(props) {
 												auth={props.model.user}
 												path={location.pathname}
 												inAnimation={props.model.inAnimation}
+												maxFavorites={props.model.maxFavorites}
 											/>
 										</>
 									) : (
