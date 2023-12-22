@@ -71,75 +71,75 @@ function parseObjectCB(object) {
 }
 
 export function writeToDB() {
-	if (model.user && model.ready) {
-		model.wrote = true;
-		const uid = model.user.uid.replace('"', '');
-		let favToDB = model.favorites.map(parseObjectCB);
+	if (reactiveModel.user && reactiveModel.ready) {
+		reactiveModel.wrote = true;
+		const uid = reactiveModel.user.uid.replace('"', '');
+		let favToDB = reactiveModel.favorites.map(parseObjectCB);
 		set(ref(db, '/userData/' + uid), favToDB);
 	}
 }
 
 function readFromDB(uid) {
 	onValue(ref(db, '/userData/' + uid), (snapshot) => {
-		model.ready = false;
-		if (!model.wrote) {
-			model.loadingFavs = true;
-			model.setFavsFromDB(snapshot.val());
-			model.loadingFavs = false;
+		reactiveModel.ready = false;
+		if (!reactiveModel.wrote) {
+			reactiveModel.loadingFavs = true;
+			reactiveModel.setFavsFromDB(snapshot.val());
+			reactiveModel.loadingFavs = false;
 		}
-		model.wrote = false;
-		model.ready = true;
+		reactiveModel.wrote = false;
+		reactiveModel.ready = true;
 	});
 }
 
 export function readFriendFavFromDB(uid) {
 	onValue(ref(db, '/userData/' + uid), (snapshot) => {
-		model.ready = false;
-		model.setFriendsFavFromDB(snapshot.val(), uid);
-		model.wrote = false;
-		model.ready = true;
+		reactiveModel.ready = false;
+		reactiveModel.setFriendsFavFromDB(snapshot.val(), uid);
+		reactiveModel.wrote = false;
+		reactiveModel.ready = true;
 	});
 }
 
 function readFriendsDB(uid) {
 	onValue(ref(db, '/friends/' + uid + '/addedFriends/'), (snapshot) => {
-		model.ready = false;
+		reactiveModel.ready = false;
 		const friendsFromDB = snapshot.val();
 		reactiveModel.setFriends(friendsFromDB);
 		if (friendsFromDB && Object.keys(friendsFromDB).length !== 0) {
 			reactiveModel.friends.forEach(findUser);
 		}
-		model.wrote = false;
+		reactiveModel.wrote = false;
 		reactiveModel.loadingFriendsFav = false;
-		model.ready = true;
+		reactiveModel.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/pendingFriends'), (snapshot) => {
-		model.ready = false;
+		reactiveModel.ready = false;
 		const friendRequestsFromDB = snapshot.val();
 		reactiveModel.setFriendRequests(friendRequestsFromDB);
 		if (friendRequestsFromDB && Object.keys(friendRequestsFromDB).length !== 0) {
 			reactiveModel.friendRequests.forEach(findUser);
 		}
-		model.wrote = false;
-		model.ready = true;
+		reactiveModel.wrote = false;
+		reactiveModel.ready = true;
 	});
 	onValue(ref(db, '/friends/' + uid + '/requests'), (snapshot) => {
-		model.ready = false;
+		reactiveModel.ready = false;
 		const requestsFromDB = snapshot.val();
 		reactiveModel.setRequestsFromDb(requestsFromDB);
 		if (requestsFromDB && Object.keys(requestsFromDB).length !== 0) {
 			reactiveModel.sentRequests.forEach(findUser);
 		}
-		model.wrote = false;
-		model.ready = true;
+		reactiveModel.wrote = false;
+		reactiveModel.ready = true;
 	});
 	reactiveModel.loadingFriends = false;
 }
 
 function writeFriendsToDB() {
-	if (model.user && model.ready) {
-		model.ready = false;
-		model.wrote = true;
+	if (reactiveModel.user && reactiveModel.ready) {
+		reactiveModel.ready = false;
+		reactiveModel.wrote = true;
 		if (reactiveModel.friends.length) reactiveModel.friends.forEach(writeAddedFriends);
 		else writeAddedFriends('');
 		if (reactiveModel.friendRequests.length)
@@ -147,7 +147,7 @@ function writeFriendsToDB() {
 		else writePendingFriends('');
 		if (reactiveModel.sentRequests.length) reactiveModel.sentRequests.forEach(writeFriendRequests);
 		else writeFriendRequests('');
-		model.ready = true;
+		reactiveModel.ready = true;
 	}
 }
 

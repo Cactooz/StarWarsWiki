@@ -8,5 +8,12 @@ export default defineConfig({
 		sourcemap: true,
 		minify: false,
 		cssMinify: false,
+		rollupOptions: {
+			output: {
+				assetFileNames: (assetInfo) => {
+					return assetInfo.name;
+				},
+			},
+		},
 	},
 });

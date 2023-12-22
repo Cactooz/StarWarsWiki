@@ -1,6 +1,6 @@
 function MoreDetailsView(props) {
 	return (
-		<div className='more-details'>
+		<section className='more-details'>
 			{props.details?.map((item) => {
 				return (
 					<div key={item.key}>
@@ -9,7 +9,7 @@ function MoreDetailsView(props) {
 					</div>
 				);
 			})}
-		</div>
+		</section>
 	);
 }
 

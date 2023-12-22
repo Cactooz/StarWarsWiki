@@ -82,20 +82,20 @@ p {
 .blocking-div {
 	display: flex;
 	flex-direction: column;
-	padding: 0 $margin 0 $margin;
+	padding: 0 $big-margin 0 $big-margin;
 	height: 100%;
 }
 
 main {
 	flex: 1 0 auto;
-	margin: calc(3rem + 3 * $margin) auto auto auto;
+	margin: calc(3rem + 3 * $big-margin) auto auto auto;
 }
 
 .animation-div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: $margin;
+	gap: $big-margin;
 	max-width: 3000px;
 }
 
@@ -104,11 +104,11 @@ header {
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	gap: calc($margin / 2) $margin;
-	padding: calc($margin / 2) $margin;
+	gap: $small-margin $big-margin;
+	padding: $small-margin $big-margin;
 
 	position: fixed;
-	width: calc(100% - 2 * $margin);
+	width: calc(100% - 2 * $big-margin);
 	z-index: 1;
 	top: 0;
 	left: 0;
@@ -119,12 +119,13 @@ header {
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
-		gap: calc($margin / 2) $margin;
+		gap: $small-margin $big-margin;
 		font-size: 1.5rem;
 
 		a {
 			color: $yellow;
 			text-decoration: none;
+			cursor: pointer;
 
 			transition: all 100ms ease-in-out;
 
@@ -174,7 +175,7 @@ header {
 			background-color: transparent;
 			border: none;
 
-			padding: calc($margin / 2);
+			padding: $small-margin;
 
 			cursor: pointer;
 
@@ -229,7 +230,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	gap: $margin;
+	gap: $big-margin;
 	text-align: center;
 
 	> * {
@@ -306,7 +307,7 @@ header {
 }
 
 .carousel h2 {
-	margin-bottom: calc($margin / 2);
+	margin-bottom: $small-margin;
 	text-align: center;
 }
 
@@ -321,15 +322,15 @@ header {
 	.details {
 		display: flex;
 		flex-direction: column;
-		padding: $margin;
-		gap: calc($margin / 2);
+		padding: $big-margin;
+		gap: $small-margin;
 
 		.details-title {
 			display: flex;
 			flex-direction: row;
 			flex-wrap: wrap;
 			align-items: center;
-			gap: calc($margin / 2);
+			gap: $small-margin;
 			justify-content: center;
 
 			h2,
@@ -386,12 +387,12 @@ header {
 .more-details {
 	background-color: $background-gray;
 	border-radius: $corner-radius;
-	padding: $margin;
+	padding: $big-margin;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
-	gap: $margin;
+	gap: $big-margin;
 	color: $white;
 
 	h4,
@@ -405,20 +406,38 @@ header {
 	}
 }
 
+.not-signed-in {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: $big-margin;
+
+	a {
+		color: $yellow;
+		cursor: pointer;
+		font-size: 1.5rem;
+		text-decoration: none;
+
+		&:hover {
+			transform: scale(0.9);
+		}
+	}
+}
+
 .profile-view {
 	display: grid;
-	gap: $margin;
+	gap: $big-margin;
 
 	.profile {
 		display: flex;
 		flex-direction: column;
-		gap: calc($margin / 2);
+		gap: $small-margin;
 
 		align-items: center;
 
 		.profile-title {
 			display: flex;
-			gap: calc($margin / 2);
+			gap: $small-margin;
 			align-items: baseline;
 
 			button {
@@ -430,8 +449,8 @@ header {
 
 			svg {
 				fill: $yellow;
-				height: calc($margin / 2);
-				width: calc($margin / 2);
+				height: $small-margin;
+				width: $small-margin;
 				transition: all 100ms ease-in-out;
 
 				&:hover {
@@ -443,7 +462,7 @@ header {
 		.favorites {
 			display: flex;
 			flex-direction: column;
-			gap: calc($margin / 2);
+			gap: $small-margin;
 			align-items: center;
 		}
 	}
@@ -452,13 +471,20 @@ header {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: calc($margin / 2);
+		gap: $small-margin;
 		align-self: flex-start;
 		background-color: $background-gray;
 		color: $white;
 
-		padding: $margin;
+		padding: $big-margin;
 		border-radius: $corner-radius;
+
+		> *:first-child {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			gap: $small-margin;
+		}
 
 		button {
 			background-color: transparent;
@@ -476,8 +502,8 @@ header {
 		}
 
 		svg {
-			height: calc($margin / 2);
-			width: calc($margin / 2);
+			height: $small-margin;
+			width: $small-margin;
 			transition: all 100ms ease-in-out;
 
 			&:hover {
@@ -490,22 +516,28 @@ header {
 			font-weight: 400;
 		}
 
-		table {
+		section {
 			width: 100%;
-			tr {
-				.button {
-					width: calc($margin / 2);
-				}
-				a {
-					color: $white;
-					text-decoration: none;
-					cursor: pointer;
-					display: inline-block;
+			text-align: center;
 
-					transition: all 100ms ease-in-out;
+			table {
+				width: 100%;
+				text-align: left;
+				tr {
+					.button {
+						width: $small-margin;
+					}
+					a {
+						color: $white;
+						text-decoration: none;
+						cursor: pointer;
+						display: inline-block;
 
-					&:hover {
-						transform: scale(0.9);
+						transition: all 100ms ease-in-out;
+
+						&:hover {
+							transform: scale(0.9);
+						}
 					}
 				}
 			}
@@ -513,7 +545,7 @@ header {
 
 		input,
 		.id-button {
-			height: $margin;
+			height: $big-margin;
 			width: 15rem;
 			border-radius: $corner-radius;
 			text-align: center;
@@ -539,7 +571,7 @@ header {
 
 footer {
 	flex-shrink: 0;
-	padding: $margin;
+	padding: $big-margin;
 	text-align: center;
 	color: $white;
 	font-weight: 300;

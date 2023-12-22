@@ -35,5 +35,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 
 persistence(reactiveModel);
-
-window.model = reactiveModel;

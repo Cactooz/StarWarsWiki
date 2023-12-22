@@ -7,7 +7,7 @@ export default function LandingPageView(props) {
 				<h1>STAR WARS</h1>
 				<h2>WIKI</h2>
 			</div>
-			<div className='cards-container landing-page'>
+			<section className='cards-container landing-page'>
 				<LandingCard
 					text='CHARACTERS'
 					image='https://lumiere-a.akamaihd.net/v1/images/Yoda-Retina_2a7ecc26.jpeg'
@@ -29,7 +29,7 @@ export default function LandingPageView(props) {
 					linkTo='/locations'
 					inAnimation={props.inAnimation}
 				/>
-			</div>
+			</section>
 		</>
 	);
 }

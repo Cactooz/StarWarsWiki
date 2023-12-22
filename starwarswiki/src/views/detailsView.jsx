@@ -20,7 +20,7 @@ function DetailsView(props) {
 	const object = { id: props.id, name: props.name, image: props.image, path: '/' + props.path };
 
 	return (
-		<div className='details-container'>
+		<section className='details-container'>
 			<img src={props.image} alt={props.name} />
 			<div className='details'>
 				<div className='details-title'>
@@ -48,7 +48,7 @@ function DetailsView(props) {
 				</div>
 				<p>{props.details}</p>
 			</div>
-		</div>
+		</section>
 	);
 }
 

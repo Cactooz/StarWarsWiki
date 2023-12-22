@@ -3,7 +3,7 @@
 .embla {
 	overflow: hidden;
 	width: 100%;
-	padding-bottom: $margin;
+	padding-bottom: $big-margin;
 	position: relative;
 	text-align: center;
 
@@ -25,7 +25,7 @@
 		background-color: transparent;
 		border: none;
 		position: absolute;
-		top: calc(50% - 1.5 * $margin);
+		top: calc(50% - 1.5 * $big-margin);
 		cursor: pointer;
 
 		&.embla-prev {
@@ -38,8 +38,8 @@
 
 		svg {
 			fill: $yellow;
-			height: calc(2 * $margin);
-			width: calc(2 * $margin);
+			height: calc(2 * $big-margin);
+			width: calc(2 * $big-margin);
 			stroke: black;
 			stroke-width: 8px;
 
@@ -56,7 +56,7 @@
 	flex: 0 0 70%;
 	position: relative;
 	overflow: hidden;
-	margin-left: $margin;
+	margin-left: $big-margin;
 	border-radius: $corner-radius;
 	box-shadow: $yellow-glow;
 
@@ -118,11 +118,11 @@
 		position: absolute;
 
 		&.embla-prev {
-			left: calc($margin * 4);
+			left: calc($big-margin * 4);
 		}
 
 		&.embla-next {
-			right: calc($margin * 4);
+			right: calc($big-margin * 4);
 		}
 	}
 }
