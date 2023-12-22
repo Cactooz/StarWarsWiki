@@ -4,16 +4,17 @@ import SearchBarView from '../views/searchBarView';
 import NavbarView from '../views/navbarView';
 import { observer } from 'mobx-react-lite';
 import HamburgerView from '../views/hamburgerView';
-import { useState } from 'react';
 
 export default observer(function HeaderPresenter(props) {
 	const navigate = useNavigate();
 
 	function updateData() {
+		props.model.setSearchString('');
 		props.model.unSetCurrentBrowse();
 	}
-	function handleOnClick(event) {
-		updateData(event.target.innerText.toLowerCase());
+
+	function handleOnClick() {
+		updateData();
 		props.model.setMenuOpen(!props.model.menuOpen);
 	}
 
@@ -26,6 +27,7 @@ export default observer(function HeaderPresenter(props) {
 	}
 
 	function handleSearchSelect(item) {
+		document.activeElement.blur();
 		let name = item.name.replaceAll('/', '%2F').replaceAll('.', '%2E');
 		props.model.unSetCurrentDetails();
 		navigate('/' + item.type + '/' + name);
@@ -33,6 +35,7 @@ export default observer(function HeaderPresenter(props) {
 
 	async function handleFormSubmit(event) {
 		event.preventDefault(); //Stop page from refreshing
+		document.activeElement.blur();
 		navigate('/search/' + props.model.searchString);
 		await props.model.setSearchResults();
 	}
@@ -58,6 +61,7 @@ export default observer(function HeaderPresenter(props) {
 				isOpen={props.model.menuOpen}
 			/>
 			<SearchBarView
+				searchString={props.model.searchString}
 				handleSearchSelect={handleSearchSelect}
 				handleFormSubmit={handleFormSubmit}
 				handleOnSearch={handleOnSearch}
