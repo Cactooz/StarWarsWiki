@@ -10,19 +10,25 @@ export default function NavbarView(props) {
 
 	return (
 		<nav id='nav'>
-			<Link to='/' replace={props.inAnimation ? true : false}>
-				<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
-			</Link>
-			<Link to='/characters' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
-				<p>Characters</p>
-			</Link>
-			<Link to='/vehicles' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
-				<p>Vehicles</p>
-			</Link>
-			<Link to='/locations' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
-				<p>Locations</p>
-			</Link>
-			{props.user ? <GoToProfile inAnimation={props.inAnimation} /> : <SignInButton />}
+			{props.page === '/' ?
+				<span><img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat'
+				           className='active' /></span> :
+				<Link to='/' replace={props.inAnimation ? true : false}>
+					<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
+				</Link>}
+			{props.page === '/characters' ? <p className='active'>Characters</p> :
+				<Link to='/characters' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
+					<p>Characters</p>
+				</Link>}
+			{props.page === '/vehicles' ? <p className='active'>Vehicles</p> :
+				<Link to='/vehicles' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
+					<p>Vehicles</p>
+				</Link>}
+			{props.page === '/locations' ? <p className='active'>Locations</p> :
+				<Link to='/locations' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
+					<p>Locations</p>
+				</Link>}
+			{props.user ? <GoToProfile inAnimation={props.inAnimation} page={props.page} /> : <SignInButton />}
 		</nav>
 	);
 }
