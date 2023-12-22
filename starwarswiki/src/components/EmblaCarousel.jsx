@@ -30,7 +30,7 @@ export function EmblaCarousel(props) {
 						<LandingCard
 							text={item.name}
 							image={item.image}
-							altText={item.name}
+							altText=''
 							linkTo={`${item.path}/${item.name.replaceAll('/', '%2F').replaceAll('.', '%2E')}`}
 							inAnimation={props.inAnimation}
 						/>
