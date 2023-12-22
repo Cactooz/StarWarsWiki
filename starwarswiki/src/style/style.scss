@@ -88,7 +88,7 @@ p {
 
 main {
 	flex: 1 0 auto;
-	margin: calc(3rem + 3 * $big-margin) auto auto auto;
+	margin: calc(1.5rem + 5 * $small-margin) auto auto auto;
 }
 
 .animation-div {
@@ -625,5 +625,11 @@ footer {
 
 	.profile-view {
 		grid-template-columns: 3fr 1fr;
+	}
+}
+
+@media screen and (min-width: 77.64rem) {
+	main {
+		margin: calc(1.5rem + $big-margin) auto auto auto;
 	}
 }
