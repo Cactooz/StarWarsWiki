@@ -3,7 +3,8 @@ $black: #000000;
 $white: #ffffff;
 $background-gray: rgba(30, 32, 35, 0.9);
 
-$margin: 40px;
+$big-margin: 40px;
+$small-margin: calc($big-margin / 2);
 
 $yellow-glow: 0px 4px 8px 0px rgba($yellow, 0.5);
 $no-glow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
