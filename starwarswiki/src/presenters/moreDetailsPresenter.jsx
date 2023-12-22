@@ -83,7 +83,12 @@ export default observer(function MoreDetails(props) {
 	} else {
 		return (
 			<MoreDetailsView
-				details={[{ key: "'Your eyes can deceive you; don't trust them.'", value: '' }]}
+				details={[
+					{
+						key: "'Your eyes can deceive you; don't trust them.'",
+						value: 'No more details could be found.',
+					},
+				]}
 			/>
 		);
 	}
