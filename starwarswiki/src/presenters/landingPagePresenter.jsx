@@ -23,14 +23,17 @@ export default observer(function LandingPagePresenter(props) {
 	});
 
 	return (
-		<>
+		<div className='landing-container'>
 			<LandingPageView inAnimation={props.model.inAnimation} />
-			<EmblaCarousel
-				data={carouselData}
-				loadingData={props.model.carouselLoading}
-				dataLoaded={props.model.carouselDataLoaded}
-				getData={getCarouselData}
-			/>
-		</>
+			<section>
+				<h2>Recomendations</h2>
+				<EmblaCarousel
+					data={carouselData}
+					loadingData={props.model.carouselLoading}
+					dataLoaded={props.model.carouselDataLoaded}
+					getData={getCarouselData}
+				/>
+			</section>
+		</div>
 	);
 });
