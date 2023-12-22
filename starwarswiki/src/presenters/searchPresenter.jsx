@@ -4,6 +4,7 @@ import BrowseView from '../views/browseView';
 import HeaderPresenter from './headerPresenter';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
+import NoResultsView from '../views/noResultsView';
 
 export default observer(function SearchPresenter(props) {
 	useEffect(() => {
@@ -34,13 +35,7 @@ export default observer(function SearchPresenter(props) {
 					path={location.pathname}
 				/>
 			);
-		else if (searchReady)
-			return (
-				<>
-					<h2>No results</h2>
-					<h3>Please try again by typing in the search box</h3>
-				</>
-			);
+		else if (searchReady) return <NoResultsView />;
 		else return <Vortex />;
 	}
 	return <>{render(props.model.searchReady)}</>;
