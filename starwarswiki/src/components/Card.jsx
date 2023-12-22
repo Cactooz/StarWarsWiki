@@ -22,7 +22,7 @@ export default function (card) {
 	return (
 		<div className='browse-card'>
 			<Link to={linkTo} replace={card.inAnimation ? true : false}>
-				<img src={card.image} alt={card.name} />
+				<img src={card.image} />
 				<p>{card.name}</p>
 			</Link>
 			{card.auth ? (
