@@ -2,7 +2,10 @@
 
 .embla {
 	overflow: hidden;
-	width: 100vw;
+	width: 100%;
+	padding-bottom: $margin;
+	position: relative;
+
 	mask-image: linear-gradient(
 		to right,
 		rgba(0, 0, 0, 0),
@@ -11,20 +14,17 @@
 		rgba(0, 0, 0, 0) 100%
 	);
 
-	position: relative;
-
 	.embla-container {
 		backface-visibility: hidden;
 		display: flex;
 		touch-action: pan-y;
-		height: 520px;
 	}
 
 	button {
 		background-color: transparent;
 		border: none;
 		position: absolute;
-		top: calc(50% - $margin);
+		top: calc(50% - 1.5 * $margin);
 
 		&.embla-prev {
 			left: 0px;
@@ -51,22 +51,41 @@
 }
 
 .embla-slide {
-	flex: 0 0 100%;
+	flex: 0 0 70%;
 	position: relative;
 	overflow: hidden;
 	margin-left: $margin;
+	border-radius: $corner-radius;
+	box-shadow: $yellow-glow;
 
-	img {
-		height: 100%;
-		width: 100%;
-		object-fit: cover;
-		object-position: center center;
+	> * {
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		p {
+			font-size: 1.5rem;
+			position: absolute;
+			color: $black;
+			text-shadow: $yellow-stroke-ie;
+			text-transform: capitalize;
+			text-align: center;
+		}
+
+		img {
+			width: 100%;
+			aspect-ratio: 16/9;
+			object-fit: cover;
+			filter: $black-overlay;
+		}
 	}
 }
 
 @media only screen and (min-width: $big-screen) {
 	.embla-slide {
-		flex: 0 0 60%;
+		flex: 0 0 25%;
 	}
 
 	.embla button {
