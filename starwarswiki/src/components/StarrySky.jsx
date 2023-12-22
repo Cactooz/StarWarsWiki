@@ -1,7 +1,7 @@
 import React from 'react';
 import anime from 'animejs/lib/anime.es.js';
 
-// Twinkling Night Sky by Sharna
+// Twinkling Night Sky by Sharna. Modified by William Hedenskog and Hugo Bachér
 
 class StarrySky extends React.Component {
 	state = {
@@ -54,7 +54,7 @@ class StarrySky extends React.Component {
 	};
 
 	randomRadius = () => {
-		return Math.random() + 1;
+		return Math.random() + 3;
 	};
 
 	getRandomX = () => {
@@ -77,10 +77,29 @@ class StarrySky extends React.Component {
 
 	render() {
 		const { num } = this.state;
-		const color = ['#f1caca', '#fff8bd', '#bbf3ff'];
+		const color = ['red', 'blue', 'yellow'];
 		return (
 			<div id='App'>
 				<svg id='sky'>
+					<defs>
+						<radialGradient id='red'>
+							<stop offset='20%' stopColor='#f1caca' />
+							<stop offset='100%' stopColor='transparent' />
+						</radialGradient>
+					</defs>
+					<defs>
+						<radialGradient id='yellow'>
+							<stop offset='20%' stopColor='#fff8bd' />
+							<stop offset='100%' stopColor='transparent' />
+						</radialGradient>
+					</defs>
+					<defs>
+						<radialGradient id='blue'>
+							<stop offset='20%' stopColor='#bbf3ff' />
+							<stop offset='100%' stopColor='transparent' />
+						</radialGradient>
+					</defs>
+
 					{[...Array(num)].map((x, y) => (
 						<circle
 							cx={this.getRandomX()}
@@ -88,7 +107,7 @@ class StarrySky extends React.Component {
 							r={this.randomRadius()}
 							stroke='none'
 							strokeWidth='0'
-							fill={`${color[Math.floor(Math.random() * 3)]}`}
+							fill={`url(#${color[Math.floor(Math.random() * 3)]})`}
 							key={y}
 							className='star'
 						/>
