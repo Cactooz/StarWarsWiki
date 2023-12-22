@@ -204,7 +204,7 @@ header {
 .landing-page {
 	> * {
 		p {
-			font-size: 2rem;
+			font-size: clamp(1rem, 10vw, 2.5rem);
 		}
 	}
 }
@@ -597,6 +597,9 @@ footer {
 		flex-wrap: nowrap;
 		> * {
 			width: clamp(320px, 32%, 1200px);
+			p {
+				font-size: clamp(1rem, 4vw, 3rem);
+			}
 		}
 	}
 
