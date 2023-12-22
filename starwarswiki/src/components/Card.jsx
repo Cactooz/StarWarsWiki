@@ -20,7 +20,7 @@ export default function (card) {
 	}
 	let linkTo = card.path + '/' + card.name.replaceAll('/', '%2F');
 	return (
-		<div className='browse-card'>
+		<section className='browse-card'>
 			<Link to={linkTo} replace={card.inAnimation ? true : false}>
 				<img src={card.image} />
 				<p>{card.name}</p>
@@ -42,6 +42,6 @@ export default function (card) {
 					</button>
 				</>
 			)}
-		</div>
+		</section>
 	);
 }
