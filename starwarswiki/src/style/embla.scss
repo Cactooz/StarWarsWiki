@@ -26,6 +26,7 @@
 		border: none;
 		position: absolute;
 		top: calc(50% - 1.5 * $margin);
+		cursor: pointer;
 
 		&.embla-prev {
 			left: 0px;
@@ -93,6 +94,7 @@
 			color: $black;
 			text-shadow: $yellow-stroke-ie;
 			text-transform: capitalize;
+			cursor: pointer;
 		}
 
 		img {
