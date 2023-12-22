@@ -133,7 +133,10 @@ export default {
 				let current = await this.addBrowseResult(string)
 				if (current.data && current.info) {
 					info = current.info;
-					data = [...data, ...current.data];
+					if (data)
+						data = [...data, ...current.data];
+					else
+						data = current.data;
 				} else {
 					this.isLoading = false;
 					return;
