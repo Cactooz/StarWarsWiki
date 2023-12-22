@@ -97,11 +97,11 @@ header {
 		justify-content: center;
 		align-items: center;
 		gap: calc($margin / 2) $margin;
+		font-size: 1.5rem;
 
 		a {
 			color: $yellow;
 			text-decoration: none;
-			font-size: 1.5rem;
 			cursor: pointer;
 
 			transition: all 100ms ease-in-out;
@@ -109,6 +109,9 @@ header {
 			&:hover {
 				transform: scale(0.9);
 			}
+		}
+		.active {
+			text-decoration: underline;
 		}
 
 		img {
