@@ -127,31 +127,18 @@ export default {
 	async addMoreData() {
 		this.isLoading = true;
 		let { data, info } = [];
-		let string1 = this.browseResult?.info?.next?.replace('/api/v1/', '');
-		if (string1) {
-			const first = await this.addBrowseResult(string1);
-			if (first.data && first.info) {
-				info = first.info;
-				data = first.data;
-			}
-		} else {
-			this.isLoading = false;
-			return;
-		}
-		let string2 = info?.next?.replace('/api/v1/', '');
-		if (string2) {
-			const second = await this.addBrowseResult(string2);
-			if (second.data && second.info) {
-				info = second.info;
-				data = [...data, ...second.data];
-			}
-		}
-		let string3 = info?.next?.replace('/api/v1/', '');
-		if (string3) {
-			const third = await this.addBrowseResult(string3);
-			if (third.data && third.info) {
-				info = third.info;
-				data = [...data, ...third.data];
+		let string = this.browseResult?.info?.next?.replace('/api/v1/', '');
+		for (let i = 0; i < 3; i++) {
+			if (string) {
+				let current = await this.addBrowseResult(string)
+				if (current.data && current.info) {
+					info = current.info;
+					data = [...data, ...current.data];
+				} else {
+					this.isLoading = false;
+					return;
+				}
+				string = info?.next?.replace('/api/v1/', '');
 			}
 		}
 		if (data && info) {
