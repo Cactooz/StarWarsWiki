@@ -17,10 +17,6 @@ const app = initializeApp({
 
 const db = getDatabase(app);
 
-export default function readFirebase(path) {
-	return get(ref(db, path));
-}
-
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
 	prompt: 'select_account',
@@ -66,7 +62,7 @@ export function persistence(model) {
 
 	function updateFriends() {
 		writeFriendsToDB();
-		reactiveModel.friends.map(readFriendFavFromDB);
+		reactiveModel.friends.forEach(readFriendFavFromDB);
 	}
 }
 
@@ -111,7 +107,7 @@ function readFriendsDB(uid) {
 		const friendsFromDB = snapshot.val();
 		reactiveModel.setFriends(friendsFromDB);
 		if (friendsFromDB && Object.keys(friendsFromDB).length !== 0) {
-			reactiveModel.friends.map(findUser);
+			reactiveModel.friends.forEach(findUser);
 		}
 		model.wrote = false;
 		reactiveModel.loadingFriendsFav = false;
@@ -122,7 +118,7 @@ function readFriendsDB(uid) {
 		const friendRequestsFromDB = snapshot.val();
 		reactiveModel.setFriendRequests(friendRequestsFromDB);
 		if (friendRequestsFromDB && Object.keys(friendRequestsFromDB).length !== 0) {
-			reactiveModel.friendRequests.map(findUser);
+			reactiveModel.friendRequests.forEach(findUser);
 		}
 		model.wrote = false;
 		model.ready = true;
@@ -132,7 +128,7 @@ function readFriendsDB(uid) {
 		const requestsFromDB = snapshot.val();
 		reactiveModel.setRequestsFromDb(requestsFromDB);
 		if (requestsFromDB && Object.keys(requestsFromDB).length !== 0) {
-			reactiveModel.sentRequests.map(findUser);
+			reactiveModel.sentRequests.forEach(findUser);
 		}
 		model.wrote = false;
 		model.ready = true;
@@ -140,20 +136,16 @@ function readFriendsDB(uid) {
 	reactiveModel.loadingFriends = false;
 }
 
-function parseFriends(friends) {
-	if (!friends) return '';
-	else return friends;
-}
-
 function writeFriendsToDB() {
 	if (model.user && model.ready) {
 		model.ready = false;
 		model.wrote = true;
-		if (reactiveModel.friends.length) reactiveModel.friends.map(writeAddedFriends);
+		if (reactiveModel.friends.length) reactiveModel.friends.forEach(writeAddedFriends);
 		else writeAddedFriends('');
-		if (reactiveModel.friendRequests.length) reactiveModel.friendRequests.map(writePendingFriends);
+		if (reactiveModel.friendRequests.length)
+			reactiveModel.friendRequests.forEach(writePendingFriends);
 		else writePendingFriends('');
-		if (reactiveModel.sentRequests.length) reactiveModel.sentRequests.map(writeFriendRequests);
+		if (reactiveModel.sentRequests.length) reactiveModel.sentRequests.forEach(writeFriendRequests);
 		else writeFriendRequests('');
 		model.ready = true;
 	}
@@ -200,45 +192,31 @@ export function removeRequest(uid) {
 }
 
 export async function getPreview() {
+	let index = 0;
+	const data = [];
+
+	async function fetch(dbData, dbPath, maxAmount) {
+		while (true) {
+			const path = dbPath + '/' + Object.keys(dbData)[Math.floor(Math.random() * maxAmount)];
+			await fetchSWDatabank(path, {}, path);
+			const { name, image } = queryClient.getQueryData(path);
+			if (!data.some((item) => item.name === name)) {
+				data[index++] = { name: name, image: image, path: dbPath };
+				break;
+			}
+		}
+	}
+
 	await get(ref(db, '/apiHash/')).then(async (snapshot) => {
 		const chars = snapshot.val().characters;
 		const vehicles = snapshot.val().vehicles;
 		const locations = snapshot.val().locations;
-		const data = [];
-		let index = 0;
 		for (let i = 0; i < 3; i++) {
-			let path = 'characters/' + Object.keys(chars)[Math.floor(Math.random() * 26)];
-			await fetchSWDatabank(path, {}, path);
-			const { name, image } = queryClient.getQueryData(path);
-			if (data.some((item) => item.name === name)) {
-				i--;
-				continue;
-			} else {
-				data[index++] = { name: name, image: image, path: 'characters' };
-			}
+			await fetch(chars, 'characters', 26);
+			await fetch(vehicles, 'vehicles', 23);
+			await fetch(locations, 'locations', 23);
 		}
-		for (let i = 0; i < 3; i++) {
-			let path = 'vehicles/' + Object.keys(vehicles)[Math.floor(Math.random() * 23)];
-			await fetchSWDatabank(path, {}, path);
-			const { name, image } = queryClient.getQueryData(path);
-			if (data.some((item) => item.name === name)) {
-				i--;
-				continue;
-			} else {
-				data[index++] = { name: name, image: image, path: 'vehicles' };
-			}
-		}
-		for (let i = 0; i < 3; i++) {
-			let path = 'locations/' + Object.keys(locations)[Math.floor(Math.random() * 23)];
-			await fetchSWDatabank(path, {}, path);
-			const { name, image } = queryClient.getQueryData(path);
-			if (data.some((item) => item.name === name)) {
-				i--;
-				continue;
-			} else {
-				data[index++] = { name: name, image: image, path: 'locations' };
-			}
-		}
+
 		reactiveModel.setCarouselData(data);
 	});
 }
