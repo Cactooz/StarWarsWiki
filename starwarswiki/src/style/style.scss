@@ -91,6 +91,7 @@ main {
 .animation-div {
 	margin: calc(3rem + 3 * $margin) auto auto auto;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	max-width: 3000px;
 }
