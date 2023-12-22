@@ -25,16 +25,16 @@ export default function HamburgerView(props) {
 				onStateChange={isMenuOpen}
 				right
 			>
-				{props.page === '/characters' ? <p className='currentPage'>Characters</p> :
+				{props.page === '/characters' ? <p className='current-page'>Characters</p> :
 					<Link to='/characters' onClick={props.handleOnClick}>
 						<p>Characters</p>
 					</Link>}
-				{props.page === '/vehicles' ? <p className='currentPage'>Vehicles</p> :
+				{props.page === '/vehicles' ? <p className='current-page'>Vehicles</p> :
 					<Link to='/vehicles' onClick={props.handleOnClick}>
 						<p>Vehicles</p>
 					</Link>}
 
-				{props.page === '/locations' ? <p className='currentPage'>Locations</p> :
+				{props.page === '/locations' ? <p className='current-page'>Locations</p> :
 					<Link to='/locations' onClick={props.handleOnClick}>
 						<p>Locations</p>
 					</Link>}
