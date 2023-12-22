@@ -92,8 +92,9 @@ main {
 
 .animation-div {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: $margin;
 	max-width: 3000px;
 }
 
@@ -303,15 +304,9 @@ header {
 	}
 }
 
-.landing-container {
-	display: flex;
-	flex-direction: column;
-	gap: $margin;
+section h2 {
+	margin-bottom: calc($margin / 2);
 	text-align: center;
-
-	section h2 {
-		margin-bottom: calc($margin / 2);
-	}
 }
 
 .details-container {
@@ -391,7 +386,6 @@ header {
 	background-color: $background-gray;
 	border-radius: $corner-radius;
 	padding: $margin;
-	margin-top: $margin;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;

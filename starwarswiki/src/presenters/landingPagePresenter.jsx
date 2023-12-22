@@ -23,7 +23,7 @@ export default observer(function LandingPagePresenter(props) {
 	});
 
 	return (
-		<div className='landing-container'>
+		<>
 			<LandingPageView inAnimation={props.model.inAnimation} />
 			<section>
 				<h2>Recommendations</h2>
@@ -34,6 +34,6 @@ export default observer(function LandingPagePresenter(props) {
 					getData={getCarouselData}
 				/>
 			</section>
-		</div>
+		</>
 	);
 });
