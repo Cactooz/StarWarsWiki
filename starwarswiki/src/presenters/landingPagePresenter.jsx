@@ -23,9 +23,9 @@ export default observer(function LandingPagePresenter(props) {
 	});
 
 	return (
-		<div className='landing-container'>
+		<>
 			<LandingPageView inAnimation={props.model.inAnimation} />
-			<section>
+			<section className='carousel'>
 				<h2>Recommendations</h2>
 				<EmblaCarousel
 					data={carouselData}
@@ -34,6 +34,6 @@ export default observer(function LandingPagePresenter(props) {
 					getData={getCarouselData}
 				/>
 			</section>
-		</div>
+		</>
 	);
 });

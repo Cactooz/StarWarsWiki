@@ -13,11 +13,17 @@ export default function HamburgerView(props) {
 
 	return (
 		<div className='burger-navbar'>
-			{props.page === '/' ?
-				<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' className='active' /> :
+			{props.page === '/' ? (
+				<img
+					src={Logo}
+					alt='Star Wars Wiki logo of green Yoda with red Christmas hat'
+					className='active'
+				/>
+			) : (
 				<Link to='/'>
 					<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
-				</Link>}
+				</Link>
+			)}
 
 			<Menu
 				isOpen={props.isOpen}
@@ -26,21 +32,34 @@ export default function HamburgerView(props) {
 				onStateChange={isMenuOpen}
 				right
 			>
-				{props.page === '/characters' ? <p className='active'>Characters</p> :
+				{props.page === '/characters' ? (
+					<p className='active'>Characters</p>
+				) : (
 					<Link to='/characters' onClick={props.handleOnClick}>
-						<p>Characters</p>
-					</Link>}
-				{props.page === '/vehicles' ? <p className='active'>Vehicles</p> :
+						Characters
+					</Link>
+				)}
+				{props.page === '/vehicles' ? (
+					<p className='active'>Vehicles</p>
+				) : (
 					<Link to='/vehicles' onClick={props.handleOnClick}>
-						<p>Vehicles</p>
-					</Link>}
+						Vehicles
+					</Link>
+				)}
 
-				{props.page === '/locations' ? <p className='active'>Locations</p> :
+				{props.page === '/locations' ? (
+					<p className='active'>Locations</p>
+				) : (
 					<Link to='/locations' onClick={props.handleOnClick}>
-						<p>Locations</p>
-					</Link>}
+						Locations
+					</Link>
+				)}
 				{props.user ? (
-					<GoToProfile inAnimation={props.inAnimation} onClickHandler={props.handleOnClick} page={props.page} />
+					<GoToProfile
+						inAnimation={props.inAnimation}
+						onClickHandler={props.handleOnClick}
+						page={props.page}
+					/>
 				) : (
 					<SignInButton />
 				)}

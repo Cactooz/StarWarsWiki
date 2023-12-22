@@ -4,6 +4,7 @@ html,
 body,
 #root {
 	height: 100%;
+	overscroll-behavior: none;
 }
 
 body {
@@ -75,6 +76,7 @@ h3,
 h4,
 p {
 	margin: 0;
+	cursor: default;
 }
 
 .blocking-div {
@@ -86,12 +88,14 @@ p {
 
 main {
 	flex: 1 0 auto;
+	margin: calc(3rem + 3 * $margin) auto auto auto;
 }
 
 .animation-div {
-	margin: calc(3rem + 3 * $margin) auto auto auto;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	gap: $margin;
 	max-width: 3000px;
 }
 
@@ -121,7 +125,6 @@ header {
 		a {
 			color: $yellow;
 			text-decoration: none;
-			cursor: pointer;
 
 			transition: all 100ms ease-in-out;
 
@@ -297,19 +300,14 @@ header {
 			color: $black;
 			text-shadow: $yellow-stroke-ie;
 			text-transform: capitalize;
+			cursor: pointer;
 		}
 	}
 }
 
-.landing-container {
-	display: flex;
-	flex-direction: column;
-	gap: $margin;
+.carousel h2 {
+	margin-bottom: calc($margin / 2);
 	text-align: center;
-
-	section h2 {
-		margin-bottom: calc($margin / 2);
-	}
 }
 
 .details-container {
@@ -389,7 +387,6 @@ header {
 	background-color: $background-gray;
 	border-radius: $corner-radius;
 	padding: $margin;
-	margin-top: $margin;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;

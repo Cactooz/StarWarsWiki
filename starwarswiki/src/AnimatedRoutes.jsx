@@ -28,7 +28,6 @@ export default function AnimatedRoutes(props) {
 					onAnimationStart={() => props.model.setInAnimation(true)}
 					onAnimationComplete={() => props.model.setInAnimation(false)}
 					className='animation-div'
-					id='main'
 				>
 					{originalComponent}
 				</motion.div>
@@ -44,7 +43,7 @@ export default function AnimatedRoutes(props) {
 	return (
 		<>
 			<HeaderPresenter model={props.model} />
-			<main>
+			<main id='main'>
 				<AnimatePresence mode='wait'>
 					<Routes location={location} key={location.key}>
 						<Route index element={transition(<LandingPagePresenter model={props.model} />)} />
