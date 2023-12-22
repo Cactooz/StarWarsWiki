@@ -33,7 +33,7 @@
 	> * {
 		text-align: center;
 		width: 100%;
-		&:hover:not(.active), .active {
+		&:hover:not(.active) {
 			transform: scale(0.9);
 		}
 	}
