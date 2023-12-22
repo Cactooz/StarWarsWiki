@@ -77,14 +77,22 @@ p {
 	margin: 0;
 }
 
-#root {
+.blocking-div {
 	display: flex;
 	flex-direction: column;
 	padding: 0 $margin 0 $margin;
+	height: 100%;
+}
 
-	> *:not(header):not(footer) {
-		flex: 1 0 auto;
-	}
+main {
+	flex: 1 0 auto;
+}
+
+.animation-div {
+	margin: calc(3rem + 3 * $margin) auto auto auto;
+	display: flex;
+	justify-content: center;
+	max-width: 3000px;
 }
 
 header {
@@ -131,13 +139,6 @@ header {
 	form {
 		width: clamp(200px, 100%, 500px);
 	}
-}
-
-main {
-	margin: calc(3rem + 3 * $margin) auto auto auto;
-	display: flex;
-	justify-content: center;
-	max-width: 3000px;
 }
 
 .vortex-wrapper {
