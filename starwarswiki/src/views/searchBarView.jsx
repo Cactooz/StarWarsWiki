@@ -4,6 +4,7 @@ export default function SearchBarView(props) {
 	return (
 		<form onSubmit={props.handleFormSubmit}>
 			<ReactSearchAutocomplete
+				inputSearchString={props.searchString}
 				items={props.items}
 				onSelect={props.handleSearchSelect}
 				onSearch={props.handleOnSearch}
