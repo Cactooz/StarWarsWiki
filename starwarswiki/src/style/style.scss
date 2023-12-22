@@ -39,6 +39,7 @@ body {
 	position: fixed;
 	overflow: hidden;
 	transform: translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%)) rotate(120deg);
+	filter: blur(0.5px);
 }
 
 .wish {
@@ -53,6 +54,7 @@ body {
 	position: absolute;
 	background: linear-gradient(-45deg, white, rgba(0, 0, 255, 0));
 	filter: drop-shadow(0 0 6px white);
+	filter: blur(0.5px);
 	overflow: hidden;
 }
 
