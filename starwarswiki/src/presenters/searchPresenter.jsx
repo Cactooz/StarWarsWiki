@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 export default observer(function SearchPresenter(props) {
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		props.model.setSearchString('');
 	}, []);
 
 	function doAddACB(card) {
@@ -33,7 +34,13 @@ export default observer(function SearchPresenter(props) {
 					path={location.pathname}
 				/>
 			);
-		else if (searchReady) return <h2>No results</h2>;
+		else if (searchReady)
+			return (
+				<>
+					<h2>No results</h2>
+					<h3>Please try again by typing in the search box</h3>
+				</>
+			);
 		else return <Vortex />;
 	}
 	return <>{render(props.model.searchReady)}</>;

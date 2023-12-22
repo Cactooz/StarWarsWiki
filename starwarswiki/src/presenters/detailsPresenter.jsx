@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 export default observer(function Details(props) {
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		props.model.setSearchString('');
 	}, []);
 
 	function addFavoriteACB(object) {
