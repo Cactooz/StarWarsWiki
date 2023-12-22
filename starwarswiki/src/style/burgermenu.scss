@@ -2,8 +2,8 @@
 
 .bm-burger-button {
 	position: sticky;
-	width: $margin;
-	height: $margin;
+	width: $big-margin;
+	height: $big-margin;
 }
 
 .bm-burger-bars {
@@ -42,7 +42,7 @@
 .burger-navbar {
 	display: flex;
 	justify-content: space-between;
-	gap: $margin;
+	gap: $big-margin;
 	width: 100%;
 	img {
 		width: 2.5rem;

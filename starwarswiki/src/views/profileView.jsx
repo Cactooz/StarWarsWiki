@@ -1,13 +1,15 @@
 import SignOutButton from '../components/SignOutButton.jsx';
+import SignInButton from '../components/SignInButton.jsx';
 import { Link } from 'react-router-dom';
 
 export default function ProfileView(props) {
 	if (props.user === undefined) {
 		return (
-			<section className='profile-title'>
-				<h2>You are not logged in. Sign in above.</h2>
-				<Link to={'/'} replace={props.inAnimation ? true : false}>
-					<h2>Return to home!</h2>
+			<section className='not-signed-in'>
+				<h2>You are not logged in.</h2>
+				<SignInButton />
+				<Link to={'/'} replace={props.inAnimation}>
+					Return to home
 				</Link>
 			</section>
 		);

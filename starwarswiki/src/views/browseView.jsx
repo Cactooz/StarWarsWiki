@@ -16,7 +16,9 @@ export default function browseView(props) {
 		toast.info('Sign in to add items to your favorites!');
 	}
 
-	return <div className='cards-container browse-page'>{props.browseResult.map(showAllCB)}</div>;
+	return (
+		<section className='cards-container browse-page'>{props.browseResult.map(showAllCB)}</section>
+	);
 
 	function showAllCB(card) {
 		return (
