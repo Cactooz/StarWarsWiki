@@ -8,6 +8,7 @@ import { persistence } from './models/firebaseModel';
 import StarrySky from './components/StarrySky.jsx';
 
 import './style/style.scss';
+import Toastify from './components/Toastify.jsx';
 
 configure({ enforceActions: 'never' });
 export const reactiveModel = observable(model);
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 		<QueryClientProvider client={queryClient}>
 			<App model={reactiveModel} />
 		</QueryClientProvider>
+		<Toastify />
 	</>,
 );
 
