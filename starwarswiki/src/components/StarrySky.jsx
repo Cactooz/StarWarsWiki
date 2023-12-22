@@ -25,7 +25,7 @@ class StarrySky extends React.Component {
 			],
 			easing: 'linear',
 			loop: true,
-			delay: (el ,i) => 40 * i,
+			delay: (el, i) => 40 * i,
 		});
 	};
 
