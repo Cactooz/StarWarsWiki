@@ -2,6 +2,8 @@ import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import Vortex from './Vortex';
+import LandingCard from './LandingCard';
+
 import '../style/embla.scss';
 
 export function EmblaCarousel(props) {
@@ -25,8 +27,13 @@ export function EmblaCarousel(props) {
 			<div className='embla-container'>
 				{props.data.map((item) => (
 					<div className='embla-slide' key={item.name}>
-						<p>{item.name}</p>
-						<img src={item.image} />
+						<LandingCard
+							text={item.name}
+							image={item.image}
+							altText={item.name}
+							linkTo={`${item.path}/${item.name.replaceAll('/', '%2F').replaceAll('.', '%2E')}`}
+							inAnimation={props.inAnimation}
+						/>
 					</div>
 				))}
 			</div>
