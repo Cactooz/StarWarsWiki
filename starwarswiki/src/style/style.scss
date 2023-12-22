@@ -546,7 +546,7 @@ header {
 		input,
 		.id-button {
 			height: $big-margin;
-			width: 15rem;
+			width: min(15rem, 100%);
 			border-radius: $corner-radius;
 			text-align: center;
 			background-color: $background-gray;
