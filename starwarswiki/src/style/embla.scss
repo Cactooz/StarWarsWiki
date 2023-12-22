@@ -5,6 +5,7 @@
 	width: 100%;
 	padding-bottom: $margin;
 	position: relative;
+	text-align: center;
 
 	mask-image: linear-gradient(
 		to right,
@@ -58,6 +59,27 @@
 	border-radius: $corner-radius;
 	box-shadow: $yellow-glow;
 
+	background-image: repeating-linear-gradient(
+		0deg,
+		transparent,
+		transparent 5px,
+		rgba(77, 172, 220, 0.6) 10px,
+		rgba(77, 128, 230, 0.6) 15px
+	);
+
+	background-size: 100% 150%;
+	animation: hologram-animation 8s linear infinite;
+	transition: box-shadow 200ms ease-in-out;
+
+	&:hover {
+		box-shadow: $no-glow;
+	}
+
+	&:hover img {
+		filter: $no-overlay;
+		transform: scale(1.05) rotate(0);
+	}
+
 	> * {
 		a {
 			display: flex;
@@ -71,7 +93,6 @@
 			color: $black;
 			text-shadow: $yellow-stroke-ie;
 			text-transform: capitalize;
-			text-align: center;
 		}
 
 		img {
@@ -79,6 +100,9 @@
 			aspect-ratio: 16/9;
 			object-fit: cover;
 			filter: $black-overlay;
+
+			transition: all 200ms ease-in-out;
+			transform: scale(1.1) rotate(1deg);
 		}
 	}
 }
