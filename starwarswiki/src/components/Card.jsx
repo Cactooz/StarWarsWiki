@@ -21,7 +21,7 @@ export default function (card) {
 	let linkTo = card.path + '/' + card.name.replaceAll('/', '%2F');
 	return (
 		<section className='browse-card'>
-			<Link to={linkTo} replace={card.inAnimation ? true : false}>
+			<Link to={linkTo} replace={card.inAnimation}>
 				<img src={card.image} />
 				<p>{card.name}</p>
 			</Link>
