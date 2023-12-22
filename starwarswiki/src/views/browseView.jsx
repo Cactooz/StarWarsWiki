@@ -1,6 +1,5 @@
 import Card from '../components/Card.jsx';
 import { toast } from 'react-toastify';
-import Toastify from '../components/Toastify.jsx';
 
 export default function browseView(props) {
 	function removeACB(card) {
@@ -17,12 +16,7 @@ export default function browseView(props) {
 		toast.info('Sign in to add items to your favorites!');
 	}
 
-	return (
-		<>
-			<div className='cards-container browse-page' >{props.browseResult.map(showAllCB)}</div >
-			<Toastify />
-		</>
-	);
+	return <div className='cards-container browse-page'>{props.browseResult.map(showAllCB)}</div>;
 
 	function showAllCB(card) {
 		return (
