@@ -15,7 +15,7 @@ export default observer(function ReactRoot(props) {
 	}
 
 	return (
-		<div style={props.model.inAnimation ? { pointerEvents: 'none' } : {}}>
+		<div style={props.model.inAnimation ? { pointerEvents: 'none' } : {}} className='blocking-div'>
 			<BrowserRouter>
 				<Routes>
 					<Route path='/*' element={<AnimatedRoutes model={props.model} />} />
