@@ -6,7 +6,7 @@ export default function ProfileView(props) {
 		return (
 			<section className='profile-title'>
 				<h2>You are not logged in. Sign in above.</h2>
-				<Link to={'/'} replace={props.inAnimation ? true : false}>
+				<Link to={'/'} replace={props.inAnimation}>
 					<h2>Return to home!</h2>
 				</Link>
 			</section>

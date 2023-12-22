@@ -6,7 +6,7 @@ export default function GoToProfile(props) {
 		return (
 			<Link
 				to={'/profile'}
-				replace={props.inAnimation ? true : false}
+				replace={props.inAnimation}
 				onClick={props.onClickHandler ? props.onClickHandler : () => {}}
 			>
 				Profile
