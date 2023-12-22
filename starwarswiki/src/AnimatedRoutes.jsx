@@ -27,6 +27,8 @@ export default function AnimatedRoutes(props) {
 					exit={{ opacity: 0 }}
 					onAnimationStart={() => props.model.setInAnimation(true)}
 					onAnimationComplete={() => props.model.setInAnimation(false)}
+					className='animation-div'
+					id='main'
 				>
 					{originalComponent}
 				</motion.div >
