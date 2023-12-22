@@ -13,7 +13,8 @@ export default function HamburgerView(props) {
 
 	return (
 		<div className='burger-navbar'>
-			{props.page === '/' ? <img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' /> :
+			{props.page === '/' ?
+				<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' className='active' /> :
 				<Link to='/'>
 					<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
 				</Link>}
@@ -25,16 +26,16 @@ export default function HamburgerView(props) {
 				onStateChange={isMenuOpen}
 				right
 			>
-				{props.page === '/characters' ? <p className='current-page'>Characters</p> :
+				{props.page === '/characters' ? <p className='active'>Characters</p> :
 					<Link to='/characters' onClick={props.handleOnClick}>
 						<p>Characters</p>
 					</Link>}
-				{props.page === '/vehicles' ? <p className='current-page'>Vehicles</p> :
+				{props.page === '/vehicles' ? <p className='active'>Vehicles</p> :
 					<Link to='/vehicles' onClick={props.handleOnClick}>
 						<p>Vehicles</p>
 					</Link>}
 
-				{props.page === '/locations' ? <p className='current-page'>Locations</p> :
+				{props.page === '/locations' ? <p className='active'>Locations</p> :
 					<Link to='/locations' onClick={props.handleOnClick}>
 						<p>Locations</p>
 					</Link>}

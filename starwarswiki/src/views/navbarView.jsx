@@ -10,19 +10,20 @@ export default function NavbarView(props) {
 
 	return (
 		<nav id='nav'>
-			{props.page === '/' ? <img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' /> :
+			{props.page === '/' ?
+				<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' className='active' /> :
 				<Link to='/' replace={props.inAnimation ? true : false}>
 					<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
 				</Link>}
-			{props.page === '/characters' ? <p className='current-page'>Characters</p> :
+			{props.page === '/characters' ? <p className='active'>Characters</p> :
 				<Link to='/characters' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
 					<p>Characters</p>
 				</Link>}
-			{props.page === '/vehicles' ? <p className='current-page'>Vehicles</p> :
+			{props.page === '/vehicles' ? <p className='active'>Vehicles</p> :
 				<Link to='/vehicles' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
 					<p>Vehicles</p>
 				</Link>}
-			{props.page === '/locations' ? <p className='current-page'>Locations</p> :
+			{props.page === '/locations' ? <p className='active'>Locations</p> :
 				<Link to='/locations' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
 					<p>Locations</p>
 				</Link>}

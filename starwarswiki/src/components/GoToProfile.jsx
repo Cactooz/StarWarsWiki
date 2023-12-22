@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function GoToProfile(props) {
 	if (props.page === '/profile')
-		return <p className='current-page'>Profile</p>;
+		return <p className='active'>Profile</p>;
 	else
 		return (
 			<Link
