@@ -2,7 +2,8 @@
 
 .embla {
 	overflow: hidden;
-	-webkit-mask-image: linear-gradient(
+	width: 100vw;
+	mask-image: linear-gradient(
 		to right,
 		rgba(0, 0, 0, 0),
 		rgba(0, 0, 0, 1) 10%,
@@ -16,18 +17,24 @@
 	display: flex;
 	touch-action: pan-y;
 	height: 520px;
-	gap: $margin;
 }
 
 .embla__slide {
-	flex: 0 0 60%;
+	flex: 0 0 100%;
 	position: relative;
 	overflow: hidden;
+	margin-left: $margin;
 
 	img {
 		height: 100%;
 		width: 100%;
 		object-fit: cover;
 		object-position: center center;
+	}
+}
+
+@media only screen and (min-width: $big-screen) {
+	.embla__slide {
+		flex: 0 0 60%;
 	}
 }
