@@ -13,7 +13,7 @@ export default function FriendSidebarView(props) {
 				maxLength={28}
 			/>
 			<button onClick={showAndCopyID} className='id-button' title='Click to show/hide your ID'>
-				{props.shouldShowId === false ? 'Click to show your ID' : props.yourID}
+				{props.shouldShowId === false ? 'Click to show & copy your ID' : props.yourID}
 			</button>
 			{props.friendRequest.length ? <h3>Friend Requests</h3> : null}
 			{props.friendRequest.length ? (
