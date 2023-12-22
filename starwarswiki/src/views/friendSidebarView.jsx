@@ -4,33 +4,43 @@ import { toast } from 'react-toastify';
 export default function FriendSidebarView(props) {
 	return (
 		<>
-			<h3>Add friends</h3>
-			<input
-				type={'text'}
-				placeholder={`Enter your friend's ID`}
-				onKeyUp={props.addfriend}
-				maxLength={28}
-			/>
-			<button onClick={showAndCopyID} className='id-button' title='Click to show/hide your ID'>
-				{props.shouldShowId === false ? 'Click to show & copy your ID' : props.yourID}
-			</button>
-			{props.friendRequest.length ? <h3>Friend Requests</h3> : null}
+			<section>
+				<h3>Add friends</h3>
+				<input
+					type={'text'}
+					placeholder={`Enter your friend's ID`}
+					onKeyUp={props.addfriend}
+					maxLength={28}
+				/>
+				<button onClick={showAndCopyID} className='id-button' title='Click to show/hide your ID'>
+					{props.shouldShowId === false ? 'Click to show & copy your ID' : props.yourID}
+				</button>
+			</section>
 			{props.friendRequest.length ? (
-				<table>
-					<tbody>{props.friendRequest.map(showFriends)}</tbody>
-				</table>
+				<section>
+					<h3>Friend Requests</h3>
+					<table>
+						<tbody>{props.friendRequest.map(showFriends)}</tbody>
+					</table>
+				</section>
 			) : null}
-			{props.sentRequests.length ? <h3>Pending Requests</h3> : null}
+
 			{props.sentRequests.length ? (
-				<table>
-					<tbody>{props.sentRequests.map(showRequests)}</tbody>
-				</table>
+				<section>
+					<h3>Pending Requests</h3>
+					<table>
+						<tbody>{props.sentRequests.map(showRequests)}</tbody>
+					</table>
+				</section>
 			) : null}
-			{props.friends.length ? <h3>Your Friends</h3> : null}
+
 			{props.friends.length ? (
-				<table>
-					<tbody>{props.friends.map(showAllCB)}</tbody>
-				</table>
+				<section>
+					<h3>Your Friends</h3>{' '}
+					<table>
+						<tbody>{props.friends.map(showAllCB)}</tbody>
+					</table>
+				</section>
 			) : null}
 		</>
 	);

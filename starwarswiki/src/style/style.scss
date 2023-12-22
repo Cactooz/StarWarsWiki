@@ -460,6 +460,13 @@ header {
 		padding: $margin;
 		border-radius: $corner-radius;
 
+		> *:first-child {
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			gap: calc($margin / 2);
+		}
+
 		button {
 			background-color: transparent;
 			border: none;
@@ -490,22 +497,28 @@ header {
 			font-weight: 400;
 		}
 
-		table {
+		section {
 			width: 100%;
-			tr {
-				.button {
-					width: calc($margin / 2);
-				}
-				a {
-					color: $white;
-					text-decoration: none;
-					cursor: pointer;
-					display: inline-block;
+			text-align: center;
 
-					transition: all 100ms ease-in-out;
+			table {
+				width: 100%;
+				text-align: left;
+				tr {
+					.button {
+						width: calc($margin / 2);
+					}
+					a {
+						color: $white;
+						text-decoration: none;
+						cursor: pointer;
+						display: inline-block;
 
-					&:hover {
-						transform: scale(0.9);
+						transition: all 100ms ease-in-out;
+
+						&:hover {
+							transform: scale(0.9);
+						}
 					}
 				}
 			}
