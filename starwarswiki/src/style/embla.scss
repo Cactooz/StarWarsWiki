@@ -2,7 +2,7 @@
 
 .embla {
 	overflow: hidden;
-	width: 80vw;
+	width: calc(100vw - 2 * $big-margin);
 	max-width: 3000px;
 	padding-bottom: $big-margin;
 	position: relative;
