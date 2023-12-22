@@ -86,10 +86,10 @@ p {
 
 main {
 	flex: 1 0 auto;
+	margin: calc(3rem + 3 * $margin) auto auto auto;
 }
 
 .animation-div {
-	margin: calc(3rem + 3 * $margin) auto auto auto;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
