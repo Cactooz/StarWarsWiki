@@ -10,16 +10,47 @@
 		rgba(0, 0, 0, 1) 90%,
 		rgba(0, 0, 0, 0) 100%
 	);
+
+	position: relative;
+
+	.embla-container {
+		backface-visibility: hidden;
+		display: flex;
+		touch-action: pan-y;
+		height: 520px;
+	}
+
+	button {
+		background-color: transparent;
+		border: none;
+		position: absolute;
+		top: calc(50% - $margin);
+
+		&.embla-prev {
+			left: 0px;
+		}
+
+		&.embla-next {
+			right: 0px;
+		}
+
+		svg {
+			fill: $yellow;
+			height: calc(2 * $margin);
+			width: calc(2 * $margin);
+			stroke: black;
+			stroke-width: 8px;
+
+			transition: all 100ms ease-in-out;
+
+			&:hover {
+				transform: scale(0.9);
+			}
+		}
+	}
 }
 
-.embla__container {
-	backface-visibility: hidden;
-	display: flex;
-	touch-action: pan-y;
-	height: 520px;
-}
-
-.embla__slide {
+.embla-slide {
 	flex: 0 0 100%;
 	position: relative;
 	overflow: hidden;
@@ -34,7 +65,19 @@
 }
 
 @media only screen and (min-width: $big-screen) {
-	.embla__slide {
+	.embla-slide {
 		flex: 0 0 60%;
+	}
+
+	.embla button {
+		position: absolute;
+
+		&.embla-prev {
+			left: calc($margin * 4);
+		}
+
+		&.embla-next {
+			right: calc($margin * 4);
+		}
 	}
 }
