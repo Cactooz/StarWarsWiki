@@ -72,6 +72,10 @@ export default observer(function MoreDetails(props) {
 				key: item.key.replaceAll('_', ' '),
 				value: item.value,
 			}));
+
+			if (moreDetails.length < 1) {
+				moreDetails = undefined;
+			}
 		}
 
 		loaded = true;
