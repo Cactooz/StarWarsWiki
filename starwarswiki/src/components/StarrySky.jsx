@@ -79,7 +79,7 @@ class StarrySky extends React.Component {
 		const { num } = this.state;
 		const color = ['red', 'blue', 'yellow'];
 		return (
-			<div id='App'>
+			<div>
 				<svg id='sky'>
 					<defs>
 						<radialGradient id='red'>
