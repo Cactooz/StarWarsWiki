@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import Vortex from '../components/Vortex';
 import BrowseView from '../views/browseView';
-import HeaderPresenter from './headerPresenter';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import NoResultsView from '../views/noResultsView';

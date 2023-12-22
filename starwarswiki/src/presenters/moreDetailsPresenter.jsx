@@ -61,11 +61,10 @@ export default observer(function MoreDetails(props) {
 
 			moreDetails = moreDetails.filter(({ key, value }) => {
 				if (key === 'name' || key === 'created' || key === 'edited') return false;
-				if (value === 'unknown' || value === 'n/a' || value == 'N/A' || value === 'none')
+				if (value === 'unknown' || value === 'n/a' || value === 'N/A' || value === 'none')
 					return false;
 				if (typeof value === 'string' && value.startsWith('http')) return false;
-				if (Array.isArray(value)) return false;
-				return true;
+				return !Array.isArray(value);
 			});
 
 			moreDetails = moreDetails.map((item) => ({

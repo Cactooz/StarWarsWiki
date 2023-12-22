@@ -20,18 +20,16 @@ export default function AnimatedRoutes(props) {
 
 	function transition(originalComponent) {
 		return (
-			<>
-				<motion.div
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					onAnimationStart={() => props.model.setInAnimation(true)}
-					onAnimationComplete={() => props.model.setInAnimation(false)}
-					className='animation-div'
-				>
-					{originalComponent}
-				</motion.div>
-			</>
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
+				onAnimationStart={() => props.model.setInAnimation(true)}
+				onAnimationComplete={() => props.model.setInAnimation(false)}
+				className='animation-div'
+			>
+				{originalComponent}
+			</motion.div>
 		);
 	}
 

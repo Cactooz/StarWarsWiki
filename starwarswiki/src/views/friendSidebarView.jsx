@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Toastify from '../components/Toastify';
 import { toast } from 'react-toastify';
 
 export default function FriendSidebarView(props) {

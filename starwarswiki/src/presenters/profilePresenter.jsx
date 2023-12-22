@@ -13,7 +13,6 @@ import Vortex from '../components/Vortex.jsx';
 import NoPermissionView from '../views/noPermissionView.jsx';
 import ErrorView from '../views/errorView.jsx';
 import { useEffect } from 'react';
-import Toastify from '../components/Toastify.jsx';
 import { toast } from 'react-toastify';
 
 export default observer(function ProfilePresenter(props) {
@@ -95,11 +94,7 @@ export default observer(function ProfilePresenter(props) {
 		findUser(site);
 	}, []);
 	if (props.model.user === undefined) {
-		return (
-			<>
-				<ProfileView user={props.model.user} inAnimation={props.model.inAnimation} />
-			</>
-		);
+		return <ProfileView user={props.model.user} inAnimation={props.model.inAnimation} />;
 	} else if (props.model.user) {
 		if (site) {
 			if (props.model.loadingFriends) {
