@@ -7,26 +7,26 @@ export default function NavbarView(props) {
 	function browseDataACB(event) {
 		props.onClickHandler(event.target.innerText.toLowerCase());
 	}
-	
+
 	return (
 		<nav id='nav'>
 			{props.page === '/' ? <img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' /> :
 				<Link to='/' replace={props.inAnimation ? true : false}>
 					<img src={Logo} alt='Star Wars Wiki logo of green Yoda with red Christmas hat' />
 				</Link>}
-			{props.page === '/characters' ? <p>Characters</p> :
+			{props.page === '/characters' ? <p className='currentPage'>Characters</p> :
 				<Link to='/characters' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
 					<p>Characters</p>
 				</Link>}
-			{props.page === '/vehicles' ? <p>Vehicles</p> :
+			{props.page === '/vehicles' ? <p className='currentPage'>Vehicles</p> :
 				<Link to='/vehicles' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
 					<p>Vehicles</p>
 				</Link>}
-			{props.page === '/locations' ? <p>Locations</p> :
+			{props.page === '/locations' ? <p className='currentPage'>Locations</p> :
 				<Link to='/locations' replace={props.inAnimation ? true : false} onClick={browseDataACB}>
 					<p>Locations</p>
 				</Link>}
-			{props.user ? <GoToProfile inAnimation={props.inAnimation} /> : <SignInButton />}
+			{props.user ? <GoToProfile inAnimation={props.inAnimation} page={props.page} /> : <SignInButton />}
 		</nav>
 	);
 }
