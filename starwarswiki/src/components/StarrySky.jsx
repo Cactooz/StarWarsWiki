@@ -25,7 +25,7 @@ class StarrySky extends React.Component {
 			],
 			easing: 'linear',
 			loop: true,
-			delay: (el, i) => 50 * i,
+			delay: (el ,i) => 40 * i,
 		});
 	};
 
@@ -34,7 +34,7 @@ class StarrySky extends React.Component {
 			targets: ['#shootingstars .wish'],
 			easing: 'linear',
 			loop: true,
-			delay: (el, i) => 3000 * i,
+			delay: (el, i) => 2000 * i,
 			opacity: [
 				{
 					duration: 700,
@@ -105,8 +105,6 @@ class StarrySky extends React.Component {
 							cx={this.getRandomX()}
 							cy={this.getRandomY()}
 							r={this.randomRadius()}
-							stroke='none'
-							strokeWidth='0'
 							fill={`url(#${color[Math.floor(Math.random() * 3)]})`}
 							key={y}
 							className='star'
