@@ -1,6 +1,5 @@
 import AddStar from '../components/AddStar';
 import RemoveStar from '../components/RemoveStar';
-import Toastify from '../components/Toastify';
 import { toast } from 'react-toastify';
 
 function DetailsView(props) {
@@ -37,7 +36,6 @@ function DetailsView(props) {
 								<button onClick={addACB}>
 									<AddStar />
 								</button>
-								<Toastify />
 							</div>
 						)
 					) : (
@@ -45,7 +43,6 @@ function DetailsView(props) {
 							<button onClick={() => toast.info('Sign in to add items to your favorites!')}>
 								<AddStar />
 							</button>
-							<Toastify />
 						</div>
 					)}
 				</div>
